@@ -1,0 +1,49 @@
+10
+
+dir
+0
+https://Velora@velora.svn.beanstalkapp.com/websites/trunk/Theme%20Development/Webapp%20Bootstrap/Source%20Dev/fonts/foundation_icons_general_enclosed/sass
+https://Velora@velora.svn.beanstalkapp.com/websites
+add
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+421bfa8a-902f-4d26-b5ec-795cdb29e4ac
+
+_settings.scss
+file
+
+
+
+add
+
+general_enclosed_foundicons.scss
+file
+
+
+
+add
+
+general_enclosed_foundicons_ie7.scss
+file
+
+
+
+add
+

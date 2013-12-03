@@ -1,0 +1,49 @@
+10
+
+dir
+0
+https://Velora@velora.svn.beanstalkapp.com/websites/trunk/Theme%20Development/Webapp%20Bootstrap/Source%20Dev/fonts/foundation_icons_accessibility/sass
+https://Velora@velora.svn.beanstalkapp.com/websites
+add
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+421bfa8a-902f-4d26-b5ec-795cdb29e4ac
+
+accessibility_foundicons.scss
+file
+
+
+
+add
+
+_settings.scss
+file
+
+
+
+add
+
+accessibility_foundicons_ie7.scss
+file
+
+
+
+add
+
