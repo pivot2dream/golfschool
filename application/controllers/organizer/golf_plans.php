@@ -21,7 +21,13 @@ class Golf_plans extends CI_Controller
 		$this->load->vars($this->data);
 		////////////////////////////////
 	}
+    
+    function create_group_plan(){
+    	$this->load->model('organizer/golf_plans_model');
+    	$query = $this->golf_plans_model->create_plan();
+    	echo $query;
 
+    }
 	
 
 	function add_plan()

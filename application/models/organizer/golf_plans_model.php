@@ -29,11 +29,15 @@ class Golf_plans_model extends CI_Model {
 			'short_desc' => $this->input->post('expanded_info'),
 			'long_description' => $this->input->post('expanded_info_2'),
 			'duration_multiplier' => $this->input->post('plan_duration'),
-			'live' => 'yes'
+			'live' => $this->input->post('live'),
+			'instructor_id' => $this->input->post('instructor_id'),
+			'current_booked' => $this->input->post('current_booked'),
+			'cap' => $this->input->post('cap')
+			
 		);
 
 		$insert = $this->db->insert('golf_programs', $new_member_insert_data);
-		return $insert;
+		 return mysql_insert_id();
 	}
 
 	function edit_plan()

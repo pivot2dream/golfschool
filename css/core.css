@@ -1450,7 +1450,7 @@ ul.steps i.icon-remove-sign{
 /***------ @TOPBAR ------***/
 
 .topbar {
-	background:#5EA5CE;
+	background:#a7d6a8;
 	/**************/
 	color: #333;
 	/*background-color: #bbb;
@@ -1955,7 +1955,8 @@ ul.hmenu li a{
     background: -webkit-gradient(none);
     box-shadow: 0px 0px 0px 0px #000;
     border-radius: 0;
-    border: 1px solid #357D9D;
+    //border: 1px solid #357D9D;
+    border: 1px solid #333333;
     color: #ffffff !important;
 	text-shadow: 0px -1px rgba(0,0,0,0.3);
 	-webkit-box-shadow: inset 0px 1px 0px rgba(255,255,255,0.3), 0px 1px 3px rgba(0,0,0,0.4);
@@ -3563,15 +3564,23 @@ input:focus, textarea:focus {
 	}
 .rotate-day {
 	display:block;	
-	margin-bottom:-43px;
+	margin-bottom:-40px;
 	margin-left:-43px;
-	font-size:14px;
+	font-size:10px;
 	font-weight:bold;
 	-webkit-transform: rotate(-90deg); 
     -moz-transform: rotate(-90deg);	
     filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
     color:green;
-   }   	
+   }
+.shrink-date {
+	font-size:10px;
+	font-weight:bold;
+}
+
+.holds-calendar{
+	margin-left:-20px;
+}      	
 
 .rotate-time {
 	display:block;	
@@ -3599,7 +3608,7 @@ input:focus, textarea:focus {
   	-webkit-overflow-scrolling: touch;
   }
   .notifyHeader{
-  	left: -130px;
+  	left: -200px;
   }
   .theme-btn{
   	left: 5px;

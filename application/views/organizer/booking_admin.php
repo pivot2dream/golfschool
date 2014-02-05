@@ -9,8 +9,8 @@
             <hr>
             <i>showing one-on-one appointment bookings from <br><b><?php echo $weekdays[0][0];?>, <?php echo $weekdays[0][1];?></b> through <b><?php echo $weekdays[6][0];?>, <?php echo $weekdays[6][1];?></b></i>
             <div class="pull-left">
-            <a href="<?php echo base_url();?>index.php/organizer/booking_admin/today/<?php echo $date_go_back;?>" class="btn btn-small btn-info">- 1 week</a>&nbsp;&nbsp;
-            <a href="<?php echo base_url();?>index.php/organizer/booking_admin/today/<?php echo $date_go_forward;?>" class="btn btn-small btn-info">+ 1 week</a>
+            <a href="<?php echo base_url();?>index.php/organizer/booking_admin/today/<?php echo $date_go_back;?>" class="btn btn-small btn-primary">- 1 week</a>&nbsp;&nbsp;
+            <a href="<?php echo base_url();?>index.php/organizer/booking_admin/today/<?php echo $date_go_forward;?>" class="btn btn-small btn-primary">+ 1 week</a>
             </div>
             </div>
             <div class="span4 defeat-the-span" style="margin-left:0px;margin-right:0px;">
@@ -18,7 +18,7 @@
                 <hr>
                 <input type="text" placeholder="MM" id="MM" style="width:25px;">/<input type="text" style="width:25px;" id="DD" placeholder="DD">/<input type="text" style="width:40px;" id="YYYY" placeholder="YYYY">
                 <br>
-                <a href="javascript:void(0)" class="btn btn-small btn-info" id="jump_date_button">Jump to Date Above</a>
+                <a href="javascript:void(0)" class="btn btn-small btn-primary" id="jump_date_button">Jump to Date Above</a>
             </div>  
             <div class="span4 defeat-the-span" style="margin-left:0px;margin-right:0px;">
               <form action="<?php echo base_url();?>index.php/organizer/booking_admin/today" method="post">
@@ -41,22 +41,22 @@
                     <option value="45" <?php if($minute_incriment_saved=='45'){echo "selected=selected";}?> >45 min incriments</option>
                     <option value="60" <?php if($minute_incriment_saved=='60'){echo "selected=selected";}?> >60 min incriments</option>  
                   </select><br>
-                  <input type="submit" name="submit" value="Update Settings" class="btn btn-small btn-info">
+                  <input type="submit" name="submit" value="Update Settings" class="btn btn-small btn-primary">
                 </div>  
               </form>
             </div>  
 
             <div class="well" style="margin-left:0px;background-image:url('../images/accordian_backer.png');">
 
-            <table style="width:100%;" style="background-color:#fff;" class="table table-striped">
+            <table style="width:100%;" style="background-color:#fff;" class="table table-striped holds-calendar">
             <tr style="background-color:#fff;">
-              <th>&nbsp;</th><th><span class="rotate-day"><?php echo $weekdays[0][0]?></span><br><?php echo $weekdays[0][1]?></th>
-              <th><span class="rotate-day"><?php echo $weekdays[1][0]?></span><br><?php echo $weekdays[1][1]?></th>
-              <th><span class="rotate-day"><?php echo $weekdays[2][0]?></span><br><?php echo $weekdays[2][1]?></th>
-              <th><span class="rotate-day"><?php echo $weekdays[3][0]?></span><br><?php echo $weekdays[3][1]?></th>
-              <th><span class="rotate-day"><?php echo $weekdays[4][0]?></span><br><?php echo $weekdays[4][1]?></th>
-              <th><span class="rotate-day"><?php echo $weekdays[5][0]?></span><br><?php echo $weekdays[5][1]?></th>
-              <th><span class="rotate-day"><?php echo $weekdays[6][0]?></span><br><?php echo $weekdays[6][1]?></th>
+              <th>&nbsp;</th><th><span class="rotate-day"><?php echo $weekdays[0][0]?></span><br><span class="shrink-date"><?php echo $weekdays[0][1]?></span></th>
+              <th><span class="rotate-day"><?php echo $weekdays[1][0]?></span><br><span class="shrink-date"><?php echo $weekdays[1][1]?></span></th>
+              <th><span class="rotate-day"><?php echo $weekdays[2][0]?></span><br><span class="shrink-date"><?php echo $weekdays[2][1]?></span></th>
+              <th><span class="rotate-day"><?php echo $weekdays[3][0]?></span><br><span class="shrink-date"><?php echo $weekdays[3][1]?></span></th>
+              <th><span class="rotate-day"><?php echo $weekdays[4][0]?></span><br><span class="shrink-date"><?php echo $weekdays[4][1]?></span></th>
+              <th><span class="rotate-day"><?php echo $weekdays[5][0]?></span><br><span class="shrink-date"><?php echo $weekdays[5][1]?></span></th>
+              <th><span class="rotate-day"><?php echo $weekdays[6][0]?></span><br><span class="shrink-date"><?php echo $weekdays[6][1]?></span></th>
             </tr>
             <?php
             
@@ -76,7 +76,8 @@
             //this handles background colors
             function new_background_color () {
             //$backer_color = 'background-color:rgb(245,'.rand(100,230).','.rand(10,100).')';
-            $backer_color = 'background-color:rgb('.rand(240,250).','.rand(100,230).','.rand(10,100).')';
+            //$backer_color = 'background-color:rgb('.rand(240,250).','.rand(100,230).','.rand(10,100).')';
+            $backer_color = 'background-color:rgb('.rand(0,50).','.rand(50,100).','.rand(0,50).')';
             return $backer_color;
             }
             //this ends handling background colors
@@ -414,10 +415,13 @@
             <td style="<?php echo $tuesday_backer_color;?>" class="<?php echo $tuesday_appt_type;?>">
             <?php if ($tuesday_show_but=='yes'){?>
             <a style="width:70%;" href="javascript:void:0;" class="btn btn-small btn-warning btn-no-pad-marg <?php echo $tuesday_appt_type;?>" data-id="<?php echo $tuesday_appt_id;?>">
-              <?php if ($tuesday_appt_type=="static"){?>
+              <?php 
+              if ($tuesday_appt_type=="static"){?>
                 <i class="icon-user"></i> <span class="h-username"><?php echo $tuesday_user_name?></span>
                 <?php } if ($tuesday_appt_type=="blocked"){?>
                 <i class="icon-remove"></i> <span class="h-username">blocked</span>
+                <?php } if ($tuesday_appt_type=="group"){?>
+                <i class="icon-book"></i> <span class="h-username">group</span> 
                 <?php } ?>
             </a>
             <?php } ?>
@@ -814,7 +818,10 @@
     $(document).ready(function() { 
 
         $('.blocked').each(function() {
-            $(this).css('background-color','black');
+            $(this).css('background-color','#272b27');
+        });
+        $('.group').each(function() {
+            $(this).css('background-color','#256363');
         });
 
         $('#timepicker1').timepicker('setTime', '<?php echo $default_start_format;?>');
