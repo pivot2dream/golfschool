@@ -1,6 +1,6 @@
 <?php
 
-class Booking_admin extends CI_Controller
+class Client_detail extends CI_Controller
 {
 	function __construct()
 	{
@@ -22,18 +22,12 @@ class Booking_admin extends CI_Controller
 		////////////////////////////////
 	}
 
-	function get_a_golf_plan(){
-		$this->load->model('organizer/golf_plans_model');
-		$query = $this->golf_plans_model->get_a_golf_plan($this->input->post('plan_id'));
-		echo json_encode($query);
-
-	}
-
-	function get_group_dates(){
-		$this->load->model('organizer/golf_plans_model');
-		$query = $this->golf_plans_model->get_group_dates($this->input->post('plan_id'));
-		//echo $this->input->post('plan_id');
-		echo json_encode($query);
+	function show_clients(){
+		$data['show_success'] = 'false';
+	    $this->load->view('organizer/header_org', $data);
+	    //$this->load->view('organizer/admin_top', $data);
+		//$this->load->view('organizer/booking_admin', $data);
+		$this->load->view('organizer/footer_org');
 
 	}
     

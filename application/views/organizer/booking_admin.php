@@ -4,10 +4,10 @@
           
           <!--start-->
            
-            <div id="container_chart" class="span4 defeat-the-span" style="margin-left:0px;margin-right:0px;">
+            <div id="container_chart" class="span4 defeat-the-span" style="margin-left:6px;margin-right:0px;">
             <h3>My Appointments and Bookings</h3>
             <hr>
-            <i>showing one-on-one appointment bookings from <br><b><?php echo $weekdays[0][0];?>, <?php echo $weekdays[0][1];?></b> through <b><?php echo $weekdays[6][0];?>, <?php echo $weekdays[6][1];?></b></i>
+            <i>showing calendar from <br><b><?php echo $weekdays[0][0];?>, <?php echo $weekdays[0][1];?></b> through <b><?php echo $weekdays[6][0];?>, <?php echo $weekdays[6][1];?></b></i>
             <div class="pull-left">
             <a href="<?php echo base_url();?>index.php/organizer/booking_admin/today/<?php echo $date_go_back;?>" class="btn btn-small btn-primary">- 1 week</a>&nbsp;&nbsp;
             <a href="<?php echo base_url();?>index.php/organizer/booking_admin/today/<?php echo $date_go_forward;?>" class="btn btn-small btn-primary">+ 1 week</a>
@@ -109,6 +109,7 @@
                 $monday_user_name = $prev_indexed[$z][3];
                 $monday_appt_id = $prev_indexed[$z][0];
                 $monday_appt_type = $prev_indexed[$z][4];
+                $monday_appt_type_id = $prev_indexed[$z][5];
 
                 if($monday_match_name == $prev_indexed[$z][0]){
                   $monday_show_but ='no';
@@ -149,6 +150,7 @@
                 $tuesday_user_name = $prev_indexed[$z][3];
                 $tuesday_appt_id = $prev_indexed[$z][0];
                 $tuesday_appt_type = $prev_indexed[$z][4];
+                $tuesday_appt_type_id = $prev_indexed[$z][5];
 
                 if($tuesday_match_name == $prev_indexed[$z][0]){
                   $tuesday_show_but ='no';
@@ -189,6 +191,7 @@
                 $wednesday_user_name = $prev_indexed[$z][3];
                 $wednesday_appt_id = $prev_indexed[$z][0];
                 $wednesday_appt_type = $prev_indexed[$z][4];
+                $wednesday_appt_type_id = $prev_indexed[$z][5];
 
                 if($wednesday_match_name == $prev_indexed[$z][0]){
                   $wednesday_show_but ='no';
@@ -229,6 +232,7 @@
                 $thursday_user_name = $prev_indexed[$z][3];
                 $thursday_appt_id = $prev_indexed[$z][0];
                 $thursday_appt_type = $prev_indexed[$z][4];
+                $thursday_appt_type_id = $prev_indexed[$z][5];
 
                 if($thursday_match_name == $prev_indexed[$z][0]){
                   $thursday_show_but ='no';
@@ -269,6 +273,7 @@
                 $friday_user_name = $prev_indexed[$z][3];
                 $friday_appt_id = $prev_indexed[$z][0];
                 $friday_appt_type = $prev_indexed[$z][4];
+                $friday_appt_type_id = $prev_indexed[$z][5];
 
                 if($friday_match_name == $prev_indexed[$z][0]){
                   $friday_show_but ='no';
@@ -309,6 +314,7 @@
                 $saturday_user_name = $prev_indexed[$z][3];
                 $saturday_appt_id = $prev_indexed[$z][0];
                 $saturday_appt_type = $prev_indexed[$z][4];
+                $saturday_appt_type_id = $prev_indexed[$z][5];
 
                 if($saturday_match_name == $prev_indexed[$z][0]){
                   $saturday_show_but ='no';
@@ -349,6 +355,7 @@
                 $sunday_user_name = $prev_indexed[$z][3];
                 $sunday_appt_id = $prev_indexed[$z][0];
                 $sunday_appt_type = $prev_indexed[$z][4];
+                $sunday_appt_type_id = $prev_indexed[$z][5];
 
                 if($sunday_match_name == $prev_indexed[$z][0]){
                   $sunday_show_but ='no';
@@ -387,11 +394,13 @@
             <?php }else{ ?>
             <td style="<?php echo $backer_color;?>" class="<?php echo $monday_appt_type;?>">
             <?php if ($monday_show_but=='yes'){?>
-            <a style="width:70%;" href="javascript:void:0;" class="btn btn-small btn-warning btn-no-pad-marg <?php echo $monday_appt_type;?>" data-id="<?php echo $monday_appt_id;?>">
+            <a style="width:70%;" href="javascript:void:0;" class="btn btn-small btn-warning btn-no-pad-marg <?php echo $monday_appt_type;?>" data-id="<?php echo $monday_appt_id;?>" data-appt-type-id="<?php echo $monday_appt_type_id;?>">
                 <?php if ($monday_appt_type=="static"){?>
                 <i class="icon-user"></i> <span class="h-username"><?php echo $monday_user_name?></span>
                 <?php } if ($monday_appt_type=="blocked"){?>
                 <i class="icon-remove"></i> <span class="h-username">blocked</span>
+                <?php } if ($monday_appt_type=="group"){?>
+                <i class="icon-book"></i> <span class="h-username">group</span> 
                 <?php } ?>
             </a>
             <?php } ?>
@@ -414,7 +423,7 @@
             <?php }else{ ?>
             <td style="<?php echo $tuesday_backer_color;?>" class="<?php echo $tuesday_appt_type;?>">
             <?php if ($tuesday_show_but=='yes'){?>
-            <a style="width:70%;" href="javascript:void:0;" class="btn btn-small btn-warning btn-no-pad-marg <?php echo $tuesday_appt_type;?>" data-id="<?php echo $tuesday_appt_id;?>">
+            <a style="width:70%;" href="javascript:void:0;" class="btn btn-small btn-warning btn-no-pad-marg <?php echo $tuesday_appt_type;?>" data-id="<?php echo $tuesday_appt_id;?>" data-appt-type-id="<?php echo $tuesday_appt_type_id;?>">
               <?php 
               if ($tuesday_appt_type=="static"){?>
                 <i class="icon-user"></i> <span class="h-username"><?php echo $tuesday_user_name?></span>
@@ -444,11 +453,13 @@
             <?php }else{ ?>
             <td style="<?php echo $wednesday_backer_color;?>" class="<?php echo $wednesday_appt_type;?>">
             <?php if ($wednesday_show_but=='yes'){?>
-            <a style="width:70%;" href="javascript:void:0;" class="btn btn-small btn-warning btn-no-pad-marg <?php echo $wednesday_appt_type;?>" data-id="<?php echo $wednesday_appt_id;?>">
+            <a style="width:70%;" href="javascript:void:0;" class="btn btn-small btn-warning btn-no-pad-marg <?php echo $wednesday_appt_type;?>" data-id="<?php echo $wednesday_appt_id;?>" data-appt-type-id="<?php echo $wednesday_appt_type_id;?>">
                 <?php if ($wednesday_appt_type=="static"){?>
                 <i class="icon-user"></i> <span class="h-username"><?php echo $wednesday_user_name?></span>
                 <?php } if ($wednesday_appt_type=="blocked"){?>
                 <i class="icon-remove"></i> <span class="h-username">blocked</span>
+                <?php } if ($wednesday_appt_type=="group"){?>
+                <i class="icon-book"></i> <span class="h-username">group</span> 
                 <?php } ?>
             </a>
             <?php } ?>
@@ -471,11 +482,13 @@
             <?php }else{ ?>
             <td style="<?php echo $thursday_backer_color;?>" class="<?php echo $thursday_appt_type;?>">
             <?php if ($thursday_show_but=='yes'){?>
-            <a style="width:70%;" href="javascript:void:0;" class="btn btn-small btn-warning btn-no-pad-marg <?php echo $thursday_appt_type;?>" data-id="<?php echo $thursday_appt_id;?>">
+            <a style="width:70%;" href="javascript:void:0;" class="btn btn-small btn-warning btn-no-pad-marg <?php echo $thursday_appt_type;?>" data-id="<?php echo $thursday_appt_id;?>" data-appt-type-id="<?php echo $thursday_appt_type_id;?>">
                 <?php if ($thursday_appt_type=="static"){?>
                 <i class="icon-user"></i> <span class="h-username"><?php echo $thursday_user_name?></span>
                 <?php } if ($thursday_appt_type=="blocked"){?>
                 <i class="icon-remove"></i> <span class="h-username">blocked</span>
+                <?php } if ($thursday_appt_type=="group"){?>
+                <i class="icon-book"></i> <span class="h-username">group</span> 
                 <?php } ?>
             </a>
             <?php } ?>
@@ -498,11 +511,13 @@
             <?php }else{ ?>
             <td style="<?php echo $friday_backer_color;?>" class="<?php echo $friday_appt_type;?>">
             <?php if ($friday_show_but=='yes'){?>
-            <a style="width:70%;" href="javascript:void:0;" class="btn btn-small btn-warning btn-no-pad-marg <?php echo $friday_appt_type;?>" data-id="<?php echo $friday_appt_id;?>">
+            <a style="width:70%;" href="javascript:void:0;" class="btn btn-small btn-warning btn-no-pad-marg <?php echo $friday_appt_type;?>" data-id="<?php echo $friday_appt_id;?>" data-appt-type-id="<?php echo $friday_appt_type_id;?>">
                 <?php if ($friday_appt_type=="static"){?>
                 <i class="icon-user"></i> <span class="h-username"><?php echo $friday_user_name?></span>
                 <?php } if ($friday_appt_type=="blocked"){?>
                 <i class="icon-remove"></i> <span class="h-username">blocked</span>
+                <?php } if ($friday_appt_type=="group"){?>
+                <i class="icon-book"></i> <span class="h-username">group</span> 
                 <?php } ?>
             </a>
             <?php } ?>
@@ -525,11 +540,13 @@
             <?php }else{ ?>
             <td style="<?php echo $saturday_backer_color;?>" class="<?php echo $saturday_appt_type;?>">
             <?php if ($saturday_show_but=='yes'){?>
-            <a style="width:70%;" href="javascript:void:0;" class="btn btn-small btn-warning btn-no-pad-marg <?php echo $saturday_appt_type;?>" data-id="<?php echo $saturday_appt_id;?>">
+            <a style="width:70%;" href="javascript:void:0;" class="btn btn-small btn-warning btn-no-pad-marg <?php echo $saturday_appt_type;?>" data-id="<?php echo $saturday_appt_id;?>" data-appt-type-id="<?php echo $saturday_appt_type_id;?>">
                  <?php if ($saturday_appt_type=="static"){?>
                 <i class="icon-user"></i> <span class="h-username"><?php echo $saturday_user_name?></span>
                 <?php } if ($saturday_appt_type=="blocked"){?>
                 <i class="icon-remove"></i> <span class="h-username">blocked</span>
+                <?php } if ($saturday_appt_type=="group"){?>
+                <i class="icon-book"></i> <span class="h-username">group</span> 
                 <?php } ?>
             </a>
             <?php } ?>
@@ -552,11 +569,13 @@
             <?php }else{ ?>
             <td style="<?php echo $sunday_backer_color;?>" class="<?php echo $sunday_appt_type;?>">
             <?php if ($sunday_show_but=='yes'){?>
-            <a style="width:70%;" href="javascript:void(0);" class="btn btn-small btn-warning btn-no-pad-marg <?php echo $sunday_appt_type;?>" data-id="<?php echo $sunday_appt_id;?>">
+            <a style="width:70%;" href="javascript:void(0);" class="btn btn-small btn-warning btn-no-pad-marg <?php echo $sunday_appt_type;?>" data-id="<?php echo $sunday_appt_id;?>" data-appt-type-id="<?php echo $sunday_appt_type_id;?>">
                  <?php if ($sunday_appt_type=="static"){?>
                 <i class="icon-user"></i> <span class="h-username"><?php echo $sunday_user_name?></span>
                 <?php } if ($sunday_appt_type=="blocked"){?>
                 <i class="icon-remove"></i> <span class="h-username">blocked</span>
+                <?php } if ($sunday_appt_type=="group"){?>
+                <i class="icon-book"></i> <span class="h-username">group</span> 
                 <?php } ?>
             </a>
             <?php } ?>
@@ -631,6 +650,56 @@
     </div>
   </div>
   <div class="modal-footer"> <a href="#" class="btn btn-danger" data-id="0" id="remove-appt-btn">Remove Appointment</a> </div>
+</div>
+<!--Modal Window Templates-->
+
+<!--Appointment Details Modal-->
+<div class="modal fade" id="myModalGroupDetails">
+  <div class="modal-header"> <a class="close" data-dismiss="modal">×</a>
+    <h3>Group Appointment Details</h3>
+  </div>
+  <div class="modal-body">
+    <div class="group-appointment-detail-holder">
+        <table>
+          <tr>
+            <td style="vertical-align: top;" valign="top">
+               <b>Sign Up for Group Lesson:</b><br>
+               <span class="label label-success" id="open_slots"></span>&nbsp;<span class="label" id="cap"></span>
+               <hr style="margin:3px 3px 3px 3px;">
+               Full Name:
+               <input type="text" class="input" name="g_name" id="g_name">
+               Email Address:
+               <input type="text" class="input" name="g_email" id="g_email">
+               Phone Number:
+               <input type="text" class="input" name="g_phone" id="g_phone"><br>
+               <a href="javascript:void(0)" class="btn btn-success">Sign me Up!</a>
+              
+               
+            </td>
+            <td>
+                &nbsp;&nbsp;
+            </td>
+            <td style="width:60%;" style="vertical-align: top;" valign="top">
+                <div class="alert alert-success" style="padding-right:3px;padding-left;3px;margin-right:0px;">
+                    Instructor: <b id="group_trainer_name_bm"></b>
+                </div>
+            
+                <b>Appointment Type:</b> <span id="group_appointment_type_name"></span>
+                <br>
+                <b>Description:</b> <span id="group_appointment_short_desc"></span>
+                <br>
+                <b>Pricing:</b> <span id="group_appointment_price_desc"></span><br><br>
+                
+                <div id="bulk_group_date" class="well" style="font-size:0.8em;padding:3px 3px 3px 3px;"> </div>
+                
+                   
+            </td>
+          </tr>       
+        </table>    
+                
+    </div>
+  </div>
+  <div class="modal-footer"> <a href="#" class="btn btn-danger" data-id="0" id="group-remove-appt-btn">Remove Appointment</a> </div>
 </div>
 <!--Modal Window Templates-->
 
@@ -853,6 +922,85 @@
         window.location.replace("<?php echo base_url();?>index.php/organizer/booking_admin/today/" + yyyy + "/" + mm + "/" + dd);
         });
 
+        //group appointment modal open
+        $( "a.group" ).click(function() {
+            //alert('c');
+            var $day_id = $( this ).attr('data-id');
+            //alert($day_id);
+            var $appt_id = $( this ).attr('data-appt-type-id');
+            $('#group-remove-appt-btn').attr('data-id', $day_id);
+            //fetch_appointment
+            $.post("<?php echo base_url();?>index.php/organizer/booking_admin/fetch_appointment_group", {appt_id: $day_id}, function(data){
+            
+                //alert(data);
+                data = $.parseJSON(data);
+                data = data[0];
+                console.log(data);
+
+                //$('#start_readable').text(data['start_readable']);
+                //$('#end_readable').text(data['end_readable']);
+                //$('#human_date_group').text(data['human_date']);
+                //$('#paid').text(data['paid']);
+                //$('#full_name_a').text(data['full_name_a']);
+                //$('#gender_a').text(data['gender_a']);
+                //$('#age_a').text(data['age_a']);
+                //$('#appointment_email').text(data['appointment_email']);
+                $('#group_appointment_type_name').text(data['appointment_type_name']);
+                $('#group_appointment_price_desc').text(data['appointment_price_desc']);
+                //$('#group_appointment_short_desc').text(data['short_desc']);
+                $('#group_trainer_name_bm').text(data['trainer_name_bm']);
+
+            
+            }, 'text');
+
+             $.post("<?php echo base_url();?>index.php/organizer/booking_admin/get_a_golf_plan", {plan_id: $appt_id}, function(data){
+            
+                //alert(data);
+                data = $.parseJSON(data);
+                data = data[0];
+                console.log(data);
+
+                //$('#start_readable').text(data['start_readable']);
+                //$('#end_readable').text(data['end_readable']);
+                //$('#human_date_group').text(data['human_date']);
+                //$('#paid').text(data['paid']);
+                //$('#full_name_a').text(data['full_name_a']);
+                //$('#gender_a').text(data['gender_a']);
+                //$('#age_a').text(data['age_a']);
+                //$('#appointment_email').text(data['appointment_email']);
+                //$('#group_appointment_type_name').text(data['appointment_type_name']);
+                //$('#group_appointment_price_desc').text(data['appointment_price_desc']);
+                //current_booked  cap
+                var current = data['current_booked'];
+                var total = data['cap'];
+                var available = total - current;
+                $('#open_slots').html(available + ' available slots');
+                $('#cap').html(total + ' total slots');
+                $('#group_appointment_short_desc').text(data['short_desc']);
+                //$('#group_trainer_name_bm').text(data['trainer_name_bm']);
+
+            
+            }, 'text');
+
+            $.post("<?php echo base_url();?>index.php/organizer/booking_admin/get_group_dates", {plan_id: $appt_id}, function(data){
+                //alert('yo1');
+                //alert(data);
+                data = $.parseJSON(data);
+                //data = data[0];
+                console.log(data);
+                var html_var = "<span class='label pull-right'>Plan Dates:</span>";
+                $.each(data, function(i, item) {
+                html_var += "<b>" + item.human_date + "</b><br> " + item.start_readable + " <i class='icon icon-arrow-right'></i>" + item.end_readable + "<br>";
+                });
+                $("#bulk_group_date").html(html_var);
+
+
+            
+            }, 'text');
+           
+            $('#myModalGroupDetails').modal('show');
+        });
+
         $( ".open-butt-clicker" ).click(function() {
             primary_date_passed_orig = $( this ).attr('id');
             $primary_date_passed = Date.parseExact(primary_date_passed_orig,"yyyy-MM-dd HH:mm:ss");
@@ -1006,7 +1154,7 @@
             
         });
 
-        $(document).on("click", "#remove-appt-btn", function() {
+        $(document).on("click", "#remove-appt-btn, #group-remove-appt-btn", function() {
            var data_id = $(this).attr('data-id');
             $.post("http://localhost/golfschool/index.php/organizer/create_main_event/unset_me", {data_id: data_id}, function(data){
                 window.location.replace("<?php echo base_url();?>index.php/organizer/booking_admin/today/<?php echo $last_part_date_url;?>");

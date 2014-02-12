@@ -19,6 +19,7 @@
 
     <link href='http://fonts.googleapis.com/css?family=Lato:400,700,700italic' rel='stylesheet' type='text/css'>
 
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>js/gritter/css/jquery.gritter.css" />
 
     <script type="text/javascript" src="<?php echo base_url();?>js/jquery-1.7.2.min.js"></script>
     <!--<script type="text/javascript" src="<?php echo base_url();?>js/jquery.layout.js"></script>-->
@@ -65,22 +66,14 @@
                 <img alt="profile image" src="<?php echo base_url();?>img/thumb-3-temp.jpg" style="width:60px;"/>
                             <h5>Manage Clients</h5>
                             <p>Search by Name or Email through your client base. Find Profile, contact information, and export mailing lists.</p></a></li>
-              
-              <?php if($this->session->userdata('id_o') == '173') { ?>
-              
-              <li>
-                <a href="<?php echo base_url();?>index.php/organizer/dash/add_admin">
+              <li><a href="<?php echo base_url();?>index.php/organizer/dash/add_admin">
                 <img alt="profile image" src="<?php echo base_url();?>img/thumb-4-temp.jpg" style="width:60px;"/>
                             <h5>Manage Staff</h5>
-                            <p>Create, Edit, or Remove Precision Golf School staff. Upload profile pictures that will be available on the site.</p></a>
-              </li>
-              
-              
+                            <p>Create, Edit, or Remove Precision Golf School staff. Upload profile pictures that will be available on the site.</p></a></li>
               <li><a href="<?php echo base_url();?>index.php/organizer/golf_plans/add_plan">
                 <img alt="profile image" src="<?php echo base_url();?>img/thumb-5-temp.jpg" style="width:60px;"/>
                             <h5>Manage Plans</h5>
                             <p>Create, Edit, or Remove static or group appointment plans. Add length, description, and pricing</p></a></li>
-              <?php } ?>
               <li><a href="<?php echo base_url();?>index.php/organizer/create_main_event/members_area">
                 <img alt="profile image" src="<?php echo base_url();?>img/thumb-1-temp.jpg" style="width:60px;"/>
                             <h5>Reporting</h5>

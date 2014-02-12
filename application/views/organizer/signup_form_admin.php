@@ -21,7 +21,7 @@
 			<div class="img-polaroid">
 			<img src="<?php echo base_url();?>img/thumb-3-temp.jpg" id="imgPrevQuestion" style="width:30%;" class="pull-right">
 			</div>
-			<input name="pssword" id="password" placeholder="Password"/><br>
+			<input name="password" id="password" placeholder="Password"/><br>
 			<input name="password2" id="password2" placeholder="Password Confirm"/><br>
 			<?php echo validation_errors('<p class="alert-error errors" id="errors" style="padding:5px;">');?>
 			<input type="submit" id="submit_form" name="submit" value="Create New Account" class="btn btn-success" <?php if($add_state==false){echo "style='display:none;'";}?> />
@@ -32,7 +32,8 @@
         <div class="span4">
         	<fieldset>
 			<legend>Current Admins</legend>
-			<table class="table table-striped">
+			<div class="table table-striped well" style="height:250px;overflow-y:auto;margin-left:0px;margin-right:0px;">
+			<table class="table table-striped" >
 			<?php
 
 			//****************************************************************************//
@@ -73,6 +74,7 @@
 			}
 			?>
 		    </table>
+		</div>
 			</fieldset>
 	    </div>
 

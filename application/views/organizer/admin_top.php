@@ -19,6 +19,7 @@
 	          </a>
 	        </div>
 	        </li>
+	        <?php if($this->session->userdata('id_o') == '173') { ?>
 	        <li class="span2">
 	        <div class="thumbnail">
 	          <a href="<?php echo base_url();?>index.php/organizer/dash/add_admin">
@@ -27,6 +28,7 @@
 	          </a>
 	        </div>
 	        </li>
+	        <?php } ?>
 	        <li class="span2">
 	        <div class="thumbnail">
 	          <a href="<?php echo base_url();?>index.php/organizer/golf_plans/add_plan">

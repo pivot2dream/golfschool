@@ -13,6 +13,28 @@ class Golf_plans_model extends CI_Model {
 		}
 	}
 
+	function get_group_dates($id_passed) 
+	{
+		//$query = $this->db->get('accounts_t');
+		//flag for selecting only active users
+		$query = $this->db->get_where('booking_master', array('appointment_type_id' => $id_passed));
+		if($query->num_rows != 0)
+		{
+			return $query->result();
+		}
+	}
+
+	function get_a_golf_plan($id_passed) 
+	{
+		//$query = $this->db->get('accounts_t');
+		//flag for selecting only active users
+		$query = $this->db->get_where('golf_programs', array('ID_auth_dp' => $id_passed));
+		if($query->num_rows != 0)
+		{
+			return $query->result();
+		}
+	}
+
 	function r_plan_model() {
 		$data = array('live' => 'no');
 		$this->db->where('ID_auth_dp', $this->input->post('id_pass'));

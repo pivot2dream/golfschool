@@ -109,7 +109,7 @@ class Dash extends CI_Controller
 			{   $data['golf_pros'] = $this->membership_model->get_all_golf_pros();
 				$data['show_success'] = 'true';
 				$this->load->view('organizer/header_org', $data);
-	    		$this->load->view('organizer/admin_top', $data); 
+	    		//$this->load->view('organizer/admin_top', $data); 
 				$this->load->view('organizer/signup_form_admin', $data);
 				$this->load->view('organizer/footer_org');
 			}
@@ -147,7 +147,7 @@ class Dash extends CI_Controller
 			$data['golf_pros'] = $this->membership_model->get_all_golf_pros();
 			$data['show_success'] = 'false';
 			$this->load->view('organizer/header_org', $data);
-	    	$this->load->view('organizer/admin_top', $data); 
+	    	//$this->load->view('organizer/admin_top', $data); 
 			$this->load->view('organizer/signup_form_admin', $data);
 			$this->load->view('organizer/footer_org');
 		}
@@ -176,6 +176,8 @@ class Dash extends CI_Controller
 			if($query = $this->membership_model->edit_pro($do_not_update_password, $picture_name_passed))
 			{   $data['golf_pros'] = $this->membership_model->get_all_golf_pros();
 				$data['show_success'] = 'true';
+				$data['query_result'] = $query;
+				$data['query_result_2'] = $this->input->post('password');
 				$this->load->view('organizer/header_org', $data);
 				$this->load->view('organizer/signup_form_admin', $data);
 				$this->load->view('organizer/footer_org');

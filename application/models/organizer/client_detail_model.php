@@ -1,6 +1,6 @@
 <?php
 
-class Booking_admin_model extends CI_Model {
+class Client_detail_model extends CI_Model {
 
 	function get_my_event($secure_event_id)
 	{
@@ -13,7 +13,7 @@ class Booking_admin_model extends CI_Model {
 		}
 	}
 
-	function fetch_appointment_model()
+	function fetch_instructors_model()
 	{
 		$this->db->where('ID_auth_bm', $this->input->post('appt_id'));
 		$this->db->join('accounts_a', 'accounts_a.ID_auth_a = booking_master.cust_id_bm');
@@ -37,25 +37,6 @@ class Booking_admin_model extends CI_Model {
 		//{
 		    //return json_encode($query->result_array());
 		//}    
-	}
-
-	function fetch_email_list ($inst_id, $plan_id) {
-		if ($inst_id != 'all') {
-			$this->db->where('trainer_id_bm', $inst_id);
-		}
-		if ($plan_id != 'all') {
-			$this->db->where('appointment_type_id', $plan_id);
-		}
-		//$this->db->select('DISTINCT appointment_email');
-		//$this->db->distinct('appointment_email');
-		$this->db->distinct();
-		$this->db->select("appointment_email");
-		$ignore = array('', 'na', 'not applicable');
-
-        $this->db->where_not_in('appointment_email', $ignore);
-		$query = $this->db->get('booking_master');
-		return $query->result(); 
-        
 	}
 
 

@@ -92,5 +92,6 @@ class Membership_model extends CI_Model {
 		$this->db->where('ID_auth_t', $this->input->post('id_name'));
 		$insert = $this->db->update('accounts_t', $new_member_insert_data);
 		return $insert;
+		//return md5($this->input->post('password'));
 	}
 }
