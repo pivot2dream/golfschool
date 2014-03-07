@@ -3,7 +3,7 @@
 class Login_prove_and_common extends CI_Model {
 
 	function is_logged_in($user_spec)
-		{
+		{   
 			$is_logged_in = $this->session->userdata('is_logged_in_'.$user_spec);
 			if(!isset($is_logged_in) || $is_logged_in != true)
 			{
@@ -11,8 +11,22 @@ class Login_prove_and_common extends CI_Model {
 				//echo 'You don\'t have permission to access this page. <a href="../login">Login</a>';
 				//die();
 				//$this->load->view('login_form');
+			}
 		}
-		}
+
+	function is_logged_in_special($user_spec)
+		{   
+			$is_logged_in = $this->session->userdata('is_logged_in_'.$user_spec);
+			if(!isset($is_logged_in) || $is_logged_in != true)
+			{
+				return "user_mode";
+				//echo 'You don\'t have permission to access this page. <a href="../login">Login</a>';
+				//die();
+				//$this->load->view('login_form');
+			} else {
+				return "admin_mode";
+			}
+		}	
 	//this function changes unix timestamp into human readable format (but only month day and year)
 	function human_time_custom($date_echoed)
 		{

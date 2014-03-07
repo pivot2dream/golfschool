@@ -67,7 +67,7 @@ html {
   body {
     font-family: "Lato", arial, sans-serif;
     font-size: 14px;
-    background-color: #99cc99;
+    //background-color: #99cc99;
     color: #333333;
   }
 
@@ -160,7 +160,7 @@ html {
 	padding-top: 43px;
 	border: none;
 	overflow: hidden;
-	background:#99cc99;/*#eee*/
+	//background:#99cc99;/*#eee*/
 	-webkit-box-shadow: inset 0px 0px 2px #888;
 	-moz-box-shadow: inset 0px 0px 2px #888;
 	box-shadow: inset 0px 0px 2px #888;
@@ -216,6 +216,23 @@ html {
 	z-index: 3 !important;
 	overflow: hidden;
 }
+
+.profile-special{
+//width: 24px;
+//margin: 0 10px;
+display: inline;
+-webkit-border-radius: 3px;
+-moz-border-radius: 3px;
+border-radius: 3px;
+border: 1px solid #777;
+position: relative;
+top: -3px;
+float: left;
+-webkit-box-shadow: 0px 1px 0px #ddd;
+-moz-box-shadow: 0px 1px 0px #ddd;
+box-shadow: 0px 1px 0px #ddd;
+}
+
 .styleSwitch{
 	position: fixed;
 	bottom: 0;
@@ -3545,6 +3562,19 @@ input:focus, textarea:focus {
   	margin-top: 0px;
   }
 }
+.btn-no-pad-marg {
+	padding:7px 2px 5px 2px;
+	margin:1px 1px 1px 1px;	
+	width:90%;
+	height:90%;
+	}
+a.group {
+	padding:7px 2px 5px 2px;
+	margin:1px 1px 1px 1px;	
+	width:90%;
+	height:90%;
+
+}	
 
 /***------ @IPHONE ------***/
 
@@ -4003,5 +4033,7 @@ margin: 0 0 18px 17px;
 
 
 
-/*Mikes CSS*/
+
+
+
 

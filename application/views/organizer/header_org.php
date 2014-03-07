@@ -34,15 +34,23 @@
     <!-- Scripts inside js/application.js-->
     <![if !IE]>
     <!--<script type="text/javascript" src="<?php echo base_url();?>js/application.js"></script>-->
-    <script type="text/javascript" src="<?php echo base_url();?>js/responsive.js"></script>
+    <!--NOTE AARON: IF PROBLEMS PUT THIS BACK-->
+    <!--<script type="text/javascript" src="<?php echo base_url();?>js/responsive.js"></script>-->
     <script type="text/javascript" src="<?php echo base_url();?>js/date.js"></script>
+    <script type="text/javascript" src="<?php echo base_url();?>js/backstretch.js"></script>
+ 
 
     <![endif]>
 
 
     <!--[if lte IE 10]><script language="javascript" type="text/javascript" src="<?php echo base_url();?>js/application-IE.js"></script><![endif]-->
     <!--[if lte IE 10]><script language="javascript" type="text/javascript" src="<?php echo base_url();?>js/responsive-IE.js"></script><![endif]-->
-<link rel='stylesheet' type='text/css' href='<?php echo base_url();?>css/select2.css' />
+    <link rel='stylesheet' type='text/css' href='<?php echo base_url();?>css/select2.css' />
+
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>/js/jquery.notebook.css">
+     
+    
 
 
   </head>
@@ -65,6 +73,10 @@
                 <img alt="profile image" src="<?php echo base_url();?>img/thumb-3-temp.jpg" style="width:60px;"/>
                             <h5>Manage Clients</h5>
                             <p>Search by Name or Email through your client base. Find Profile, contact information, and export mailing lists.</p></a></li>
+              <li><a href="<?php echo base_url();?>index.php/organizer/golf_plans/add_plan">
+                <img alt="profile image" src="<?php echo base_url();?>img/thumb-5-temp.jpg" style="width:60px;"/>
+                            <h5>Manage Plans</h5>
+                            <p>Create, Edit, or Remove static or group appointment plans. Add length, description, and pricing</p></a></li>
               
               <?php if($this->session->userdata('id_o') == '173') { ?>
               
@@ -74,12 +86,10 @@
                             <h5>Manage Staff</h5>
                             <p>Create, Edit, or Remove Precision Golf School staff. Upload profile pictures that will be available on the site.</p></a>
               </li>
-              
-              
-              <li><a href="<?php echo base_url();?>index.php/organizer/golf_plans/add_plan">
-                <img alt="profile image" src="<?php echo base_url();?>img/thumb-5-temp.jpg" style="width:60px;"/>
-                            <h5>Manage Plans</h5>
-                            <p>Create, Edit, or Remove static or group appointment plans. Add length, description, and pricing</p></a></li>
+              <li><a href="<?php echo base_url();?>index.php/organizer/news/edit_page">
+                <img alt="profile image" src="<?php echo base_url();?>img/thumb-news.jpg" style="width:60px;"/>
+                            <h5>Edit News</h5>
+                            <p>Create, Edit, or Remove the HTML contents of the News Page in this area.</p></a></li>              
               <?php } ?>
               <li><a href="<?php echo base_url();?>index.php/organizer/create_main_event/members_area">
                 <img alt="profile image" src="<?php echo base_url();?>img/thumb-1-temp.jpg" style="width:60px;"/>
@@ -89,32 +99,28 @@
             </ul>
         </span>
         </div>
-    	<!--<ul id="headerNav">
-            <li class="headerNavList"><span class="dropdown" id="menu3">
-                <a class="dropdown-toggle btn-navbar" data-toggle="dropdown" href="#menu3">
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-                </a>
-                <ul class="dropdown-menu">
-                  <li><a href="index.html"><i class="icon-home"></i> Dashboard</a></li>
-                  <li class="divider"></li>
-                  <li><a href="message-view.html"><i class="icon-inbox"></i> Create Event</a></li>
-                  <li class="divider"></li>
-                  <li><a href="graph-view.html"><i class="icon-signal"></i> Manage Events</a></li>
-                  <li class="divider"></li>
-                  <li><a href="calendar.html"><i class="icon-calendar"></i> Edit Account Info</a></li>
-                  <li class="divider"></li>
-                  <li><a href="widgets.html"><i class="icon-cog"></i> Manage Roles</a></li>
-                  <li class="divider"></li>
-                  <li><a href="typography.html"><i class="icon-font"></i> Check in/Check out</a></li>
-                  <li class="divider"></li>
-                  <li><a href="ui-elements.html"><i class="icon-plus-sign"></i> Contact CE-GO</a></li>
-                </ul>
-            </span></li>
-    	</ul>-->
+<?php if($this->session->userdata('is_logged_in_o') == FALSE) {?>
+<div class="facebook_div pull-right">
+  <table>
+    <tr>
+      <td>
+        <a href="https://www.facebook.com/pages/Precision-Golf-School/150365515060968" target="_blank">
+          <img src="<?php echo base_url();?>img/facebook_green_64.png" style="width:40px;">
+        </a>  
+      </td>
+      <td>
+        <a href="https://www.google.com/maps/place/Precision+Golf+School/@44.1404646,-123.2008761,17z/data=!3m1!4b1!4m2!3m1!1s0x0:0xb1ee22d84880e93e" target="_blank">
+          <img src="<?php echo base_url();?>img/google_maps_icon_64.png" style="width:40px;">
+        </a> 
+      </td>
+      <td>
+        &nbsp;
+      </td>  
+    </tr>
+  </table>      
+</div>
 
-
+<?php } else {?>
     	<div class="login">
             <span class="dropdown" id="menu1">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#menu1">
@@ -131,122 +137,23 @@
                 </ul>
             </span>
         </div>
+<?php } ?>
     </div> <!-- END Layout North -->
-
-    <div class="ui-layout-west">
-
-        <ul class="nav nav-tabs sidebar-tabs">
-          <li class="active"><a href="#1" data-toggle="tab">Pages</a></li>
-          <li><a href="#2" data-toggle="tab">Messages</a></li>
-          <li><a href="#3" data-toggle="tab">Files</a></li>
-        </ul>
-        <div class="tab-content ui-layout-content">
-            <div class="tab-pane active" id="1">
-                <ul>
-                    <a href="index.html"><li class="list-box">
-                      <p><i class="icon-home icon-white"></i> Dashboard </p>
-                    </li></a>
-                    <a href="message-view.html"><li class="list-box">
-                      <p><i class="icon-inbox icon-white"></i> Messages </p><span class="badge">3</span>
-                    </li></a>
-                    <a href="graph-view.html"><li class="list-box">
-                      <p><i class="icon-signal icon-white"></i> Graphs </p><span class="badge">15</span>
-                    </li></a>
-                    <a href="calendar.html"><li class="list-box">
-                      <p><i class="icon-calendar icon-white"></i> Calendar </p><span class="badge">8</span>
-                    </li></a>
-                    <a href="widgets.html"><li class="list-box">
-                      <p><i class="icon-cog icon-white"></i> Widgets &amp; More </p>
-                    </li>
-                    <a href="code-editor.html"><li class="list-box">
-                      <p><i class="icon-edit icon-white"></i> Code Editor </p><span class="badge">7</span>
-                    </li></a>
-                    <a href="typography.html"><li class="list-box">
-                      <p><i class="icon-font icon-white"></i> Typography </p>
-                    </li></a>
-                    <a href="ui-elements.html"><li class="list-box">
-                      <p><i class="icon-plus-sign icon-white"></i> UI Elements </p>
-                    </li></a>
-                    <a href="buttons.html"><li class="list-box">
-                      <p><i class="icon-ok-sign icon-white"></i> Buttons </p><span class="badge">33</span>
-                    </li></a>
-                    <a href="gallery.html"><li class="list-box">
-                      <p><i class="icon-picture icon-white"></i> Gallery </p>
-                    </li></a>
-                    <a href="error-pages.html"><li class="list-box">
-                      <p><i class="icon-warning-sign icon-white"></i> Error Pages </p><span class="badge">404</span>
-                    </li></a>
-                </ul>
-
-            </div>
-            <div class="tab-pane" id="2">
-                <div class="message-box">
-                    <img alt="profile image" src="img/avatar-profile.png" />
-                    <h5>Bryan McAnulty <span>Today at 3:36pm</span></h5>
-                    <p>Check out all the features here! Make sure to click around everywhere so you don't miss anything.</p>
-                    <a href="#replyModal" data-toggle="modal" class="reply-to"><i class="icon-share-alt icon-white"></i> Reply</a>
-                </div>
-                <div class="message-box">
-                    <img alt="profile image" src="img/avatar-profile.png" />
-                    <h5>Ashley Green <span>July 29th, 2012 12:31pm</span></h5>
-                    <p>Make sure to check your notifictions by clicking the "3" in the top left corner.</p>
-                    <a href="#replyModal" data-toggle="modal" class="reply-to"><i class="icon-share-alt icon-white"></i> Reply</a>
-                </div>
-                <div class="message-box">
-                    <img alt="profile image" src="img/avatar-profile.png" />
-                    <h5>Catalina Butnaru <span>July 28th, 2012 11:26am</span></h5>
-                    <p>Try collapsing and expanding the left and right sidebars using the buttons in the footer.</p>
-                    <a href="#replyModal" data-toggle="modal" class="reply-to"><i class="icon-share-alt icon-white"></i> Reply</a>
-                </div>
-                <div class="message-box">
-                    <img alt="profile image" src="img/avatar-profile.png" />
-                    <h5>Jack Koner <span>July 27th, 2012 2:16pm</span></h5>
-                    <p>Also look through the different tabs on each of the sidebars.</p>
-                    <a href="#replyModal" data-toggle="modal" class="reply-to"><i class="icon-share-alt icon-white"></i> Reply</a>
-                </div>
-                <div class="message-box">
-                    <img alt="profile image" src="img/avatar-profile.png" />
-                    <h5>New User <span>July 25th, 2012 3:01pm</span></h5>
-                    <p>I need to add a profile image.</p>
-                    <a href="#replyModal" data-toggle="modal" class="reply-to"><i class="icon-share-alt icon-white"></i> Reply</a>
-                </div>
-                <div class="message-box">
-                    <img alt="profile image" src="img/avatar-profile.png" />
-                    <h5>Matt Brink <span>July 24th, 2012 5:02pm</span></h5>
-                    <p>Uploaded a new file Build a Web App project.</p>
-                    <a href="#replyModal" data-toggle="modal" class="reply-to"><i class="icon-share-alt icon-white"></i> Reply</a>
-                </div>
-                <div class="message-box">
-                    <img alt="profile image" src="img/avatar-profile.png" />
-                    <h5>Bryan McAnulty <span>July 20th, 2012 1:42pm</span></h5>
-                    <p>Added a new comment to the Build a Web App project.</p>
-                    <a href="#replyModal" data-toggle="modal" class="reply-to"><i class="icon-share-alt icon-white"></i> Reply</a>
-                </div>
-                <div class="message-box">
-                    <img alt="profile image" src="img/avatar-profile.png" />
-                    <h5>New User <span>July 19th, 2012 2:35pm</span></h5>
-                    <p>Uploaded a new file to the Client Redesign Project.</p>
-                    <a href="#replyModal" data-toggle="modal" class="reply-to"><i class="icon-share-alt icon-white"></i> Reply</a>
-                </div>
-                <p>Date:</p> <div id="datepicker"></div>
-            </div>
-
-        </div>
-
-
-
-
-    </div> <!-- END Layout West -->
-
-
-
-
 	<div class="ui-layout-center">
     <div id="view-holder" class="ui-layout-content">
         <ul class="breadcrumb">
+<?php if($this->session->userdata('is_logged_in_o') == FALSE) {?>
+            <li><a href="<?php echo base_url();?>index.php/organizer/booking_admin/today" style="color:black;">Book Your Apointment Online!</a></li>
+            <li><a href="<?php echo base_url();?>index.php/organizer/about" style="color:black;">About Our Staff</a></li>
+            <li><a href="<?php echo base_url();?>index.php/organizer/aboutschool" style="color:black;">About Our School</a></li>
+            <li><a href="<?php echo base_url();?>index.php/organizer/latestnews" style="color:black;">Latest News & Upcoming Events</a></li>
+            <li><a href="<?php echo base_url();?>index.php/organizer/contactus" style="color:black;">Contact Precision Golf School</a></li>
+
+<?php } else {?>
             <li><a href="<?php echo base_url();?>index.php/organizer/booking_admin/today">Home</a></li>
             <?php foreach($breadcrumber as $key => $val){ ?>
             <li><a href="<?php echo base_url();?><?php echo $val;?>"><?php echo $key;?></a></li>
             <?php } ?>
+<?php } ?>
         </ul>
         <!--<h1 class="message-header" style="background-color:#fff;"><?php echo $page_title;?></h1>-->

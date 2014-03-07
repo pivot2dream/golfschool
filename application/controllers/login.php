@@ -5,6 +5,8 @@ class Login extends CI_Controller {
 	function index($show_error = null)
 	{   if($show_error=='true'){$data_error="sorry, the email or password provided is not correct";}else{$data_error="";}
 		$data['show_error'] = $data_error;
+		//by default lets kill the session auth
+		$this->session->set_userdata('is_logged_in_o', false);
 		$this->load->view('login.php', $data);
 	}
 

@@ -6,8 +6,12 @@ class Create_main_event_model extends CI_Model {
 	function query_dates_for_report($end_date, $start_date, $download_trigger){
     $trainer_id_bm = $this->session->userdata('id_o');
     //$today = date('Y-m-d');  
+    //$query = $this->db->query(
+        //"SELECT * FROM booking_master WHERE trainer_id_bm = {$trainer_id_bm} AND start_bm <= '{$start_date}'
+        //AND end_bm >= '{$end_date}' ORDER BY start_bm DESC");
     $query = $this->db->query(
-        "SELECT * FROM booking_master WHERE trainer_id_bm = {$trainer_id_bm} AND start_bm <= '{$start_date}'
+        "SELECT * FROM booking_master LEFT JOIN accounts_a
+		ON booking_master.cust_id_bm=accounts_a.ID_auth_a WHERE trainer_id_bm = {$trainer_id_bm} AND start_bm <= '{$start_date}'
         AND end_bm >= '{$end_date}' ORDER BY start_bm DESC");
 
     //$query = $this->db->query("SELECT * FROM `booking_master` WHERE `trainer_id_bm` ='$user_id_query' AND ('$start_check' BETWEEN `start_bm` AND `end_bm` AND `trainer_id_bm` ='$user_id_query')

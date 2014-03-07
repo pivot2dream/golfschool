@@ -1,45 +1,59 @@
 		 <div class="dashRow">
             <div class="row-fluid">
 
-                <div class="span3">
-                   <?php echo "date_end " . $start_date . " date_start " .$end_date;
-                    //print_r($result_for_report);
-                    
-            
-                   ?>
+                <div class="span12">
+                    <div id="chart_holder" style="height:300px;">
+                    </div>  
+                    <br>
 
-                  
-                    <div class="dashWidget noPadding">
-
-
-                        <div class="projectBox">
-
-					                               <h4>Start Date:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;End Date:</h4>
-					                               <input type="text" id="start_id" name="start_date" class="input-small" value="<?php echo $start_date;?>">&nbsp;&nbsp;&nbsp;<input type="text" id="end_id" name="end_date" class="input-small" value="<?php echo $end_date?>">
-
-                        </div>
+                    <div style="padding-top:2px;padding-bottom:2px;">
+                      <div class="pull-right">
+                        <a href="javascript:void(0)" class="btn btn-small btn-info hide_paid_btn">filter by unpaid</a>
+                        <a href="javascript:void(0);" class="btn btn-small btn-info" onclick="printDiv()"><i class="icon icon-print icon-white"></i></a>
+                        <br>
+                        <input id="searcher" placeholder="type to filter results..." class="pull-right">
+                      </div>
+                        <div class="well pull-left" style="padding-top:2px;padding-bottom:2px;">
+                          <h4>Start Date:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;End Date:</h4>
+                          <input type="text" id="start_id" name="start_date" class="input-small" value="<?php echo $start_date;?>">&nbsp;&nbsp;&nbsp;<input type="text" id="end_id" name="end_date" class="input-small" value="<?php echo $end_date?>">
+                          <a href="javascript:void(0)" class="btn btn-large btn-info search_appt">Search Records</a> csv <input type="checkbox" name="csv" id="csv" value="csv">
+                        </div>  
+                          <div style="clear:both;"></div>
                         
-                        <div class="projectBox">
-                            <a href="javascript:void(0)" class="btn btn-large btn-info search_appt">Search Records</a> csv <input type="checkbox" name="csv" id="csv" value="csv">
+                 
+                    </div>  
+                    <div style="clear:both;"></div>
 
-                        <div style="clear:both;"></div>
-                        </div>
+                    
 
+                    <div class="well" style="margin-top:-10px;height:480px;overflow-y:auto;">
+                      <table class="table table-stripped" id="main_results" border="1">
+                        <?php 
+                        //charting stuff
+                        $unique_date_array= array();
+                        $all_appointments_per_day= array();
+                        $junior_appointments_per_day= array();
+                        $adult_appointments_per_day= array();
+                        $male_appointments_per_day= array();
+                        $female_appointments_per_day= array();
+                        $compare_date = "";
+                        $count_all_appts = "no";
+                        $count_all_appts_total = 0;
+                        //charting stuff
 
-             </div>
-           </div>
+                        foreach($result_for_report as $result){
 
-                <div class="span9">
-                    <input class=".search_input">
-                    <div class="dashWidget noPadding">
-                      <table class="table table-stripped" id="main_results">
-                        <?php foreach($result_for_report as $result){?>
-                        <tr>
+                          ?>
+                        <tr class="tr_hide <?php if($result->paid == "paid"){echo 'paid_hide';}?>">
                           <td><?php echo "<span class='label'>" . $result->human_date ." </span></br><b> ". $result->start_readable ." <i class='icon icon-arrow-right'></i> ". $result->end_readable . "</b>";   ?></td>
                           <td>
                             <?php echo $result->cust_name_bm;?><br>
                             <span class="label"><?php echo $result->appointment_email;?></span>
                           </td>
+                          <td>
+                            <?php echo $result->gender_a;?><br>
+                            <?php echo $result->age_a;?><br>
+                          </td>  
                           <td><?php echo $result->appointment_type_name;?></td>
                           <td><?php echo $result->appointment_price_desc;?></td>
                          <?php 
@@ -55,7 +69,39 @@
                           <td><a href="javascript:void(0)" class="btn btn-small btn-danger remove_appt" data-id="<?php echo $result->ID_auth_bm; ?>">x</a></td>
                         </tr>
                        
-                       <?php } ?>  
+                       <?php
+                       //////////////////////////////////////
+
+
+                       if($result->human_date != $compare_date){
+                        array_push($unique_date_array, $result->human_date);
+                        $compare_date = $result->human_date;
+                        //
+                        if ($count_all_appts!='no'){
+                          array_push($all_appointments_per_day, $count_all_appts);
+                        }
+                        //reset the count cuz new date
+                        $count_all_appts=0;
+
+                      
+
+                       }
+                       $count_all_appts+=1;
+                       $count_all_appts_total+=1;
+                       
+                       //////////////////////////////////////
+                       //end for each
+                       ////////////////////////////////////
+                        } 
+                       /////////////////////////////////////////// 
+                       //end for each
+                       ////////////////////////////////////////
+                        $unique_date_array = array_reverse($unique_date_array);
+                        $all_appointments_per_day = array_reverse($all_appointments_per_day);
+                        array_push($all_appointments_per_day, $count_all_appts);
+                       //print_r($unique_date_array);
+                       //print_r($all_appointments_per_day);  
+                        ?>  
                        </table> 
 
                     </div>
@@ -101,6 +147,8 @@
           </div>
     </div>
 	<!--date picker widget-->
+  <script src="http://code.highcharts.com/highcharts.js"></script>
+   <script src="http://code.highcharts.com/modules/exporting.js"></script>
     <script>
 	$(function() {
 		$( "#start_id" ).datepicker();
@@ -114,6 +162,19 @@
             
             
         }, 'text');
+    });
+
+    $("#searcher").keyup(function(){
+      $('.tr_hide').hide();
+      var term = $("#searcher").val();
+      $("td").filter(function() {
+        return $(this).text().indexOf(term) !== -1;
+      }).parent().show('slow');
+    });
+
+    $(document).on("click", ".hide_paid_btn", function() {
+      //alert('d');
+      $('.paid_hide').hide('slow');
     });
 
     $(document).on("click", ".flag-paid", function() {
@@ -132,7 +193,7 @@
         is_paid = "paid";
       }
       $.post("<?php echo base_url();?>index.php/organizer/create_main_event/update_paid", {data_id: data_id, is_paid: is_paid}, function(data){
-            alert(data);
+            //alert(data);
             
             
         }, 'text');
@@ -153,12 +214,66 @@
       
     });
 
-   $(document).on("keyUp", ".search_input", function() {
-    alert('d');
-    $("#main_results tr td:contains('"+ $(this).val() +"')").each(function(){
-      $(this).parent('tr').hide('slow');
+   //$(document).on("keyUp", ".search_input", function() {
+    //alert('d');
+    //$("#main_results tr td:contains('"+ $(this).val() +"')").each(function(){
+      //$(this).parent('tr').hide('slow');
+    //});
+   //});
+     $(function () {
+        $('#chart_holder').highcharts({
+            chart: {
+                type: 'spline'
+            },
+            title: {
+                text: 'Precision Golf School Reporting Data',
+                x: -20 //center
+            },
+            subtitle: {
+                text: 'Trends in Bookings',
+                x: -20
+            },
+            xAxis: {
+                categories: <?php echo json_encode($unique_date_array);?>
+            },
+            yAxis: {
+                title: {
+                    text: 'Appointments'
+                },
+                plotLines: [{
+                    value: 0,
+                    width: 1,
+                    color: '#808080'
+                }]
+            },
+            tooltip: {
+                valueSuffix: ''
+            },
+            legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'middle',
+                borderWidth: 0
+            },
+            series: [{
+                name: 'Daily Appt',
+                data: <?php echo json_encode($all_appointments_per_day);?>
+            }
+            , {
+                name: 'All Appts : <?php echo $count_all_appts_total;?>',
+                data: []
+            }
+            //, {
+                //name: 'Berlin',
+                //data: [-0.9, 0.6, 3.5, 8.4, 13.5, 17.0, 18.6, 17.9, 14.3, 9.0, 3.9, 1.0]
+            //}, {
+                //name: 'London',
+                //data: [3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8]
+            //}
+            ]
+        });
     });
-   });
+ /////////////////////////////////////////////////////////////////////////////////
 
 	});
    
@@ -166,6 +281,17 @@
     thing_holder = string_passed.split("/");
     return thing_holder[2]+"/"+thing_holder[0]+"/"+thing_holder[1];
   } 
+
+  function printDiv()
+  {
+  var divToPrint=document.getElementById('main_results');
+  newWin= window.open("");
+  newWin.document.write(divToPrint.outerHTML);
+  newWin.print();
+  newWin.close();
+  }
    
    
 	</script>
+
+ 

@@ -6,7 +6,7 @@ class Golf_plans_model extends CI_Model {
 	{
 		//$query = $this->db->get('accounts_t');
 		//flag for selecting only active users
-		$query = $this->db->get_where('golf_programs', array('live' => 'yes'));
+		$query = $this->db->get_where('golf_programs', array('live' => 'yes','instructor_id' => $this->session->userdata('id_op')));
 		if($query->num_rows != 0)
 		{
 			return $query->result();

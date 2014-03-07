@@ -6,12 +6,13 @@
 			<?php
 			   //echo form_open('organizer/dash/add_admin');
 			?>
-			<form method="post" action="<?php echo base_url();?>index.php/organizer/dash/add_admin" enctype="multipart/form-data" />
+			<form method="post" id="master_form" action="<?php echo base_url();?>index.php/organizer/dash/add_admin" enctype="multipart/form-data" />
 			<input name="first_name" id="first_name" placeholder="First Name"/><br>
 			<input name="last_name" id="last_name" placeholder="Last Name"/><br>
 			<input name="email_address" id="email_address" placeholder="Email"/>
+			<input name="title" id="title" placeholder="Instructor Title"/>
 			<input name="id_name" id="id_name" type="hidden" value="false"/>
-			<textarea name="expanded_info" id="expanded_info" placeholder="Bio for Instructor"></textarea>
+			<textarea style="display:none;" name="expanded_info" id="expanded_info" placeholder="Bio for Instructor"></textarea>
 			</fieldset>
         </div>
         <div class="span4">
@@ -49,7 +50,10 @@
 				<?php echo $pro->last_name_t; ?>
 				</td>
 				<td>
-                <a href="javascript:void(0);" class="btn btn-primary" onclick="prompt_the_pro('<?php echo $pro->first_name_t; ?>','<?php echo $pro->last_name_t; ?>','<?php echo $pro->email_name_t; ?>','<?php echo $pro->ID_auth_t; ?>','<?php echo $pro->notes_t; ?>','<?php echo $pro->loc_1_t; ?>')"><i class="icon-pencil"></i></a>
+                <a href="javascript:void(0);" class="btn btn-primary" onclick="prompt_the_pro('<?php echo $pro->first_name_t; ?>','<?php echo $pro->last_name_t; ?>','<?php echo $pro->email_name_t; ?>','<?php echo $pro->ID_auth_t; ?>','null','<?php echo $pro->loc_1_t; ?>','<?php echo $pro->address_shipping_t; ?>')"><i class="icon-pencil"></i></a>
+				<div style="display:none;" id="htmlbio_<?php echo $pro->ID_auth_t; ?>">
+					<?php echo $pro->notes_t; ?>
+				</div>	
 				</td>
 				<td>
                 <a href="javascript:void(0);" class="btn btn-danger" onclick="r_the_pro_step_1('<?php echo $pro->ID_auth_t; ?>',1)" <?php if($this->session->userdata('id_o')==$pro->ID_auth_t){echo "style='display:none;'";}?> ><i class="icon-remove"></i></a>
@@ -77,6 +81,14 @@
 		</div>
 			</fieldset>
 	    </div>
+	    <div class="span12">
+                    
+            <div class="dashWidget noPadding">
+              <h2>HTML BIO EDITOR</h2>
+               <div class="editor well bio_holder" style="background-color:white;">
+               </div>
+            </div>
+        </div>       
 
 		
 		
@@ -107,16 +119,27 @@
   </div>
   <div class="modal-footer"> <a href="#" class="btn btn-primary">Save Task</a> </div>
 </div>-->
+<script type="text/javascript" src="<?php echo base_url();?>/js/jquery.notebook.js"></script>
 
 <script>
 $(document).ready(function() {
   <?php if($show_success=='true'){?>$('#myModal').modal('show');<?php } ?>
+
+  $('.editor').notebook({
+      autoFocus: false,
+      placeholder: 'Please Select Insturctor using the Pencil Icon...'
+  });
+                          
 });
-    function prompt_the_pro(first,last,email_spec,id,expanded_info,img_url){
+    function prompt_the_pro(first,last,email_spec,id,expanded_info,img_url,title){
+    	
     	$('#first_name').val(first);
     	$('#last_name').val(last);
     	$('#email_address').val(email_spec);
-    	$('#expanded_info').val(expanded_info);
+    	$('#title').val(title);
+    	var bio_div_info = $('#htmlbio_' + id).html();
+    	$('.bio_holder').html(bio_div_info);
+    	$('#expanded_info').val(bio_div_info);
     	$('#id_name').val(id);
 		$('#password').val('');
 		$('#password2').val('');
@@ -132,6 +155,15 @@ $(document).ready(function() {
 		//alert(data);
 		//}, 'text');
     }
+
+    $(document).on("click", "#submit_form2", function(event) {
+    	event.preventDefault();
+    	var bio_div_info = $('.bio_holder').html();
+    	$('#expanded_info').val(bio_div_info);
+    	//$('#master_form').submit();
+    	HTMLFormElement.prototype.submit.call($('#master_form')[0]);
+
+    });
 
     function r_the_pro_step_1 (id, direction) {
     	if(direction==1){

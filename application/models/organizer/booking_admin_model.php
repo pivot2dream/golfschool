@@ -107,8 +107,8 @@ class Booking_admin_model extends CI_Model {
 
 	function get_static_assets()
 	{
-		$this->db->where('ID_auth_bm', '250');
-		$query = $this->db->get('golf_static_assets');
+		$this->db->where('ID_auth_t', $this->session->userdata('id_op'));
+		$query = $this->db->get('accounts_t');
 
 		if($query->num_rows != 0)
 		{
@@ -125,8 +125,8 @@ class Booking_admin_model extends CI_Model {
 			'default_incriment' => $this->input->post('inc')
 			);
 
-		$this->db->where('ID_auth_bm', '250');
-		$query = $this->db->update('golf_static_assets', $data);
+		$this->db->where('ID_auth_t', $this->session->userdata('id_o'));
+		$query = $this->db->update('accounts_t', $data);
 		return 'added';
 
 

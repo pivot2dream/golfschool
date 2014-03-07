@@ -1,29 +1,146 @@
+<?php if($is_user_mode=="user_mode" && $hide_splash==FALSE){ ?>
+<div class="dashRow">
+    <div class="row-fluid">
+        <div class="span3">
+            <div class="well" style="padding:0px 0px 0px 0px;background-color:#bae6ba;">
+                <h4 style="padding: 3px 3px 3px 3px;">&nbsp;2013 Teacher of the Year Award:</h4>
+                <div class="row-fluid" style="background-color:white;">
+                            <img src="<?php echo base_url();?>img/doug_logo.png">
+                </div>
+                <br>
+            </div>        
+        </div>
+        
+        <div class="span9">
+            <div class="well" style="padding:0px 0px 0px 0px;background-color:#bae6ba;">
+                <h4 style="padding: 3px 3px 3px 3px;">&nbsp;Precision Golf School Has Been Dedicated to top notch stuff for 10 + years</h4>
+                <div class="row-fluid" style="background-color:white;">
+                    <div class="span12">
+                        <div id="carousel-example-generic" class="carousel slide">
+                        <!-- Wrapper for slides -->
+                            <div class="carousel-inner">
+                                <div class="item active">
+                                  <img src="http://placehold.it/900x203" alt="">
+                                </div>
+                                <div class="item">
+                                  <img src="http://placehold.it/900x203" alt="">
+                                </div>
+                                <div class="item">
+                                  <img src="http://placehold.it/900x203" alt="">
+                                </div>
+                            </div>
+
+                            <!-- Controls -->
+                            <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+                                <span class="icon-prev">&lsaquo;</span>
+                            </a>
+                            <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+                                <span class="icon-next">&rsaquo;</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="row-fluid" style="background-color:white;">    
+                    <div class="span4">
+                        <h2>&nbsp;Our Mission:</h2>
+                        <hr style="margin-top:2px;margin-bottom:3px;">
+                        <p style="padding-left:10px;">
+                            &nbsp;&nbsp;&nbsp;Our Mission is to provide you with up-to-date and sceince driven instruction, that removes the hocus pocus vodoo woodo from your typical golf lessons. Patrons of Precision Golf School can expect a unique experience that has been crafted through years of data and analysis off and on the course.
+                            <br><br>
+                            Rest assured that our mission is to do nonother then to ensure that you improve as a golfer after each and every lesson.
+                        </p>
+                            
+                    </div>
+                    <div class="span4">
+                        <h2>&nbsp;Our Experience:</h2>
+                        <hr style="margin-top:2px;margin-bottom:3px;">
+                        <p style="padding-left:10px;">
+                            &nbsp;&nbsp;&nbsp;Our Mission is to provide you with up-to-date and sceince driven instruction, that removes the hocus pocus vodoo woodo from your typical golf lessons. Patrons of Precision Golf School can expect a unique experience that has been crafted through years of data and analysis off and on the course.
+                            <br><br>
+                            Rest assured that our mission is to do nonother then to ensure that you improve as a golfer after each and every lesson.
+                        </p>
+                          
+                    </div>
+                    <div class="span4">
+                        <h2>&nbsp;Our Location:</h2>
+                        <hr style="margin-top:2px;margin-bottom:3px;">
+                        <p style="padding-left:10px;">
+                            <br>
+                            <div class="well" style="margin-right:10px;margin-left:10px;">
+                                <a href="https://www.google.com/maps/place/Precision+Golf+School/@44.1404646,-123.2008761,17z/data=!3m1!4b1!4m2!3m1!1s0x0:0xb1ee22d84880e93e" target="_blank">
+                                    <img src="<?php echo base_url();?>img/google_maps_icon_64.png" class="pull-right">
+                                </a>
+                            <b>Fiddler's Green</b><br>
+                            91292 Hwy. 99N<br>
+                            Eugene, OR 97402<br>
+                            <b>541-284-7992</b>
+                            </div>
+                            Come visit us at our convenient Northwest Eugene location on Highway 99 North!<br><br>
+                            
+                        </p>    
+                            <!--<iframe src="https://mapsengine.google.com/map/embed?mid=zmSxjuAQedHU.kr5MC1SDeSJY" width="280" height="280"></iframe>-->
+                    </div>
+                </div>
+                <br>
+            </div>        
+        </div>
+    </div>
+</div>             
+<?php } ?>
 <div class="dashRow">
       <div class="row-fluid">
-        <div class="span12">
-          
-          <!--start-->
-           
-            <div id="container_chart" class="span4 defeat-the-span" style="margin-left:6px;margin-right:0px;">
-            <h3>My Appointments and Bookings</h3>
-            <hr>
-            <i>showing calendar from <br><b><?php echo $weekdays[0][0];?>, <?php echo $weekdays[0][1];?></b> through <b><?php echo $weekdays[6][0];?>, <?php echo $weekdays[6][1];?></b></i>
-            <div class="pull-left">
-            <a href="<?php echo base_url();?>index.php/organizer/booking_admin/today/<?php echo $date_go_back;?>" class="btn btn-small btn-primary">- 1 week</a>&nbsp;&nbsp;
-            <a href="<?php echo base_url();?>index.php/organizer/booking_admin/today/<?php echo $date_go_forward;?>" class="btn btn-small btn-primary">+ 1 week</a>
+        <div class="span3">
+
+             <div class="well" style="padding:0px 0px 0px 0px;background-color:#bae6ba;">
+                <h4 style="padding: 3px 3px 3px 3px;">&nbsp;Select Instructor Calendar:</h4>
+                <table class="table" style="background-color:white;">
+                <?php
+
+                //****************************************************************************//
+                //create the grey header attribute
+                //****************************************************************************//
+                foreach($golf_pros as $pro){
+                ?>
+                <tr id="<?php echo $pro->ID_auth_t; ?>" class="pro_clicked_div" style="<?php if($pro->ID_auth_t == $this->session->userdata('id_op')){echo'background-color:#ddfcdd;';}?>">
+                    <td>
+                        <img src="<?php echo base_url();?>img/<?php if($pro->ID_auth_t == $this->session->userdata('id_op')){echo'check_on.png';}else{echo 'check_off.png';}?>" style="width:30px;margin-top:3px;" class="profile-special">
+                    </td>    
+                    <td>
+                        <img src="<?php echo base_url();?>img/<?php echo $pro->loc_1_t; ?>" style="width:30px;margin-top:3px;" class="profile-special">
+                    </td>    
+                    <td>
+                    <h3><?php echo $pro->first_name_t; ?> <?php echo $pro->last_name_t; ?></h3>
+                    </td>
+                        
+                </tr>    
+
+                <?php
+                }
+                ?>
+                </table>
+                <form method="post" id="pro_clicked_form" action="<?php echo base_url();?>index.php/organizer/booking_admin/today/<?php echo $last_part_date_url;?>">
+                    <input type="hidden" name="pro_clicked" id="pro_clicked">
+                </form>    
             </div>
-            </div>
-            <div class="span4 defeat-the-span" style="margin-left:0px;margin-right:0px;">
-                <h3>Jump to a Date</h3>
-                <hr>
-                <input type="text" placeholder="MM" id="MM" style="width:25px;">/<input type="text" style="width:25px;" id="DD" placeholder="DD">/<input type="text" style="width:40px;" id="YYYY" placeholder="YYYY">
-                <br>
-                <a href="javascript:void(0)" class="btn btn-small btn-primary" id="jump_date_button">Jump to Date Above</a>
+            <div style="padding:0px 0px 0px 75px;background-color:'none';">
+                <a href="<?php echo base_url();?>index.php/organizer/booking_admin/today/<?php echo $date_go_back;?>" class="btn btn-small btn-primary">- 1 week</a>&nbsp;&nbsp;
+                <a href="<?php echo base_url();?>index.php/organizer/booking_admin/today/<?php echo $date_go_forward;?>" class="btn btn-small btn-primary">+ 1 week</a>
+                <table>
+                    <tr>
+                        <td>
+                            <input id="date_picker_jump" placeholder="jump to a date" style="width:90%;margin-top:5px;">
+                        </td>
+                        <td>
+                            <a href="javascript:void(0)" class="btn btn-small btn-primary" id="jump_date_button" style="margin:-5px 0px 0px 0px;padding:3px 5px 3px 5px;">Go</a>
+                        </td>
+                    </tr>
+                </table>    
+              
             </div>  
-            <div class="span4 defeat-the-span" style="margin-left:0px;margin-right:0px;">
+            <?php if($is_user_mode!="user_mode"){ ?>
+            <div class="well" style="padding:0px 0px 0px 0px;">
+
               <form action="<?php echo base_url();?>index.php/organizer/booking_admin/today" method="post">
-                <h3>Settings</h3>
-                <hr>
                 <div class="pull-left">
                   <div class="input-append bootstrap-timepicker">
                     <input id="timepicker1" type="text" name="start-time" class="input-small">
@@ -35,16 +152,26 @@
                   </div>
                 </div>
                 <div class="pull-right">
-                  <select class="input input-medium" name="inc">
-                    <option value="15" <?php if($minute_incriment_saved=='15'){echo "selected=selected";}?> >15 min incriments</option>
-                    <option value="30" <?php if($minute_incriment_saved=='30'){echo "selected=selected";}?> >30 min incriments</option>
-                    <option value="45" <?php if($minute_incriment_saved=='45'){echo "selected=selected";}?> >45 min incriments</option>
-                    <option value="60" <?php if($minute_incriment_saved=='60'){echo "selected=selected";}?> >60 min incriments</option>  
+                  <select class="input input-small" name="inc">
+                    <option value="15" <?php if($minute_incriment_saved=='15'){echo "selected=selected";}?> >15 min inc</option>
+                    <option value="30" <?php if($minute_incriment_saved=='30'){echo "selected=selected";}?> >30 min inc</option>
+                    <option value="45" <?php if($minute_incriment_saved=='45'){echo "selected=selected";}?> >45 min inc</option>
+                    <option value="60" <?php if($minute_incriment_saved=='60'){echo "selected=selected";}?> >60 min inc</option>  
                   </select><br>
                   <input type="submit" name="submit" value="Update Settings" class="btn btn-small btn-primary">
                 </div>  
               </form>
-            </div>  
+              <div style="clear:both"></div>
+           
+                
+            </div>   
+            <?php } ?>   
+            
+        </div>    
+
+        <div class="span9">
+          
+          <!--start-->
 
             <div class="well" style="margin-left:0px;background-image:url('../images/accordian_backer.png');">
 
@@ -77,8 +204,15 @@
             function new_background_color () {
             //$backer_color = 'background-color:rgb(245,'.rand(100,230).','.rand(10,100).')';
             //$backer_color = 'background-color:rgb('.rand(240,250).','.rand(100,230).','.rand(10,100).')';
-            $backer_color = 'background-color:rgb('.rand(0,50).','.rand(50,100).','.rand(0,50).')';
-            return $backer_color;
+                $CI = get_instance();
+                if ($CI->session->userdata('is_logged_in_o') == FALSE) {
+                    $backer_color = 'background-color:rgb(153,204,153)';
+                    return $backer_color;
+                } else {
+
+                $backer_color = 'background-color:rgb('.rand(0,50).','.rand(50,100).','.rand(0,50).')';
+                return $backer_color;
+                }
             }
             //this ends handling background colors
 
@@ -394,7 +528,7 @@
             <?php }else{ ?>
             <td style="<?php echo $backer_color;?>" class="<?php echo $monday_appt_type;?>">
             <?php if ($monday_show_but=='yes'){?>
-            <a style="width:70%;" href="javascript:void:0;" class="btn btn-small btn-warning btn-no-pad-marg <?php echo $monday_appt_type;?>" data-id="<?php echo $monday_appt_id;?>" data-appt-type-id="<?php echo $monday_appt_type_id;?>">
+            <a style="width:90%;" href="javascript:void:0;" class="btn btn-small btn-warning btn-no-pad-marg <?php echo $monday_appt_type;?> <?php if (($monday_appt_type=="static" || $monday_appt_type=="blocked") && $is_user_mode=='user_mode'){echo 'hide';}?>" data-id="<?php echo $monday_appt_id;?>" data-appt-type-id="<?php echo $monday_appt_type_id;?>">
                 <?php if ($monday_appt_type=="static"){?>
                 <i class="icon-user"></i> <span class="h-username"><?php echo $monday_user_name?></span>
                 <?php } if ($monday_appt_type=="blocked"){?>
@@ -423,7 +557,7 @@
             <?php }else{ ?>
             <td style="<?php echo $tuesday_backer_color;?>" class="<?php echo $tuesday_appt_type;?>">
             <?php if ($tuesday_show_but=='yes'){?>
-            <a style="width:70%;" href="javascript:void:0;" class="btn btn-small btn-warning btn-no-pad-marg <?php echo $tuesday_appt_type;?>" data-id="<?php echo $tuesday_appt_id;?>" data-appt-type-id="<?php echo $tuesday_appt_type_id;?>">
+            <a style="width:90%;" href="javascript:void:0;" class="btn btn-small btn-warning btn-no-pad-marg <?php echo $tuesday_appt_type;?> <?php if (($tuesday_appt_type=="static" || $tuesday_appt_type=="blocked") && $is_user_mode=='user_mode'){echo 'hide';}?>" data-id="<?php echo $tuesday_appt_id;?>" data-appt-type-id="<?php echo $tuesday_appt_type_id;?>">
               <?php 
               if ($tuesday_appt_type=="static"){?>
                 <i class="icon-user"></i> <span class="h-username"><?php echo $tuesday_user_name?></span>
@@ -453,7 +587,7 @@
             <?php }else{ ?>
             <td style="<?php echo $wednesday_backer_color;?>" class="<?php echo $wednesday_appt_type;?>">
             <?php if ($wednesday_show_but=='yes'){?>
-            <a style="width:70%;" href="javascript:void:0;" class="btn btn-small btn-warning btn-no-pad-marg <?php echo $wednesday_appt_type;?>" data-id="<?php echo $wednesday_appt_id;?>" data-appt-type-id="<?php echo $wednesday_appt_type_id;?>">
+            <a style="width:90%;" href="javascript:void:0;" class="btn btn-small btn-warning btn-no-pad-marg <?php echo $wednesday_appt_type;?> <?php if (($wednesday_appt_type=="static" || $wednesday_appt_type=="blocked") && $is_user_mode=='user_mode'){echo 'hide';}?>" data-id="<?php echo $wednesday_appt_id;?>" data-appt-type-id="<?php echo $wednesday_appt_type_id;?>">
                 <?php if ($wednesday_appt_type=="static"){?>
                 <i class="icon-user"></i> <span class="h-username"><?php echo $wednesday_user_name?></span>
                 <?php } if ($wednesday_appt_type=="blocked"){?>
@@ -482,7 +616,7 @@
             <?php }else{ ?>
             <td style="<?php echo $thursday_backer_color;?>" class="<?php echo $thursday_appt_type;?>">
             <?php if ($thursday_show_but=='yes'){?>
-            <a style="width:70%;" href="javascript:void:0;" class="btn btn-small btn-warning btn-no-pad-marg <?php echo $thursday_appt_type;?>" data-id="<?php echo $thursday_appt_id;?>" data-appt-type-id="<?php echo $thursday_appt_type_id;?>">
+            <a style="width:90%;" href="javascript:void:0;" class="btn btn-small btn-warning btn-no-pad-marg <?php echo $thursday_appt_type;?> <?php if (($thursday_appt_type=="static" || $thursday_appt_type=="blocked") && $is_user_mode=='user_mode'){echo 'hide';}?>" data-id="<?php echo $thursday_appt_id;?>" data-appt-type-id="<?php echo $thursday_appt_type_id;?>">
                 <?php if ($thursday_appt_type=="static"){?>
                 <i class="icon-user"></i> <span class="h-username"><?php echo $thursday_user_name?></span>
                 <?php } if ($thursday_appt_type=="blocked"){?>
@@ -511,7 +645,7 @@
             <?php }else{ ?>
             <td style="<?php echo $friday_backer_color;?>" class="<?php echo $friday_appt_type;?>">
             <?php if ($friday_show_but=='yes'){?>
-            <a style="width:70%;" href="javascript:void:0;" class="btn btn-small btn-warning btn-no-pad-marg <?php echo $friday_appt_type;?>" data-id="<?php echo $friday_appt_id;?>" data-appt-type-id="<?php echo $friday_appt_type_id;?>">
+            <a style="width:90%;" href="javascript:void:0;" class="btn btn-small btn-warning btn-no-pad-marg <?php echo $friday_appt_type;?> <?php if (($friday_appt_type=="static" || $friday_appt_type=="blocked") && $is_user_mode=='user_mode'){echo 'hide';}?>" data-id="<?php echo $friday_appt_id;?>" data-appt-type-id="<?php echo $friday_appt_type_id;?>">
                 <?php if ($friday_appt_type=="static"){?>
                 <i class="icon-user"></i> <span class="h-username"><?php echo $friday_user_name?></span>
                 <?php } if ($friday_appt_type=="blocked"){?>
@@ -540,7 +674,7 @@
             <?php }else{ ?>
             <td style="<?php echo $saturday_backer_color;?>" class="<?php echo $saturday_appt_type;?>">
             <?php if ($saturday_show_but=='yes'){?>
-            <a style="width:70%;" href="javascript:void:0;" class="btn btn-small btn-warning btn-no-pad-marg <?php echo $saturday_appt_type;?>" data-id="<?php echo $saturday_appt_id;?>" data-appt-type-id="<?php echo $saturday_appt_type_id;?>">
+            <a style="width:90%;" href="javascript:void:0;" class="btn btn-small btn-warning btn-no-pad-marg <?php echo $saturday_appt_type;?> <?php if (($saturday_appt_type=="static" || $saturday_appt_type=="blocked") && $is_user_mode=='user_mode'){echo 'hide';}?>" data-id="<?php echo $saturday_appt_id;?>" data-appt-type-id="<?php echo $saturday_appt_type_id;?>">
                  <?php if ($saturday_appt_type=="static"){?>
                 <i class="icon-user"></i> <span class="h-username"><?php echo $saturday_user_name?></span>
                 <?php } if ($saturday_appt_type=="blocked"){?>
@@ -569,7 +703,7 @@
             <?php }else{ ?>
             <td style="<?php echo $sunday_backer_color;?>" class="<?php echo $sunday_appt_type;?>">
             <?php if ($sunday_show_but=='yes'){?>
-            <a style="width:70%;" href="javascript:void(0);" class="btn btn-small btn-warning btn-no-pad-marg <?php echo $sunday_appt_type;?>" data-id="<?php echo $sunday_appt_id;?>" data-appt-type-id="<?php echo $sunday_appt_type_id;?>">
+            <a style="width:90%;" href="javascript:void(0);" class="btn btn-small btn-warning btn-no-pad-marg <?php echo $sunday_appt_type;?> <?php if (($sunday_appt_type=="static" || $sunday_appt_type=="blocked") && $is_user_mode=='user_mode'){echo 'hide';}?>" data-id="<?php echo $sunday_appt_id;?>" data-appt-type-id="<?php echo $sunday_appt_type_id;?>">
                  <?php if ($sunday_appt_type=="static"){?>
                 <i class="icon-user"></i> <span class="h-username"><?php echo $sunday_user_name?></span>
                 <?php } if ($sunday_appt_type=="blocked"){?>
@@ -599,6 +733,12 @@
           <!--end-->
     </div>
   </div>
+
+
+
+
+
+
 </div>  
   
 <!-- END Layout Center -->
@@ -666,31 +806,39 @@
                <b>Sign Up for Group Lesson:</b><br>
                <span class="label label-success" id="open_slots"></span>&nbsp;<span class="label" id="cap"></span>
                <hr style="margin:3px 3px 3px 3px;">
-               Full Name:
-               <input type="text" class="input" name="g_name" id="g_name">
-               Email Address:
-               <input type="text" class="input" name="g_email" id="g_email">
-               Phone Number:
-               <input type="text" class="input" name="g_phone" id="g_phone"><br>
-               <a href="javascript:void(0)" class="btn btn-success">Sign me Up!</a>
-              
                
-            </td>
-            <td>
-                &nbsp;&nbsp;
-            </td>
-            <td style="width:60%;" style="vertical-align: top;" valign="top">
-                <div class="alert alert-success" style="padding-right:3px;padding-left;3px;margin-right:0px;">
-                    Instructor: <b id="group_trainer_name_bm"></b>
-                </div>
-            
                 <b>Appointment Type:</b> <span id="group_appointment_type_name"></span>
                 <br>
                 <b>Description:</b> <span id="group_appointment_short_desc"></span>
                 <br>
                 <b>Pricing:</b> <span id="group_appointment_price_desc"></span><br><br>
                 
-                <div id="bulk_group_date" class="well" style="font-size:0.8em;padding:3px 3px 3px 3px;"> </div>
+                <div id="bulk_group_date" class="well" style="font-size:0.8em;padding:3px 3px 3px 3px;background-color:#afafaf;"> </div>
+              
+               
+            </td>
+            <td>
+                &nbsp;&nbsp;
+            </td>
+            <td style="width:50%;" style="vertical-align: top;" valign="top">
+                <b>To Sign up, complete the form below:
+                <div class="well g_form_alive" style="margin:0px 0px 0px 0px;background-color:#99cc99;">
+                Instructor:<br>
+                <input type="text" class="input" id="group_trainer_name_bm" readonly>
+                <br>
+                Full Name:<br>
+                <input type="text" class="input" name="g_name" id="g_name"><br>
+                Email Address:<br>
+                <input type="text" class="input" name="g_email" id="g_email"><br>
+                Phone Number:<br>
+                <input type="text" class="input" name="g_phone" id="g_phone"><br>
+               <a href="javascript:void(0)" class="btn btn-success pull-right submit-grouper" data-id="null">Sign me Up!</a>
+               </div>
+                <div class="well g_form_kill hide" style="margin:0px 0px 0px 0px;background-color:#99cc99;">
+                    <h2>Thank You!</h2>
+                    <p> You have been added to this group lesson and we look forward to seeing you! </p>
+                </div>    
+            
                 
                    
             </td>
@@ -769,50 +917,59 @@
             <br>
     </div>    
     <div id="step1">
+    <table class="table" >    
     <?php 
     foreach($golf_plans as $plan){
             ?>
-            <div class="well" style="padding: 3px 0px 3px 0px; margin 3px 3px 3px 3px;background-color:#99ff99;">
-                <div class="pull-left" style="width:60%;">
-                <h3><?php echo $plan->name; ?> <span style="color:green;" class="label"><?php echo $plan->duration_multiplier*15; ?> min </span></h3> 
+            <tr>
+                <td class="td-details-action">
+                <div class="pull-left" style="width:70%;">
+                <b><?php echo $plan->name; ?> <span style="color:green;" class="label"><?php echo $plan->duration_multiplier*15; ?> min </span></b> 
+                <div class="td-details-action-shown" style="display:none;">
                 <b>Pricing: </b><?php echo $plan->price_description; ?><br/>
                 <b>Plan Information: </b><?php echo $plan->short_desc; ?>
                 </div>
-                <div class="pull-right" style="width:40%;">
-                <a href="javascript:void(0);" class="btn btn-success btn-small btn-appt-static" data-total-min="<?php echo $plan->duration_multiplier*15; ?>" data-name="<?php echo $plan->name; ?>" data-time-end="<?php echo $plan->duration_multiplier*15; ?>" data-price-description="<?php echo $plan->price_description; ?>" id="<?php echo $plan->ID_auth_dp; ?>">Book</a>
-                <select id="iteration<?php echo $plan->ID_auth_dp; ?>" class="input-iteration" style="width:100px;">
-                    <option value="1">1 iteration</option>
-                    <option value="2">2 iterations</option>
-                    <option value="3">3 iterations</option>
-                    <option value="4">4 iterations</option>
-                    <option value="5">5 iterations</option>
-                    <option value="6">6 iterations</option>
-                    <option value="7">7 iterations</option>
-                    <option value="8">8 iterations</option>
-                    <option value="9">9 iterations</option>
-                    <option value="10">10 iterations</option>
-                    <option value="11">11 iterations</option>
-                    <option value="12">12 iterations</option>
-                    <option value="13">13 iterations</option>
-                    <option value="14">13 iterations</option>
-                    <option value="15">14 iterations</option>
-                    <option value="16">16 iterations</option>
-                    <option value="17">17 iterations</option>
-                    <option value="18">18 iterations</option>
-                    <option value="19">19 iterations</option>
-                    <option value="20">20 iterations</option>        
-                </select>    
+                </div>
+                <div class="pull-right" style="width:30%;">
+                
+                <div class="input-append" style="margin:0px 0px 0px 0px;">
+                  <select id="iteration<?php echo $plan->ID_auth_dp; ?>" class="input-iteration" style="width:100px;margin-top:5px;">
+                                    <option value="1">1 iteration</option>
+                                    <option value="2">2 iterations</option>
+                                    <option value="3">3 iterations</option>
+                                    <option value="4">4 iterations</option>
+                                    <option value="5">5 iterations</option>
+                                    <option value="6">6 iterations</option>
+                                    <option value="7">7 iterations</option>
+                                    <option value="8">8 iterations</option>
+                                    <option value="9">9 iterations</option>
+                                    <option value="10">10 iterations</option>
+                                    <option value="11">11 iterations</option>
+                                    <option value="12">12 iterations</option>
+                                    <option value="13">13 iterations</option>
+                                    <option value="14">13 iterations</option>
+                                    <option value="15">14 iterations</option>
+                                    <option value="16">16 iterations</option>
+                                    <option value="17">17 iterations</option>
+                                    <option value="18">18 iterations</option>
+                                    <option value="19">19 iterations</option>
+                                    <option value="20">20 iterations</option>        
+                    </select>    
+                <a href="javascript:void(0);" class="btn btn-success btn-small btn-appt-static" data-total-min="<?php echo $plan->duration_multiplier*15; ?>" data-name="<?php echo $plan->name; ?>" data-time-end="<?php echo $plan->duration_multiplier*15; ?>" data-price-description="<?php echo $plan->price_description; ?>" id="<?php echo $plan->ID_auth_dp; ?>" style="margin:-5px 0px 0px 0px;padding:3px 5px 3px 5px;">Book</a>
+                </div>
                 </div>
                 <div style="clear:both"></div> 
-            </div>
+                </tr>
+               </td> 
     <?php }?>
+    </table>
     </div>
     <div id="step2" style="display:none;">
-      <div class="well" id="locate_account_holder" style="padding: 3px 0px 3px 0px; margin 3px 3px 3px 3px;background-color:#99ff99;">
+      <div class="well" id="locate_account_holder" style="padding: 3px 0px 3px 0px; margin 3px 3px 3px 3px;background-color:#99cc99;">
         <b>&nbsp;&nbsp;&nbsp;To Book this Appointment, Enter Your Email Below:</b>
         <hr style="margin-top:0px;">  
         <input type="text" value="gernunder@gernunder.com" style="margin-left:10px;margin-top:5px;" id="email_for_appt" class="input input-large" placeholder="email address for appointment">&nbsp;  
-        <a href="javascript:void(0)" id="email_for_appt_submit" class="btn btn-success btn-small pull-right">submit</a>
+        <a href="javascript:void(0)" id="email_for_appt_submit" class="btn btn-success btn-small pull-right" style="margin:5px 0px 0px 0px;padding:3px 5px 3px 5px;">continue...</a>
       </div>  
       <div class="well" id="unfound_email_holder" style="padding: 3px 0px 3px 0px; margin 3px 3px 3px 3px;background-color:#99ff99; display:none;">
         <b>&nbsp;&nbsp;&nbsp;It doesn't look like we have an account under <span id="email_not_found"></span></b>
@@ -845,7 +1002,7 @@
     </div>   
   </div>
 </div>
-"
+
 <script type="text/javascript">
     var human_readable_date = "";
     var human_readable_time = "";
@@ -860,8 +1017,8 @@
     var $ender_thrown = "";
     var $human_final_id = "";
     var $human_final_name = "";
-    var $final_instructor_id ="<?php echo $this->session->userdata('id_o');?>";
-    var $final_instructor_name ="<?php echo $this->session->userdata('first_o'); ?> <?php echo $this->session->userdata('last_o'); ?>";
+    var $final_instructor_id ="<?php echo $this->session->userdata('id_op');?>";
+    var $final_instructor_name ="<?php echo $this->session->userdata('first_op'); ?> <?php echo $this->session->userdata('last_op'); ?>";
     var $group_or_single ="single";
     var $real_or_blocked_out ="real";
     var $appointment_price = "";
@@ -870,6 +1027,7 @@
     var $iteration_holder = "";
     var $email_id_held = "";
     var $appointment_type_flag = "static";
+    var $master_group_json = [];
     /////////////////////////////////
     //advanced holders
     /////////////////////////////////
@@ -885,9 +1043,12 @@
     ///////////////////////////////
 
     $(document).ready(function() { 
+        $( "#date_picker_jump" ).datepicker();
 
         $('.blocked').each(function() {
-            $(this).css('background-color','#272b27');
+            if('<?php echo $is_user_mode;?>' != 'user_mode'){
+                $(this).css('background-color','#272b27');
+            }
         });
         $('.group').each(function() {
             $(this).css('background-color','#256363');
@@ -916,18 +1077,60 @@
         });
         
         $( "#jump_date_button" ).click(function() {
-        var mm=$('#MM').val();
-        var dd=$('#DD').val();
-        var yyyy=$('#YYYY').val();
-        window.location.replace("<?php echo base_url();?>index.php/organizer/booking_admin/today/" + yyyy + "/" + mm + "/" + dd);
+        var jump_var = $('#date_picker_jump').val();
+        window.location.replace("<?php echo base_url();?>index.php/organizer/booking_admin/today/" + jump_var);
         });
 
+        //
+        $( "a.submit-grouper" ).click(function() {
+            
+            var plan_id = $( this ).attr('data-id');
+
+            //basic validation
+            var has_validated = true;
+            if ( $('#g_name').val() == ''){
+                has_validated = false;
+            }
+            if ( $('#g_phone').val() == ''){
+                has_validated = false;
+            }
+            if ( validateEmail( $('#g_email').val() ) == false){
+                has_validated = false;
+            }
+
+            //alert(has_validated);
+            if( has_validated ) {
+
+                $.post("<?php echo base_url();?>index.php/organizer/booking_admin/get_a_golf_plan", {plan_id: plan_id}, function(data){
+                
+                    //alert(data);
+                    data = $.parseJSON(data);
+                    data = data[0];
+                    console.log(data);
+
+                    //make sure we have the most up to date version of the group list possible
+                    $master_group_json = $.parseJSON(data['group_clients']);
+
+                    $master_group_json.push(
+                        {g_name: $('#g_name').val(), g_email: $('#g_email').val(), g_phone: $('#g_phone').val(), g_paid: "not paid"}
+                    );
+
+                    $('.g_form_alive').hide();
+                    $('.g_form_kill').show();
+                    console.log($master_group_json);
+
+                }, 'text');
+            } else {alert('Please fill out all the information to continue.');}    
+           
+        });
+        
         //group appointment modal open
         $( "a.group" ).click(function() {
             //alert('c');
             var $day_id = $( this ).attr('data-id');
             //alert($day_id);
             var $appt_id = $( this ).attr('data-appt-type-id');
+            $( "a.submit-grouper" ).attr('data-id',$appt_id);
             $('#group-remove-appt-btn').attr('data-id', $day_id);
             //fetch_appointment
             $.post("<?php echo base_url();?>index.php/organizer/booking_admin/fetch_appointment_group", {appt_id: $day_id}, function(data){
@@ -937,18 +1140,10 @@
                 data = data[0];
                 console.log(data);
 
-                //$('#start_readable').text(data['start_readable']);
-                //$('#end_readable').text(data['end_readable']);
-                //$('#human_date_group').text(data['human_date']);
-                //$('#paid').text(data['paid']);
-                //$('#full_name_a').text(data['full_name_a']);
-                //$('#gender_a').text(data['gender_a']);
-                //$('#age_a').text(data['age_a']);
-                //$('#appointment_email').text(data['appointment_email']);
                 $('#group_appointment_type_name').text(data['appointment_type_name']);
                 $('#group_appointment_price_desc').text(data['appointment_price_desc']);
                 //$('#group_appointment_short_desc').text(data['short_desc']);
-                $('#group_trainer_name_bm').text(data['trainer_name_bm']);
+                $('#group_trainer_name_bm').val(data['trainer_name_bm']);
 
             
             }, 'text');
@@ -960,23 +1155,13 @@
                 data = data[0];
                 console.log(data);
 
-                //$('#start_readable').text(data['start_readable']);
-                //$('#end_readable').text(data['end_readable']);
-                //$('#human_date_group').text(data['human_date']);
-                //$('#paid').text(data['paid']);
-                //$('#full_name_a').text(data['full_name_a']);
-                //$('#gender_a').text(data['gender_a']);
-                //$('#age_a').text(data['age_a']);
-                //$('#appointment_email').text(data['appointment_email']);
-                //$('#group_appointment_type_name').text(data['appointment_type_name']);
-                //$('#group_appointment_price_desc').text(data['appointment_price_desc']);
-                //current_booked  cap
                 var current = data['current_booked'];
                 var total = data['cap'];
                 var available = total - current;
                 $('#open_slots').html(available + ' available slots');
                 $('#cap').html(total + ' total slots');
                 $('#group_appointment_short_desc').text(data['short_desc']);
+                $master_group_json = $.parseJSON(data['group_clients']);
                 //$('#group_trainer_name_bm').text(data['trainer_name_bm']);
 
             
@@ -1340,6 +1525,15 @@
         
     });
 
+    $('#myModalGroupDetails').on('hidden', function () {
+        $('.g_form_alive').show();
+        $('.g_form_kill').hide();
+        $('#g_name').val('');
+        $('#g_email').val('');
+        $('#g_phone').val('');
+        
+    });
+
     function validateEmail(email) { 
         var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         return re.test(email);
@@ -1359,4 +1553,43 @@
         //add_fifteen();
         //$('#myModal').toggle();
    }
+   $( "td.td-details-action" ).hover(function() {
+
+        $( this ).css('background-color','#99cc99');
+        $( this ).find('.td-details-action-shown').show('fast');
+         $( this ).css('-webkit-box-shadow','0 4px 4px -2px #000000');
+      
+    }, function() {
+        $( this ).css('background-color','');
+         $( this ).find('.td-details-action-shown').hide('fast');
+         $( this ).css('-webkit-box-shadow','0px 0px 0px 0px #000000');
+    });
+
+   $( ".pro_clicked_div" ).hover(function() {
+
+        $( this ).css('background-color','#ddfcdd');
+     
+         $( this ).css('-webkit-box-shadow','0 4px 4px -2px #000000');
+      
+    }, function() {
+        if($( this ).attr('id') != '<?php echo $this->session->userdata('id_op');?>' )
+        $( this ).css('background-color','');
+    
+         $( this ).css('-webkit-box-shadow','0px 0px 0px 0px #000000');
+    });
+
+   
+
+   $( ".pro_clicked_div" ).click(function() {
+        var hold_pro_id = $( this ).attr('id');
+        $('#pro_clicked').val(hold_pro_id);
+        console.log($('#pro_clicked').val());
+        $( "#pro_clicked_form" ).submit();
+      
+    });
+
+   $.backstretch("<?php echo base_url();?>img/big_backer_2.png");
+   $('.carousel').carousel();
+
+ 
 </script>

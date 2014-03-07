@@ -20,6 +20,12 @@ class Membership_model extends CI_Model {
 				'email_o' => $row->email_name_t,
 				'company_o' => 'Precision Golf School',
 				'img_o' => $row->loc_1_t,
+				'id_op' => $row->ID_auth_t,
+	        	'first_op' => $row->first_name_t,
+	        	'last_op' => $row->last_name_t,
+				'email_op' => $row->email_name_t,
+				'company_op' => 'Precision Golf School',
+				'img_op' => $row->loc_1_t,
 				'is_logged_in_o' => true
 			);
 			$this->session->set_userdata($data);
@@ -66,12 +72,13 @@ class Membership_model extends CI_Model {
 	}
 
 	function edit_pro($do_not_update_password, $picture_name_passed)
-	{
+	{ 
         if ($do_not_update_password) {
 		$new_member_insert_data = array(
 			'first_name_t' => $this->input->post('first_name'),
 			'last_name_t' => $this->input->post('last_name'),
 			'email_name_t' => $this->input->post('email_address'),
+			'address_shipping_t' => $this->input->post('title'),
 			'Username_auth_t' => 'golf instructor',
 			'notes_t' => $this->input->post('expanded_info'),
 			'loc_1_t' => $picture_name_passed
@@ -81,6 +88,7 @@ class Membership_model extends CI_Model {
 			'first_name_t' => $this->input->post('first_name'),
 			'last_name_t' => $this->input->post('last_name'),
 			'email_name_t' => $this->input->post('email_address'),
+			'address_shipping_t' => $this->input->post('title'),
 			'Username_auth_t' => 'golf instructor',
 			'Password_auth_t' => md5($this->input->post('password')),
 			'notes_t' => $this->input->post('expanded_info'),

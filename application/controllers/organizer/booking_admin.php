@@ -5,8 +5,9 @@ class Booking_admin extends CI_Controller
 	function __construct()
 	{
 		parent::__construct();
+
 		$this->load->model('login_prove_and_common');
-		$this->login_prove_and_common->is_logged_in('o');
+		$this->data['is_user_mode'] = $this->login_prove_and_common->is_logged_in_special('o');
 
 		///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		//***the following will be used to extend data passed to views, regardless of the controller function called***
@@ -62,8 +63,47 @@ class Booking_admin extends CI_Controller
 
 	function today()
 	{	
+	$data['hide_splash'] = FALSE;	
+	//fetch all the pros for the side menu
+	$this->load->model('membership_model');
+	$all_pros = $this->membership_model->get_all_golf_pros();	
+	$data['golf_pros'] = $all_pros;
+    
+    //default to doug if public session doesn't exist
+    if( $this->session->userdata('id_op') == FALSE ){
+    	$this->session->set_userdata('id_op', '173');
+		$this->session->set_userdata('first_op', 'Doug');
+		$this->session->set_userdata('last_op', 'DuChateau');
+		$this->session->set_userdata('email_op', 'precisiongolfschool@gmail.com');
+		$this->session->set_userdata('img_op', '3d81a25ebb38806c249ffde96a00b3e7.png');
+		//the below line is the magic
+		$this->session->set_userdata('is_logged_in_o', false);
 
-    $user_id = $this->session->userdata('id_o');
+    }
+
+    //toggle between calendars
+	if($this->input->post('pro_clicked')) {
+		$data['hide_splash'] = TRUE;
+		$data['is_user_mode'] = TRUE;
+		//$this->session->set_userdata('is_logged_in_o', FALSE);
+		
+		$id_match = $this->input->post('pro_clicked');
+		foreach($all_pros as $pro){
+			if($pro->ID_auth_t == $id_match) {
+				$this->session->set_userdata('id_op', $pro->ID_auth_t);
+				$this->session->set_userdata('first_op', $pro->first_name_t);
+				$this->session->set_userdata('last_op', $pro->last_name_t);
+				$this->session->set_userdata('email_op', $pro->email_name_t);
+				$this->session->set_userdata('img_op', $pro->loc_1_t);
+				//the below line is the magic
+				$this->session->set_userdata('is_logged_in_o', false);
+
+			}	
+		}
+		$this->session->set_userdata('is_logged_in_o', false);
+	}		
+
+    $user_id = $this->session->userdata('id_op');
 	$data['user_id'] = $user_id;
 
 	$refresh_page="false";
@@ -138,6 +178,7 @@ class Booking_admin extends CI_Controller
 	$date_held = $this->uri->segment(4) . "/" . $this->uri->segment(5) . "/" . $this->uri->segment(6);
 	$data['last_part_date_url'] = $date_held;
 	$date = new DateTime($date_held);
+	$data['hide_splash'] = TRUE;
 	}else{
 	$data['last_part_date_url'] = "";	
 	$date = new DateTime();
