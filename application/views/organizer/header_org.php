@@ -5,6 +5,7 @@
     <title>Precision Golf School - The Premier Golf School located at Fiddler's Green - Eugene, OR</title>
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <!--<meta http-equiv="X-UA-Compatible" content="IE=edge">-->
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
@@ -32,15 +33,16 @@
 
 
     <!-- Scripts inside js/application.js-->
-    <![if !IE]>
+    <!--[if !IE]>
     <!--<script type="text/javascript" src="<?php echo base_url();?>js/application.js"></script>-->
     <!--NOTE AARON: IF PROBLEMS PUT THIS BACK-->
     <!--<script type="text/javascript" src="<?php echo base_url();?>js/responsive.js"></script>-->
-    <script type="text/javascript" src="<?php echo base_url();?>js/date.js"></script>
-    <script type="text/javascript" src="<?php echo base_url();?>js/backstretch.js"></script>
+    
  
 
     <![endif]>
+    <script type="text/javascript" src="<?php echo base_url();?>js/date.js"></script>
+    <script type="text/javascript" src="<?php echo base_url();?>js/backstretch.js"></script>
 
 
     <!--[if lte IE 10]><script language="javascript" type="text/javascript" src="<?php echo base_url();?>js/application-IE.js"></script><![endif]-->
@@ -49,6 +51,11 @@
 
     <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>/js/jquery.notebook.css">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+<!--[if lt IE 8]>
+  <!--<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>-->
+<![endif]-->
      
     
 

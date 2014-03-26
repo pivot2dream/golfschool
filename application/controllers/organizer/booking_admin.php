@@ -30,6 +30,13 @@ class Booking_admin extends CI_Controller
 
 	}
 
+	function edit_members_group_plan(){
+		$this->load->model('organizer/golf_plans_model');
+		$query = $this->golf_plans_model->edit_members_group_plan();
+		//echo $query;
+
+	}
+
 	function get_group_dates(){
 		$this->load->model('organizer/golf_plans_model');
 		$query = $this->golf_plans_model->get_group_dates($this->input->post('plan_id'));

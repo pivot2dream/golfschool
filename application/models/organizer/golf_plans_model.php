@@ -35,6 +35,21 @@ class Golf_plans_model extends CI_Model {
 		}
 	}
 
+	function edit_members_group_plan() {
+		$data = array('group_clients' => $this->input->post('master_group_json'));
+		$this->db->where('ID_auth_dp', $this->input->post('plan_id'));
+		$query = $this->db->update('golf_programs', $data);
+		if($this->input->post('tracker_action') == 'add'){
+			$this->db->set('current_booked', 'current_booked+1', FALSE);
+		}
+		if($this->input->post('tracker_action') == 'subtract'){
+			$this->db->set('current_booked', 'current_booked-1', FALSE);
+		}
+		$this->db->where('ID_auth_dp', $this->input->post('plan_id'));
+		$this->db->update('golf_programs');
+		return $query;
+	}
+
 	function r_plan_model() {
 		$data = array('live' => 'no');
 		$this->db->where('ID_auth_dp', $this->input->post('id_pass'));

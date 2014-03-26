@@ -23,6 +23,28 @@ class Contactus extends CI_Controller
 		////////////////////////////////
 	}
 
+	public function sendit(){
+		if($this->input->post('submit'))  {
+	    $to = 'precisiongolfschool@gmail.com' .','.'chateauconcept@gmail.com';
+	    $from = "donotreply@precisiongolfschool.net";
+	    $subject = "PGS Contact form Submission";
+	    $return_email = $this->input->post('return_email');
+	    $thing_name = $this->input->post('namer');
+	    $thing_message = $this->input->post('message');
+	    $message = "<div style=\"display:block;\">'
+	    . 'FROM:' . $thing_name . '<br>'
+	    . 'RETURN EMAIL:' . $return_email . '<br>'
+	    . $thing_message . '</div>";
+	    $headers = "MIME-Version: 1.0 \r\n";
+	    $headers .= "Content-type: text/html; charset=iso-8859-1 \r\n";
+	    $headers  .= "From: $from\r\n";
+	    mail($to, $subject, $message, $headers);
+	    echo "Message has been sent....!";  
+	 	}else{
+	    	echo "Add an email address"; 
+		}
+	}
+
 	public function index(){
 		$data['add_state'] = true;
 		$this->load->model('membership_model');

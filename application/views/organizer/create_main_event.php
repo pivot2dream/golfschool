@@ -39,6 +39,9 @@
                         $compare_date = "";
                         $count_all_appts = "no";
                         $count_all_appts_total = 0;
+                        $paid_tracker = 0;
+                        $unpaid_tracker = 0;
+                        $literal_price_tracker = 0;
                         //charting stuff
 
                         foreach($result_for_report as $result){
@@ -48,7 +51,8 @@
                           <td><?php echo "<span class='label'>" . $result->human_date ." </span></br><b> ". $result->start_readable ." <i class='icon icon-arrow-right'></i> ". $result->end_readable . "</b>";   ?></td>
                           <td>
                             <?php echo $result->cust_name_bm;?><br>
-                            <span class="label"><?php echo $result->appointment_email;?></span>
+                            <span class="label"><?php echo $result->appointment_email;?></span><br>
+                            <?php if($result->phone_a!="" && $result->phone_a!="0"){?><span class="label"><?php echo $result->phone_a;?></span><?php } ?>
                           </td>
                           <td>
                             <?php echo $result->gender_a;?><br>
@@ -71,6 +75,11 @@
                        
                        <?php
                        //////////////////////////////////////
+                       if($result->paid == 'paid'){
+                       $paid_tracker += 1;
+                       } else {
+                       $unpaid_tracker += 1; 
+                       }
 
 
                        if($result->human_date != $compare_date){
@@ -88,6 +97,7 @@
                        }
                        $count_all_appts+=1;
                        $count_all_appts_total+=1;
+                       $literal_price_tracker+=$result->literal_price;
                        
                        //////////////////////////////////////
                        //end for each
@@ -220,7 +230,11 @@
       //$(this).parent('tr').hide('slow');
     //});
    //});
+
      $(function () {
+<?php if ( count($unique_date_array) > 64 ) { ?>
+        $('#chart_holder').hide();
+      <?php } ?>
         $('#chart_holder').highcharts({
             chart: {
                 type: 'spline'
@@ -234,7 +248,15 @@
                 x: -20
             },
             xAxis: {
-                categories: <?php echo json_encode($unique_date_array);?>
+                categories: <?php echo json_encode($unique_date_array);?>,
+                labels: {
+                    rotation: -45,
+                    align: 'right',
+                    style: {
+                        fontSize: '10px',
+                        fontFamily: 'Verdana, sans-serif'
+                    }
+                }
             },
             yAxis: {
                 title: {
@@ -262,7 +284,22 @@
             , {
                 name: 'All Appts : <?php echo $count_all_appts_total;?>',
                 data: []
+            },
+            {
+                name: 'Paid : <?php echo $paid_tracker;?>',
+                data: []
+            },
+            {
+                name: 'Owes : <?php echo $unpaid_tracker;?>',
+                data: []
+            },
+            {
+                name: '~ : $<?php echo $literal_price_tracker;?>',
+                data: []
             }
+            
+
+           
             //, {
                 //name: 'Berlin',
                 //data: [-0.9, 0.6, 3.5, 8.4, 13.5, 17.0, 18.6, 17.9, 14.3, 9.0, 3.9, 1.0]
@@ -272,6 +309,7 @@
             //}
             ]
         });
+  
     });
  /////////////////////////////////////////////////////////////////////////////////
 

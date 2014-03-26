@@ -79,6 +79,7 @@ class Client_detail_model extends CI_Model {
 		$data = array(
 			'full_name_a' => $this->input->post('create_full_name'),
 			'age_a' => $this->input->post('create_age'),
+			'phone_a' => $this->input->post('create_phone'),
 			'gender_a' => $this->input->post('create_gender'),
 			'authority_a' => $foreign_key_for_accounts_a
 			);

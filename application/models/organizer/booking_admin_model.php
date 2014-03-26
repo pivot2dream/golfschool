@@ -99,6 +99,7 @@ class Booking_admin_model extends CI_Model {
 			'full_name_a' => $this->input->post('create_full_name'),
 			'age_a' => $this->input->post('create_age'),
 			'gender_a' => $this->input->post('create_gender'),
+			'phone_a' => $this->input->post('create_phone'),
 			'authority_a' => $foreign_key_for_accounts_a
 			);
 		$insert = $this->db->insert('accounts_a', $data);
@@ -170,6 +171,7 @@ class Booking_admin_model extends CI_Model {
 			'appointment_type_name' => $this->input->post('appointment_type_name'),
 			'appointment_min' => $this->input->post('appointment_min'),
 			'appointment_price_desc' => $this->input->post('appointment_price_desc'),
+			'literal_price' => $this->input->post('appointment_literal_price'),
 			'appointment_type_flag' => $this->input->post('appointment_type_flag'),
 			'appointment_email' => $this->input->post('appointment_email')
 

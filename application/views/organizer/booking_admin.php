@@ -173,7 +173,7 @@
           
           <!--start-->
 
-            <div class="well" style="margin-left:0px;background-image:url('../images/accordian_backer.png');">
+            <div class="well" style="margin-left:0px;">
 
             <table style="width:100%;" style="background-color:#fff;" class="table table-striped holds-calendar">
             <tr style="background-color:#fff;">
@@ -582,12 +582,12 @@
             ////////////////////////////////////////////////////////////////////////////////
             if($wednesday_trigger=='no'){?>
             <td>
-            <a href="javascript:void:0;" class="btn btn-small btn-success btn-no-pad-marg open-butt-clicker" id="<?php echo $wednesday_master;?>"><i class="icon-check"></i></a>
+            <a href="javascript:void 0" class="btn btn-small btn-success btn-no-pad-marg open-butt-clicker" id="<?php echo $wednesday_master;?>"><i class="icon-check"></i></a>
             </td>
             <?php }else{ ?>
             <td style="<?php echo $wednesday_backer_color;?>" class="<?php echo $wednesday_appt_type;?>">
             <?php if ($wednesday_show_but=='yes'){?>
-            <a style="width:90%;" href="javascript:void:0;" class="btn btn-small btn-warning btn-no-pad-marg <?php echo $wednesday_appt_type;?> <?php if (($wednesday_appt_type=="static" || $wednesday_appt_type=="blocked") && $is_user_mode=='user_mode'){echo 'hide';}?>" data-id="<?php echo $wednesday_appt_id;?>" data-appt-type-id="<?php echo $wednesday_appt_type_id;?>">
+            <a style="width:90%;" href="javascript:void 0" class="btn btn-small btn-warning btn-no-pad-marg <?php echo $wednesday_appt_type;?> <?php if (($wednesday_appt_type=="static" || $wednesday_appt_type=="blocked") && $is_user_mode=='user_mode'){echo 'hide';}?>" data-id="<?php echo $wednesday_appt_id;?>" data-appt-type-id="<?php echo $wednesday_appt_type_id;?>">
                 <?php if ($wednesday_appt_type=="static"){?>
                 <i class="icon-user"></i> <span class="h-username"><?php echo $wednesday_user_name?></span>
                 <?php } if ($wednesday_appt_type=="blocked"){?>
@@ -781,7 +781,9 @@
                 <br>
                 <b>Gender:</b> <span id="gender_a"></span>
                 <br>
-                <b>Email:</b> <span id="appointment_email"></span>  
+                <b>Email:</b> <span id="appointment_email"></span>
+                <br>
+                <b>Phone:</b> <span id="appointment_phone"></span>    
                    
             </td>
           </tr>       
@@ -796,9 +798,16 @@
 <!--Appointment Details Modal-->
 <div class="modal fade" id="myModalGroupDetails">
   <div class="modal-header"> <a class="close" data-dismiss="modal">×</a>
+    <?php if($is_user_mode!="user_mode"){?>
+        <a href="javascript:void(0)" class="pull-left btn-advanced-group" style="margin-right:10px;" data-id=""><i class="icon icon-list"></i></a>
+    <?php } ?>
     <h3>Group Appointment Details</h3>
   </div>
   <div class="modal-body">
+    <div class="group-appointment-booked-holder" style="display:none;">
+        <table class="group-appointment-booked-table-holder table table-stripped">
+        </table>    
+    </div>    
     <div class="group-appointment-detail-holder">
         <table>
           <tr>
@@ -837,7 +846,11 @@
                 <div class="well g_form_kill hide" style="margin:0px 0px 0px 0px;background-color:#99cc99;">
                     <h2>Thank You!</h2>
                     <p> You have been added to this group lesson and we look forward to seeing you! </p>
-                </div>    
+                </div>
+                 <div class="well g_form_full hide" style="margin:0px 0px 0px 0px;background-color:#99cc99;">
+                    <h2>Sorry!</h2>
+                    <p>This Group Appointment is full at the moment, please look forward to other group sessions in the future! </p>
+                </div>      
             
                 
                    
@@ -854,10 +867,15 @@
 <!--Modal Window Templates-->
 <div class="modal fade" id="myModal">
   <div class="modal-header"> <a class="close" data-dismiss="modal">×</a>
+    <?php if($is_user_mode!="user_mode"){?>
     <a href="javascript:void(0)" class="pull-left btn-advanced" style="margin-right:10px;"><i class="icon icon-list"></i></a>
+    <?php } ?>
     <h4 id="modal_booking_title">Add a New Task</h4>
   </div>
   <div class="modal-body">
+    <div class="generic_loader well hide">
+            <img src="<?php echo base_url();?>img/tiny_little_loader.gif"> <b>loading...</b>
+    </div>    
     <div id="step_advanced" style="display:none">
         <h3>Schedule Unavailable time block:</h3> 
         <div class="well" style="padding: 3px 0px 3px 0px; margin 3px 3px 3px 3px;background-color:#99ff99;">
@@ -955,7 +973,7 @@
                                     <option value="19">19 iterations</option>
                                     <option value="20">20 iterations</option>        
                     </select>    
-                <a href="javascript:void(0);" class="btn btn-success btn-small btn-appt-static" data-total-min="<?php echo $plan->duration_multiplier*15; ?>" data-name="<?php echo $plan->name; ?>" data-time-end="<?php echo $plan->duration_multiplier*15; ?>" data-price-description="<?php echo $plan->price_description; ?>" id="<?php echo $plan->ID_auth_dp; ?>" style="margin:-5px 0px 0px 0px;padding:3px 5px 3px 5px;">Book</a>
+                <a href="javascript:void(0);" class="btn btn-success btn-small btn-appt-static" data-total-min="<?php echo $plan->duration_multiplier*15; ?>" data-name="<?php echo $plan->name; ?>" data-time-end="<?php echo $plan->duration_multiplier*15; ?>" data-literal-price="<?php echo $plan->long_description; ?>" data-price-description="<?php echo $plan->price_description; ?>" id="<?php echo $plan->ID_auth_dp; ?>" style="margin:-5px 0px 0px 0px;padding:3px 5px 3px 5px;">Book</a>
                 </div>
                 </div>
                 <div style="clear:both"></div> 
@@ -978,6 +996,7 @@
         <br/>
         <i class="icon-envelope"></i><input type="text" value="" style="margin-left:10px;margin-top:5px;" id="hold_email_shown" class="input input-large" placeholder="New Customer Email"><br/>
         <i class="icon-user"></i><input type="text" value="" style="margin-left:10px;margin-top:5px;" id="full_name" class="input input-large" placeholder="Full Name"><br/>
+        <i class="icon-arrow-right"></i><input type="text" value="" style="margin-left:10px;margin-top:5px;" id="phone_a" class="input input-large" placeholder="Phone Number"><br/>
         <i class="icon-arrow-right"></i><select id="gender" style="margin-left:10px;" class="input input-small"><option value="male">male</option><option value="female">female</option></select><br/>
         <i class="icon-arrow-right"></i><select id="age" style="margin-left:10px;" class="input input-medium"><option value="adult">Adult Golfer</option><option value="junior">Junior Golfer</option></select>
         <a href="javascript:void(0)" id="go_back" onclick="$('#unfound_email_holder').hide();$('#locate_account_holder').show();" class="btn btn-danger btn-small pull-right">Go Back</a>
@@ -992,10 +1011,11 @@
         <div id="add_golfer_to_account_holder" style="display:none;">
             <i class="icon-envelope"></i><span style="margin-left:10px;margin-top:5px;" id="hold_email_shown_2"></span><br>
             <i class="icon-user"></i><input type="text" value="" style="margin-left:10px;margin-top:5px;" id="full_name_2" class="input input-large" placeholder="Full Name"><br/>
+            <i class="icon-arrow-right"></i><input type="text" value="" style="margin-left:10px;margin-top:5px;" id="phone_c" class="input input-large" placeholder="Phone Number"><br/>
             <i class="icon-arrow-right"></i><select id="gender_2" style="margin-left:10px;" class="input input-small"><option value="male">male</option><option value="female">female</option></select><br/>
             <i class="icon-arrow-right"></i><select id="age_2" style="margin-left:10px;" class="input input-medium"><option value="adult">Adult Golfer</option><option value="junior">Junior Golfer</option></select>
             <a href="javascript:void(0)" id="go_back_2" onclick="$('#add_golfer_to_account_holder').hide();$('#add_golfer_to_account').show();$('#golfers_found_holder').show();" class="btn btn-danger btn-small pull-right">Go Back</a>
-            <a href="javascript:void(0)" id="create_and_book_btn_2" class="btn btn-success btn-small pull-right">Book Appointment</a>
+            <a href="javascript:void(0)" id="create_and_book_btn_2" class="btn btn-success btn-small pull-right">Continue...</a>
         </div>    
         
       </div>    
@@ -1028,6 +1048,8 @@
     var $email_id_held = "";
     var $appointment_type_flag = "static";
     var $master_group_json = [];
+    var $global_refresh_done = false;
+    var $appointment_literal_price = 0;
     /////////////////////////////////
     //advanced holders
     /////////////////////////////////
@@ -1038,6 +1060,7 @@
     $pass_start = "";
     $pass_end = "";
     $pass_iteration = "";
+    $globalSlotTracker="";
     ////////////////////////////////
     //
     ///////////////////////////////
@@ -1119,17 +1142,139 @@
                     $('.g_form_kill').show();
                     console.log($master_group_json);
 
+                    $.post("<?php echo base_url();?>index.php/organizer/booking_admin/edit_members_group_plan", {plan_id: plan_id, master_group_json: JSON.stringify($master_group_json), tracker_action:'add'}, function(data){
+                        console.log('final ajax call', data);
+                        var newNum = parseInt($globalSlotTracker)-1;
+                        $('#open_slots').text(newNum+' available slots');
+                    }, 'text');    
                 }, 'text');
             } else {alert('Please fill out all the information to continue.');}    
            
+        });
+        //group people remove
+        $(document).on("click", "a.remove-group-guy", function() { 
+
+            $( this ).closest('tr').hide();
+            var masterString = $( this ).attr('data-id');
+            var split = masterString.split('***');
+            var guyName = split[0];
+            var guyPhone = split[1];
+            var $appt_id = split[2];
+            $appt_id = parseInt($appt_id);
+            console.log($appt_id);
+            
+            $.post("<?php echo base_url();?>index.php/organizer/booking_admin/get_a_golf_plan", {plan_id: $appt_id}, function(data){
+                //alert(data);
+                data = $.parseJSON(data);
+                data = data[0];
+                console.log(data);
+
+                var group_clients = data['group_clients'];
+                //console.log(group_clients);
+                var jsonHeld = $.parseJSON(group_clients);
+                var htmlHeld = "";
+                var virginArray=[];
+                alert('d');
+                $.each(jsonHeld, function(i, item) {
+                    console.log("log match",item.g_phone +' vs '+ guyPhone)
+                    if ((item.g_phone == guyPhone) && (item.g_name == guyName)){} else {
+                        virginArray.push(item);
+                    }
+                    
+                });
+                console.log(virginArray);
+                $.post("<?php echo base_url();?>index.php/organizer/booking_admin/edit_members_group_plan", {plan_id: $appt_id, master_group_json: JSON.stringify(virginArray), tracker_action:'subtract'}, function(data){
+                    console.log('final ajax call', data);
+                }, 'text');  
+             }, 'text');  
+
+
+        });
+        //group change inividual paid
+        $(document).on("click", "a.change-paid-group-guy", function() { 
+            //$( this ).closest('tr').hide();
+            var switchType = $( this ).text();
+            var switchHeld;
+            if( switchType == "paid" ){
+                switchHeld = "not paid";
+            } else {
+                switchHeld = "paid";
+            }
+            $( this ).text(switchHeld);
+            var masterString = $( this ).attr('data-id');
+            var split = masterString.split('***');
+            var guyName = split[0];
+            var guyPhone = split[1];
+            var $appt_id = split[2];
+            $appt_id = parseInt($appt_id);
+            console.log($appt_id);
+            
+            $.post("<?php echo base_url();?>index.php/organizer/booking_admin/get_a_golf_plan", {plan_id: $appt_id}, function(data){
+                //alert(data);
+                data = $.parseJSON(data);
+                data = data[0];
+                console.log(data);
+
+                var group_clients = data['group_clients'];
+                //console.log(group_clients);
+                var jsonHeld = $.parseJSON(group_clients);
+                var htmlHeld = "";
+                var virginArray=[];
+                $.each(jsonHeld, function(i, item) {
+                    console.log("log match",item.g_phone +' vs '+ guyPhone)
+                    if ((item.g_phone == guyPhone) && (item.g_name == guyName)){
+                        item.g_paid = switchHeld;
+                    } 
+                    virginArray.push(item);
+                
+                    
+                });
+                console.log(virginArray);
+                $.post("<?php echo base_url();?>index.php/organizer/booking_admin/edit_members_group_plan", {plan_id: $appt_id, master_group_json: JSON.stringify(virginArray), tracker_action:'subtract'}, function(data){
+                    console.log('final ajax call', data);
+                }, 'text');  
+             }, 'text');  
+
+
+        });
+
+
+
+
+        //group people shower
+        $( "a.btn-advanced-group" ).click(function() {
+            $('.group-appointment-detail-holder').hide();
+            $('.group-appointment-booked-holder').show();
+            var $appt_id = $( this ).attr('data-id');
+            console.log($appt_id);
+            $.post("<?php echo base_url();?>index.php/organizer/booking_admin/get_a_golf_plan", {plan_id: $appt_id}, function(data){
+            
+                //alert(data);
+                data = $.parseJSON(data);
+                data = data[0];
+                console.log(data);
+
+                var group_clients = data['group_clients'];
+                //console.log(group_clients);
+                var jsonHeld = $.parseJSON(group_clients);
+                var htmlHeld = "";
+                $.each(jsonHeld, function(i, item) {
+                   htmlHeld += '<tr><td>'+ item.g_name +'</td><td>'+ item.g_email +'</td><td>' + item.g_phone +'</td><td><a class="change-paid-group-guy btn btn-warning btn-small" data-id="' + item.g_name + '***' + item.g_phone + '***' + $appt_id + '">'+item.g_paid+'</a></td><td><a class="remove-group-guy btn btn-warning btn-small" data-id="' + item.g_name + '***' + item.g_phone + '***' + $appt_id + '">x</a></td></tr>';
+                });
+                $('.group-appointment-booked-table-holder').html(htmlHeld);
+            }, 'text');
+
+
         });
         
         //group appointment modal open
         $( "a.group" ).click(function() {
             //alert('c');
             var $day_id = $( this ).attr('data-id');
+            
             //alert($day_id);
             var $appt_id = $( this ).attr('data-appt-type-id');
+            $( "a.btn-advanced-group" ).attr('data-id',$appt_id);
             $( "a.submit-grouper" ).attr('data-id',$appt_id);
             $('#group-remove-appt-btn').attr('data-id', $day_id);
             //fetch_appointment
@@ -1157,9 +1302,14 @@
 
                 var current = data['current_booked'];
                 var total = data['cap'];
+                if ( current == total ) {
+                    $('.g_form_alive').hide();
+                    $('.g_form_full').show();
+                }
                 var available = total - current;
                 $('#open_slots').html(available + ' available slots');
                 $('#cap').html(total + ' total slots');
+                $globalSlotTracker= available;
                 $('#group_appointment_short_desc').text(data['short_desc']);
                 $master_group_json = $.parseJSON(data['group_clients']);
                 //$('#group_trainer_name_bm').text(data['trainer_name_bm']);
@@ -1199,12 +1349,18 @@
         });
 
         $( ".btn-appt-static" ).click(function() {
+            $('.generic_loader').show();
+            $('#step1').hide('fast');
             $appointment_type_flag = "static"; 
             $iteration_holder = $('#iteration' + $(this).attr('id') ).val();
             //alert($iteration_holder);
             appointment_type_id = $( this ).attr('id');
             //alert(appointment_type_id);
             appointment_type_name = $( this ).attr('data-name');
+            $appointment_literal_price = $( this ).attr('data-literal-price');
+            if(isNaN($appointment_literal_price) == true){
+                $appointment_literal_price = 0;
+            }
             $appointment_price = $( this ).attr('data-price-description');
             $final_total_min = $( this ).attr('data-total-min'); 
             
@@ -1235,10 +1391,13 @@
                 //alert(data);
                 if(data == "false"){
                   //it's all good
-                  $('#step1').hide('fast');
+                  $('.generic_loader').hide();
+                  
                   $('#step2').show('fast');
                 } else {
                 //the system found a conflict
+                $('.generic_loader').hide();
+                $('#step1').show('fast');
                 alert('Sorry, There is an appointment conflict, please try another time slot or appointment type.');
                 return false;    
                 }
@@ -1248,21 +1407,27 @@
         });
         
         $( "#email_for_appt_submit" ).click(function() {
+
             customer_email_submitted = $( '#email_for_appt' ).val();
             var email_passed = validateEmail(customer_email_submitted);
             //validate email client side
             if(!email_passed){
                 alert('please enter a valid email address and try again');
                 return false;
+            }else{
+                $('.generic_loader').show();
+                $('#locate_account_holder').hide();
             }
             $.post("<?php echo base_url();?>index.php/organizer/booking_admin/ask_if_golfer", {e_sub: customer_email_submitted}, function(data){
             //alert('called');
             //alert(data);
+            $('.generic_loader').hide();
             if(data == "false"){
                 $('#hold_email_shown').val(customer_email_submitted); 
                 $('#email_not_found').text(customer_email_submitted);
                 $('#unfound_email_holder').show();
-                $('#locate_account_holder').hide();
+                
+
             } else {
             //the email has been found, return json of people
             //alert(data);
@@ -1271,25 +1436,28 @@
             //hold the id for the global email
             $email_id_held = result_set[0];
             $.each(result_set[1], function(index, element) {
-                var table_html = '<tr><td>' + element['full_name_a'] + '</td><td><a href="javascript:void(0);" class="btn btn-success final-book-human" data-final-human-name="' + element['full_name_a'] + '" data-final-human-id="' + element['ID_auth_a'] + '" id="book_with' + element['ID_auth_a'] + '">Book Appointment</a></td></tr>';
+                var table_html = '<tr><td>' + element['full_name_a'] + '</td><td><a href="javascript:void(0);" class="btn btn-success final-book-human" data-final-human-name="' + element['full_name_a'] + '" data-final-human-id="' + element['ID_auth_a'] + '" id="book_with' + element['ID_auth_a'] + '">Book this Appointment</a></td></tr>';
                 $('#golfers_found_holder').append(table_html);
                 
             });
-            $('#locate_account_holder').hide();
             $('#golfers_found').show('fast');
             }
         }, 'text');
         });
         //create a new customer and then book an appointment
         $( "#create_and_book_btn" ).click(function() {
+            $('.generic_loader').show();
+            $('#unfound_email_holder').hide();
             create_new_email = $( '#hold_email_shown' ).val();
             create_full_name = $( '#full_name' ).val();
             create_age = $( '#age' ).val();
             create_gender = $( '#gender' ).val();
-            $.post("<?php echo base_url();?>index.php/organizer/booking_admin/create_golfer", {create_new_email: create_new_email, create_full_name: create_full_name, create_age: create_age, create_gender: create_gender}, function(data){
+            create_phone = $( '#phone_a' ).val();
+            $.post("<?php echo base_url();?>index.php/organizer/booking_admin/create_golfer", {create_new_email: create_new_email, create_full_name: create_full_name, create_age: create_age, create_gender: create_gender, create_phone: create_phone}, function(data){
             //alert('calledz');
             //alert(data);
-            $('#unfound_email_holder').hide();
+            //$('#unfound_email_holder').hide();
+            $('.generic_loader').hide();
             $('#email_for_appt_submit').trigger('click');
             
         }, 'text');
@@ -1333,6 +1501,7 @@
                 $('#appointment_type_name').text(data['appointment_type_name']);
                 $('#appointment_price_desc').text(data['appointment_price_desc']);
                 $('#trainer_name_bm').text(data['trainer_name_bm']);
+                $('#appointment_phone').text(data['phone_a']);
 
             
             }, 'text');
@@ -1363,13 +1532,14 @@
         $(document).on("click", "#create_and_book_btn_2", function() {
             
             create_full_name = $( '#full_name_2' ).val();
+            create_phone = $( '#phone_c' ).val();
             create_age = $( '#age_2' ).val();
             create_gender = $( '#gender_2' ).val();
 
-            $.post("<?php echo base_url();?>index.php/organizer/booking_admin/create_golfer", {create_full_name: create_full_name, create_age: create_age, create_gender: create_gender, skip_email_create: $email_id_held}, function(data){
+            $.post("<?php echo base_url();?>index.php/organizer/booking_admin/create_golfer", {create_full_name: create_full_name, create_age: create_age, create_gender: create_gender, skip_email_create: $email_id_held, create_phone: create_phone}, function(data){
               //alert(data);
               var temp_name = $('#full_name_2').val();
-              var table_html = '<tr><td>' + temp_name + '</td><td><a href="javascript:void(0);" class="btn btn-success final-book-human" data-final-human-name="' + temp_name + '" data-final-human-id="' + data + '">Book Appointment</a></td></tr>';
+              var table_html = '<tr><td>' + temp_name + '</td><td><a href="javascript:void(0);" class="btn btn-success final-book-human" data-final-human-name="' + temp_name + '" data-final-human-id="' + data + '">Book this Appointment</a></td></tr>';
               $('#golfers_found_holder').prepend(table_html);
               $('#add_golfer_to_account_holder').hide();
               $('#add_golfer_to_account').show();
@@ -1500,15 +1670,17 @@
                 appointment_min: $final_total_min,
                 appointment_price_desc: $appointment_price,
                 appointment_type_flag: $appointment_type_flag,
-                appointment_email: customer_email_submitted
+                appointment_email: customer_email_submitted,
+                appointment_literal_price: $appointment_literal_price
             }, function(data)
             {
                 $('#golfers_found').hide('fast');
-                $('#golfers_found').html('<h2>Your Appointment has been Booked!</h2>please remember your appointment is on ' + human_readable_date + ': ' + human_readable_time + ' <icon class="icon-arrow-right"></i> ' + human_readable_end_minute_time + '<h3 class="alert">This page will soon redirect to reflect your booking...</h3>');
+                $('#golfers_found').html('<div class="alert alert-success"><h2>Your Appointment has been Booked!</h2>Your appointment is on ' + human_readable_date + ': ' + human_readable_time + ' <icon class="icon-arrow-right"></i> ' + human_readable_end_minute_time + '<br><br>We Look forward to Seeing You!</div>');
                 $('#golfers_found').show('slow');
-                setInterval(function(){
-                    window.location.replace("<?php echo base_url();?>index.php/organizer/booking_admin/today/<?php echo $last_part_date_url;?>");
-                },5000);
+                $global_refresh_done = true;
+                //setInterval(function(){
+                    //window.location.replace("<?php echo base_url();?>index.php/organizer/booking_admin/today/<?php echo $last_part_date_url;?>");
+                //},5000);
             }, 'text');
         }
 
@@ -1522,12 +1694,18 @@
         $('#add_golfer_to_account').show();
         $('#golfers_found_holder').show();
         $('#step_advanced').hide();
+        if($global_refresh_done){
+            window.location.replace("<?php echo base_url();?>index.php/organizer/booking_admin/today/<?php echo $last_part_date_url;?>");
+        }
         
     });
 
     $('#myModalGroupDetails').on('hidden', function () {
         $('.g_form_alive').show();
         $('.g_form_kill').hide();
+        $('.g_form_hide').hide();
+        $('.group-appointment-booked-holder').hide();
+        $('.group-appointment-detail-holder').show();
         $('#g_name').val('');
         $('#g_email').val('');
         $('#g_phone').val('');
@@ -1590,6 +1768,14 @@
 
    $.backstretch("<?php echo base_url();?>img/big_backer_2.png");
    $('.carousel').carousel();
+
+    //$(document).ready(function() {
+    //var isIE = navigator.userAgent.indexOf(' MSIE ') > -1;
+      //if(isIE) {
+          //$('.modal').removeClass('fade');
+      //}
+    //});
+
 
  
 </script>

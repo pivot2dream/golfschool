@@ -8,9 +8,11 @@
 			?>
 			<input type="hidden" name="live" value="yes">
 			<input type="hidden" name="instructor_id" value="<?php echo $this->session->userdata('id_o');?>">
+			Display Name of Plan:<br>
 			<input name="plan_name" id="plan_name" placeholder="Plan Name" /><br>
+			Verbal Price Description:<br>
 			<textarea name="price_info" id="price_info" placeholder="Short Price Description"></textarea><br>
-
+			Minutes in Plan:<br>
 			<select name="plan_duration" id="plan_duration" class="input input-medium">
 			  <option value="1">15 minute plan</option>
 			  <option value="2">30 minute plan</option>
@@ -32,8 +34,15 @@
         <div class="span4">
 			<fieldset>
 			<legend>Plan Descriptions</legend>
+			Short Plan Description:<br>
 			<textarea name="expanded_info" id="expanded_info" placeholder="Short Plan Description"></textarea><br>
-			<textarea name="expanded_info_2" id="expanded_info_2" placeholder="Long Plan Description"></textarea><br>
+			below must be a number, (for reporting not shown to client):
+			<div class="input-prepend input-append">
+			  <span class="add-on">$</span>
+			  <input class="input input-small" name="expanded_info_2" id="expanded_info_2" placeholder="00">
+			  <span class="add-on">.00</span>
+			</div>
+			
 			<?php echo validation_errors('<p class="alert-error errors" id="errors" style="padding:5px;">');?>
 			<input type="submit" id="submit_form" name="submit" value="Create New Plan" class="btn btn-success" <?php if($add_state==false){echo "style='display:none;'";}?> />
 			<input type="submit" id="submit_form2" name="submit" value="Edit Plan" class="btn btn-primary" <?php if($add_state){echo "style='display:none;'";}?>/>
@@ -94,7 +103,7 @@
 		</fieldset>
 		<fieldset>
 			<legend>Create Group Appointment</legend>
-		<div class="span12 well" style="background-color:#a7d6a8;margin-left:0px;">
+		<div class="span12 well grouper-holder" style="background-color:#a7d6a8;margin-left:0px;">
 			
 			<div class="span3"> 
 	            <fieldset>
@@ -326,7 +335,7 @@ $(document).ready(function() {
     		current_booked: 0,
     		cap: $number_people
     		}, function(appointment_id){
-    			alert(appointment_id);
+    			//alert(appointment_id);
     			$( ".single-day-holder" ).each(function( index ) {
     				
     				var machine_start = $( this ).children(".machine_start").text();
@@ -342,7 +351,7 @@ $(document).ready(function() {
     }
 
     function finalBookApointment(appointment_id, machine_start, machine_end, start_time_readable, end_time_readable, price) {
-    	alert('final called');
+    	//alert('final called');
         $.post("<?php echo base_url();?>index.php/organizer/booking_admin/create_new_appointment", 
             {
                 start_bm: machine_start, 
@@ -363,9 +372,9 @@ $(document).ready(function() {
                 appointment_type_flag: 'group',
                 appointment_email: 'na'
             }, function(data)
-            {   alert(data);
-
-                
+            {   //alert(data);
+            	console.log(data);
+                $('.grouper-holder').append('<h1>Success! Check it out on your Calendar</h1>');
 
             }, 'text');
             
