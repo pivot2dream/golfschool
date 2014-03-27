@@ -75,7 +75,7 @@
                             Eugene, OR 97402<br>
                             <b>541-284-7992</b>
                             </div>
-                            Come visit us at our convenient Northwest Eugene location on Highway 99 North!<br><br>
+                            Come visit us at our convenient Northwest Eugene location on Highway 99 North<span id="book-area">!</span><br><br>
                             
                         </p>    
                             <!--<iframe src="https://mapsengine.google.com/map/embed?mid=zmSxjuAQedHU.kr5MC1SDeSJY" width="280" height="280"></iframe>-->
@@ -139,7 +139,7 @@
             </div>  
             <?php if($is_user_mode!="user_mode"){ ?>
             <div class="well" style="padding:0px 0px 0px 0px;">
-
+              <b>&nbsp;start time, end time, incriment</b>
               <form action="<?php echo base_url();?>index.php/organizer/booking_admin/today" method="post">
                 <div class="pull-left">
                   <div class="input-append bootstrap-timepicker">
@@ -744,7 +744,7 @@
 <!-- END Layout Center -->
 
 <!--Appointment Details Modal-->
-<div class="modal fade" id="myModalApptDetails">
+<div class="modal hide fade" id="myModalApptDetails">
   <div class="modal-header"> <a class="close" data-dismiss="modal">×</a>
     <h3>Appointment Details</h3>
   </div>
@@ -796,7 +796,7 @@
 <!--Modal Window Templates-->
 
 <!--Appointment Details Modal-->
-<div class="modal fade" id="myModalGroupDetails">
+<div class="modal hide fade" id="myModalGroupDetails">
   <div class="modal-header"> <a class="close" data-dismiss="modal">×</a>
     <?php if($is_user_mode!="user_mode"){?>
         <a href="javascript:void(0)" class="pull-left btn-advanced-group" style="margin-right:10px;" data-id=""><i class="icon icon-list"></i></a>
@@ -860,12 +860,12 @@
                 
     </div>
   </div>
-  <div class="modal-footer"> <a href="#" class="btn btn-danger" data-id="0" id="group-remove-appt-btn">Remove Appointment</a> </div>
+  <div class="modal-footer"><?php if($is_user_mode != 'user_mode'){?> <a href="#" class="btn btn-danger" data-id="0" id="group-remove-appt-btn">Remove Appointment</a><?php }?> </div>
 </div>
 <!--Modal Window Templates-->
 
 <!--Modal Window Templates-->
-<div class="modal fade" id="myModal">
+<div class="modal hide fade" id="myModal" style="z-index:10000000;">
   <div class="modal-header"> <a class="close" data-dismiss="modal">×</a>
     <?php if($is_user_mode!="user_mode"){?>
     <a href="javascript:void(0)" class="pull-left btn-advanced" style="margin-right:10px;"><i class="icon icon-list"></i></a>
@@ -951,7 +951,7 @@
                 <div class="pull-right" style="width:30%;">
                 
                 <div class="input-append" style="margin:0px 0px 0px 0px;">
-                  <select id="iteration<?php echo $plan->ID_auth_dp; ?>" class="input-iteration" style="width:100px;margin-top:5px;">
+                  <select id="iteration<?php echo $plan->ID_auth_dp; ?>" class="input-iteration" style="width:100px;margin-top:5px;<?php if($is_user_mode == 'user_mode'){?>display:none;<?php }?>">
                                     <option value="1">1 iteration</option>
                                     <option value="2">2 iterations</option>
                                     <option value="3">3 iterations</option>
@@ -973,7 +973,7 @@
                                     <option value="19">19 iterations</option>
                                     <option value="20">20 iterations</option>        
                     </select>    
-                <a href="javascript:void(0);" class="btn btn-success btn-small btn-appt-static" data-total-min="<?php echo $plan->duration_multiplier*15; ?>" data-name="<?php echo $plan->name; ?>" data-time-end="<?php echo $plan->duration_multiplier*15; ?>" data-literal-price="<?php echo $plan->long_description; ?>" data-price-description="<?php echo $plan->price_description; ?>" id="<?php echo $plan->ID_auth_dp; ?>" style="margin:-5px 0px 0px 0px;padding:3px 5px 3px 5px;">Book</a>
+                <a href="javascript:void(0);" class="btn btn-success btn-small btn-appt-static" data-total-min="<?php echo $plan->duration_multiplier*15; ?>" data-name="<?php echo $plan->name; ?>" data-time-end="<?php echo $plan->duration_multiplier*15; ?>" data-literal-price="<?php echo $plan->long_description; ?>" data-price-description="<?php echo $plan->price_description; ?>" id="<?php echo $plan->ID_auth_dp; ?>" style="margin:-5px 0px 0px 0px;padding:3px 5px 3px 5px;">Book <?php if($is_user_mode == 'user_mode'){?>Appointment<?php }?></a>
                 </div>
                 </div>
                 <div style="clear:both"></div> 
@@ -1066,12 +1066,17 @@
     ///////////////////////////////
 
     $(document).ready(function() { 
+        $( "#pop" ).click(function() {
+            event.preventDefault();
+            document.getElementById('book-area').scrollIntoView();
+        });
         $( "#date_picker_jump" ).datepicker();
 
         $('.blocked').each(function() {
-            if('<?php echo $is_user_mode;?>' != 'user_mode'){
+            <?php if($is_user_mode!="user_mode"){?>
                 $(this).css('background-color','#272b27');
-            }
+            <?php } ?>    
+            
         });
         $('.group').each(function() {
             $(this).css('background-color','#256363');
@@ -1089,7 +1094,7 @@
             $pass_end = $start_advanced_yyyy_MM_dd + " " + $end_advanced_HH_mm_ss;
             $pass_iteration = $('.input-iteration-advanced').val();
             
-             alert($pass_start);
+             //alert($pass_start);
             generic_conflict_check($pass_start, $pass_end, $pass_iteration);
         });
         
@@ -1174,7 +1179,7 @@
                 var jsonHeld = $.parseJSON(group_clients);
                 var htmlHeld = "";
                 var virginArray=[];
-                alert('d');
+                //alert('d');
                 $.each(jsonHeld, function(i, item) {
                     console.log("log match",item.g_phone +' vs '+ guyPhone)
                     if ((item.g_phone == guyPhone) && (item.g_name == guyName)){} else {
@@ -1507,7 +1512,8 @@
             }, 'text');
             
         });
-
+        
+        <?php if($is_user_mode != 'user_mode'){?>
         $(document).on("click", "#remove-appt-btn, #group-remove-appt-btn", function() {
            var data_id = $(this).attr('data-id');
             $.post("http://localhost/golfschool/index.php/organizer/create_main_event/unset_me", {data_id: data_id}, function(data){
@@ -1516,6 +1522,7 @@
             }, 'text');
            
         });
+        <?php } ?>
 
         $(document).on("click", "#add_golfer_to_account", function() {
             $('#add_golfer_to_account_holder').show();
@@ -1768,14 +1775,6 @@
 
    $.backstretch("<?php echo base_url();?>img/big_backer_2.png");
    $('.carousel').carousel();
-
-    //$(document).ready(function() {
-    //var isIE = navigator.userAgent.indexOf(' MSIE ') > -1;
-      //if(isIE) {
-          //$('.modal').removeClass('fade');
-      //}
-    //});
-
 
  
 </script>

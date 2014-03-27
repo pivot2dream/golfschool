@@ -3,13 +3,9 @@
         <div class="span3">
             <div class="well" style="padding:0px 0px 0px 0px;background-color:#bae6ba;">
                 <h4 style="padding: 3px 3px 3px 3px;">&nbsp;2013 Teacher of the Year Award:</h4>
-                <table class="table" style="background-color:white;">
-                    <tr>
-                        <td>
+                <div class="row-fluid" style="background-color:white;">
                             <img src="<?php echo base_url();?>img/doug_logo.png">
-                        </td>    
-                    </tr>
-                </table>
+                </div>
             </div>  
             <br>
             <div class="well" style="padding:0px 0px 0px 0px;background-color:#bae6ba;">

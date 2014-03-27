@@ -104,6 +104,7 @@
 		<fieldset>
 			<legend>Create Group Appointment</legend>
 		<div class="span12 well grouper-holder" style="background-color:#a7d6a8;margin-left:0px;">
+			<h1 id="show-successer" style="display:none;">Success! Check it out on your Calendar</h1>
 			
 			<div class="span3"> 
 	            <fieldset>
@@ -374,7 +375,7 @@ $(document).ready(function() {
             }, function(data)
             {   //alert(data);
             	console.log(data);
-                $('.grouper-holder').append('<h1>Success! Check it out on your Calendar</h1>');
+                $('#show-successer').show();
 
             }, 'text');
             

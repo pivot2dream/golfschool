@@ -3,13 +3,9 @@
         <div class="span3">
             <div class="well" style="padding:0px 0px 0px 0px;background-color:#bae6ba;">
                 <h4 style="padding: 3px 3px 3px 3px;">&nbsp;2013 Teacher of the Year Award:</h4>
-                <table class="table" style="background-color:white;">
-                    <tr>
-                        <td>
+                <div class="row-fluid" style="background-color:white;">
                             <img src="<?php echo base_url();?>img/doug_logo.png">
-                        </td>    
-                    </tr>
-                </table>
+                </div>
             </div>                  
         </div>
         <div class="span9">
@@ -57,6 +53,7 @@
                          </div>   
                      </div>
                      <div style="clear:both;"></div>
+                     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2863.2328691605917!2d-123.20171799999999!3d44.140442999999976!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x54c10285d6c66ced%3A0xb1ee22d84880e93e!2sPrecision+Golf+School!5e0!3m2!1sen!2sus!4v1395888708151" width="100%" height="350" frameborder="0" style="border:0"></iframe>
                      <br>
                      </div>   
                             

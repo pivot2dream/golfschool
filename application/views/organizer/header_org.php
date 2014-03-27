@@ -5,15 +5,13 @@
     <title>Precision Golf School - The Premier Golf School located at Fiddler's Green - Eugene, OR</title>
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <!--<meta http-equiv="X-UA-Compatible" content="IE=edge">-->
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
     <link rel="stylesheet" href="<?php echo base_url();?>css/bootstrap.css" type="text/css" media="all"/>
     <link rel="stylesheet" href="<?php echo base_url();?>css/bootstrap-timepicker.css" type="text/css" media="all"/>
 
     <link rel="stylesheet" href="<?php echo base_url();?>css/core.css" type="text/css" media="all"/>
-	<link type="text/css" href="<?php echo base_url();?>css/overcast/jquery-ui-1.8.20.custom.css" rel="stylesheet" />
+	  <link type="text/css" href="<?php echo base_url();?>css/overcast/jquery-ui-1.8.20.custom.css" rel="stylesheet" />
 
     <!-- Retina Webfont for Boostrap from Font Awesome - http://fortawesome.github.com/Font-Awesome -->
     <link rel='stylesheet' type='text/css' href='<?php echo base_url();?>css/font-awesome.css' />
@@ -22,6 +20,7 @@
 
 
     <script type="text/javascript" src="<?php echo base_url();?>js/jquery-1.7.2.min.js"></script>
+    <!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>-->
     <!--<script type="text/javascript" src="<?php echo base_url();?>js/jquery.layout.js"></script>-->
     <script type="text/javascript" src="<?php echo base_url();?>js/bootstrap.js"></script>
     <script type="text/javascript" src="<?php echo base_url();?>js/bootstrap-timepicker.js"></script>
@@ -53,9 +52,29 @@
     <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>/js/jquery.notebook.css">
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-<!--[if lt IE 8]>
-  <!--<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>-->
-<![endif]-->
+    <!--[if lt IE 8]>
+      <!--<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>-->
+    <![endif]-->
+    <script type="text/javascript">
+      var isRunningIE = false;
+    </script>
+    <!--[if gt IE 6]>
+    <script type="text/javascript">
+      isRunningIE = true;
+    </script>
+    <![endif]-->
+    <script>
+    if (Function('/*@cc_on return document.documentMode===10@*/')()){
+      isRunningIE = true;
+    }
+
+    $(document).ready(function() {
+ 
+      if(isRunningIE) {
+          $('.modal').removeClass('fade');
+      }
+    });
+    </script>
      
     
 
@@ -72,6 +91,34 @@
             </a>
             <ul class="dropdown-menu">
               <li>PLEASE CHOOSE AN OPTION BELOW:</li>
+              <?php if($this->session->userdata('is_logged_in_o') == FALSE) {?>
+               <li><a href="<?php echo base_url();?>index.php/organizer/booking_admin/today">
+                <img alt="profile image" src="<?php echo base_url();?>img/cal_icon.jpg" style="width:60px;"/>
+                            <h5>Book a Lesson with Precision Golf School</h5>
+                            <p>At Precision Golf School, booking a lesson is as easy as clicking to sign up!</p></a></li>
+               <li><a href="<?php echo base_url();?>index.php/organizer/about">
+                <img alt="profile image" src="<?php echo base_url();?>img/thumb-4-temp.jpg" style="width:60px;"/>
+                            <h5>About Our Staff</h5>
+                            <p>Learn more about your instructors, and the expertise that drive our knowledge base.</p></a></li>
+                <li><a href="<?php echo base_url();?>index.php/organizer/aboutschool">
+                <img alt="profile image" src="<?php echo base_url();?>img/thumb-1-temp.jpg" style="width:60px;"/>
+                            <h5>About Our School</h5>
+                            <p>Learn about the teaching philosophy that drives our school.</p></a></li>
+                <li><a href="<?php echo base_url();?>index.php/organizer/latestnews">
+                <img alt="profile image" src="<?php echo base_url();?>img/thumb-news.jpg" style="width:60px;"/>
+                            <h5>Latest News & Upcoming Events</h5>
+                            <p>Upcoming events, promotions, and the general scoop on what's going on.</p></a></li>
+                <li><a href="<?php echo base_url();?>index.php/organizer/contactus">
+                <img alt="profile image" src="<?php echo base_url();?>img/contact.png" style="width:60px;"/>
+                            <h5>Contact Precision Golf School</h5>
+                            <p>Please don't hesitate to get in touch if you have any questions!</p></a></li>
+                <li>
+                  <a href="https://www.facebook.com/pages/Precision-Golf-School/150365515060968" target="_blank">
+                    <h5><img src="<?php echo base_url();?>img/facebook_green_64.png" style="width:15px;height:15px;">Visit Precision Golf School on Facebook</h5>
+                  </a>  
+                </li>                        
+
+              <?php } else { ?>
               <li><a href="<?php echo base_url();?>index.php/organizer/booking_admin/today">
                 <img alt="profile image" src="<?php echo base_url();?>img/cal_icon.jpg" style="width:60px;"/>
                             <h5>My Calendar</h5>
@@ -103,6 +150,7 @@
                             <h5>Reporting</h5>
                             <p>Search by Date or client name, remove appointments or flag paid state. Table layout and export options.</p></a></li>
               <li><a href="<?php echo base_url();?>index.php">Precision Golf School Home Page</a></li>
+              <?php } ?>
             </ul>
         </span>
         </div>
@@ -150,7 +198,7 @@
     <div id="view-holder" class="ui-layout-content">
         <ul class="breadcrumb">
 <?php if($this->session->userdata('is_logged_in_o') == FALSE) {?>
-            <li><a href="<?php echo base_url();?>index.php/organizer/booking_admin/today" style="color:black;">Book Your Apointment Online!</a></li>
+            <li style="background-color:yellow;"><a href="<?php echo base_url();?>index.php/organizer/booking_admin/today" style="color:black;" id="pop">Book Your Apointment Online!</a></li>
             <li><a href="<?php echo base_url();?>index.php/organizer/about" style="color:black;">About Our Staff</a></li>
             <li><a href="<?php echo base_url();?>index.php/organizer/aboutschool" style="color:black;">About Our School</a></li>
             <li><a href="<?php echo base_url();?>index.php/organizer/latestnews" style="color:black;">Latest News & Upcoming Events</a></li>
