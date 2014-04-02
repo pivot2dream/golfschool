@@ -22,6 +22,7 @@
 			<div class="img-polaroid">
 			<img src="<?php echo base_url();?>img/thumb-3-temp.jpg" id="imgPrevQuestion" style="width:30%;" class="pull-right">
 			</div>
+			*note for best results, make sure image added above is perfect square
 			<input name="password" id="password" placeholder="Password"/><br>
 			<input name="password2" id="password2" placeholder="Password Confirm"/><br>
 			<?php echo validation_errors('<p class="alert-error errors" id="errors" style="padding:5px;">');?>
@@ -98,7 +99,7 @@
 </div>
 
 <!--Modal Window Templates-->
-<div class="modal fade hide" id="myModal">
+<div class="modal hide fade" id="myModal">
   <div class="modal-header"> <a class="close" data-dismiss="modal">×</a>
     <h3>Confirmation Message:</h3>
   </div>

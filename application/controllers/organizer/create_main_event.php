@@ -47,6 +47,10 @@ class Create_main_event extends CI_Controller
 			$data['start_date'] = $date_go_back;
 
 		}else{
+			if (!defined('PHP_VERSION_ID')) {
+	    		$version = explode('.', PHP_VERSION);
+				define('PHP_VERSION_ID', ($version[0] * 10000 + $version[1] * 100 + $version[2]));
+			}
 				
 			$date = new DateTime();
 
@@ -55,11 +59,39 @@ class Create_main_event extends CI_Controller
 			$date_go_forward = $date_go_forward->format('m/d/Y');
 			$data['end_date'] = $date_go_forward;
 			///////////////////////////////////////////////////////
-			$date_go_back = new DateTime($date->format('Y/m/d'));
-			$date_go_back = $date_go_back->modify('-1 month');
-			$date_start_query = $date_go_back;
-			$date_go_back = $date_go_back->format('m/d/Y');
-			$data['start_date'] = $date_go_back;
+			if (PHP_VERSION_ID > 40429) {
+	    		$date_go_back = new DateTime($date->format('Y/m/d'));
+				$date_go_back->modify('-1 month');
+				//saved below
+				//$date_go_back = $date_go_back->modify('-1 month');
+				$date_start_query = $date_go_back;
+				//$date_go_back = $date_go_back->format('m/d/Y');
+				$data['start_date'] = $date_go_back->format('m/d/Y');
+				//saved below
+				//$date_go_back = $date_go_back->format('m/d/Y');
+				//$data['start_date'] = $date_go_back;
+
+	    	} else {
+				$date_go_back = new DateTime($date->format('Y/m/d'));
+				$date_go_back = $date_go_back->modify('-1 month');
+				$date_start_query = $date_go_back;
+				//$date_go_back = $date_go_back->format('m/d/Y');
+				//$data['start_date'] = $date_go_back->format('m/d/Y');
+				//saved below
+				$date_go_back = $date_go_back->format('m/d/Y');
+				$data['start_date'] = $date_go_back;
+
+	    	}
+			//$date_go_back = new DateTime($date->format('Y/m/d'));
+			//$date_go_back->modify('-1 month');
+			//saved below
+			//$date_go_back = $date_go_back->modify('-1 month');
+			//$date_start_query = $date_go_back;
+			//$date_go_back = $date_go_back->format('m/d/Y');
+			//$data['start_date'] = $date_go_back->format('m/d/Y');
+			//saved below
+			//$date_go_back = $date_go_back->format('m/d/Y');
+			//$data['start_date'] = $date_go_back;
 
 		}
 

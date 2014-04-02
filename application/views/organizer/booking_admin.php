@@ -1390,9 +1390,12 @@
             //alert($starter_thrown + '' + $ender_thrown);
             //alert($starter_thrown + $ender_thrown_not_minus_minute + $final_instructor_id);
              $('#modal_booking_title').html('Booking <b>' + appointment_type_name + '</b><br>' + human_readable_date + ': ' + human_readable_time + ' <icon class="icon-arrow-right"></i> ' + human_readable_end_minute_time);
+             console.log('start',$starter_thrown);
+             console.log('end',$ender_thrown);
              $.post("<?php echo base_url();?>index.php/organizer/booking_admin/session_conflict_check", 
              {edit_trigger: $final_instructor_id, start_time: $starter_thrown, end_time: $ender_thrown, iteration_holder: $iteration_holder},
               function(data){
+                console.log(data);
                 //alert(data);
                 if(data == "false"){
                   //it's all good
@@ -1516,7 +1519,7 @@
         <?php if($is_user_mode != 'user_mode'){?>
         $(document).on("click", "#remove-appt-btn, #group-remove-appt-btn", function() {
            var data_id = $(this).attr('data-id');
-            $.post("http://localhost/golfschool/index.php/organizer/create_main_event/unset_me", {data_id: data_id}, function(data){
+            $.post("<?php echo base_url();?>/organizer/create_main_event/unset_me", {data_id: data_id}, function(data){
                 window.location.replace("<?php echo base_url();?>index.php/organizer/booking_admin/today/<?php echo $last_part_date_url;?>");
             
             }, 'text');
@@ -1632,7 +1635,7 @@
     }
     
     function generic_conflict_check(pass_start, pass_end, pass_iteration){
-        
+        console.log('start',pass_start);
     $.post("<?php echo base_url();?>index.php/organizer/booking_admin/session_conflict_check", 
          {edit_trigger: $final_instructor_id,
           start_time: pass_start, 
@@ -1680,7 +1683,8 @@
                 appointment_email: customer_email_submitted,
                 appointment_literal_price: $appointment_literal_price
             }, function(data)
-            {
+            {   console.log('what data',data);
+                console.log('iteration holder',$iteration_holder);
                 $('#golfers_found').hide('fast');
                 $('#golfers_found').html('<div class="alert alert-success"><h2>Your Appointment has been Booked!</h2>Your appointment is on ' + human_readable_date + ': ' + human_readable_time + ' <icon class="icon-arrow-right"></i> ' + human_readable_end_minute_time + '<br><br>We Look forward to Seeing You!</div>');
                 $('#golfers_found').show('slow');

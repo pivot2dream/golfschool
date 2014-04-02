@@ -170,14 +170,16 @@ class Booking_admin extends CI_Controller
     $data['minute_incriment_saved'] = $minute_incriment_saved;
     $start_real_date = new DateTime($default_start);
 	$end_real_date = new DateTime($default_end);
-	$interval = $start_real_date->diff($end_real_date);
+	//$interval = $start_real_date->diff($end_real_date);
+	$interval = abs(strtotime($default_end) - strtotime($default_start));
     $data['default_start'] = $default_start;
     $data['default_end'] = $default_end;
     //this populate the two time picker things for start and end time on the admin page
     $data['default_start_format'] = $start_real_date->format('h:i A');
     $data['default_end_format'] = $end_real_date->format('h:i A'); 
     //below calculates the number of minutes between start and end
-	$total_minutes = ($interval->h * 60) + $interval->i;
+	//$total_minutes = ($interval->h * 60) + $interval->i;
+	$total_minutes = abs($interval / 60);
 	$number_of_td_iterations = ($total_minutes / $minute_incriment_saved);
     $data['number_of_td_iterations'] = $number_of_td_iterations;
 	
@@ -190,16 +192,34 @@ class Booking_admin extends CI_Controller
 	$data['last_part_date_url'] = "";	
 	$date = new DateTime();
 	}
+    
+    if (!defined('PHP_VERSION_ID')) {
+    	$version = explode('.', PHP_VERSION);
+		define('PHP_VERSION_ID', ($version[0] * 10000 + $version[1] * 100 + $version[2]));
+	}
 
+    if (PHP_VERSION_ID > 40429) {
+	//start remote
+	$date->modify('+1 week');
+	$data['date_go_forward'] = $date->format('Y/m/d');
+	$date->modify('-2 week');
+	$data['date_go_back'] = $date->format('Y/m/d');
+	//end remote
+	} else {
+    //start good local
 	$date_go_forward = new DateTime($date->format('Y/m/d'));
 	$date_go_forward = $date_go_forward->modify('+1 week');
+	
 	$date_go_forward = $date_go_forward->format('Y/m/d');
 	$data['date_go_forward'] = $date_go_forward;
 	///////////////////////////////////////////////////////
 	$date_go_back = new DateTime($date->format('Y/m/d'));
 	$date_go_back = $date_go_back->modify('-1 week');
+	
 	$date_go_back = $date_go_back->format('Y/m/d');
 	$data['date_go_back'] = $date_go_back;
+	//end good local
+	}
 
 	$day_accord_toggle=$date->format('Ymd');
 	$check_if_monday = $date->format('l');

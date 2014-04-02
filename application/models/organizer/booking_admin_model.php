@@ -152,6 +152,11 @@ class Booking_admin_model extends CI_Model {
         $end_check = $end_transformed->format('Y-m-d H:i:s');
         $just_human_date = $human_transformed_just_date->format('M d, Y');
 
+        if (!defined('PHP_VERSION_ID')) {
+	    	$version = explode('.', PHP_VERSION);
+			define('PHP_VERSION_ID', ($version[0] * 10000 + $version[1] * 100 + $version[2]));
+		}
+
     	for ($i = 1; $i <= $iteration_holder; $i++) 
         {
     	//////////////////////////////////////////////////////////////////////////////
@@ -179,9 +184,18 @@ class Booking_admin_model extends CI_Model {
 
 		$insert = $this->db->insert('booking_master', $new_session_insert_data);
 		/////////////////////////////////////////////////////////////////////////////
-		$end_transformed = $end_transformed->modify('+1 week');
-        $start_transformed = $start_transformed->modify('+1 week');
-        $human_transformed_just_date = $human_transformed_just_date->modify('+1 week');
+		if (PHP_VERSION_ID > 40429) {
+	    	$end_transformed->modify('+1 week');
+        	$start_transformed->modify('+1 week');
+        	$human_transformed_just_date->modify('+1 week');
+    	} else {
+			$end_transformed = $end_transformed->modify('+1 week');
+        	$start_transformed = $start_transformed->modify('+1 week');
+        	 $human_transformed_just_date = $human_transformed_just_date->modify('+1 week');
+    	}
+		//$end_transformed = $end_transformed->modify('+1 week');
+        //$start_transformed = $start_transformed->modify('+1 week');
+        //$human_transformed_just_date = $human_transformed_just_date->modify('+1 week');
 		$start_check = $start_transformed->format('Y-m-d H:i:s');
         $end_check = $end_transformed->format('Y-m-d H:i:s');
         $just_human_date = $human_transformed_just_date->format('M d, Y');
@@ -259,6 +273,12 @@ class Booking_admin_model extends CI_Model {
 		//$end_submit = $end_submit->modify('-1 second');
 		//$end_date_var=$end_submit->format('Y-m-d H:i:s');
 		$dateUnavailable = 'false';
+
+		if (!defined('PHP_VERSION_ID')) {
+	    	$version = explode('.', PHP_VERSION);
+			define('PHP_VERSION_ID', ($version[0] * 10000 + $version[1] * 100 + $version[2]));
+		}
+
         for ($i = 1; $i <= $iteration_holder; $i++) 
         {
 	        $query = $this->db->query("SELECT * FROM `booking_master` WHERE `trainer_id_bm` ='$user_id_query' AND ('$start_check' BETWEEN `start_bm` AND `end_bm` AND `trainer_id_bm` ='$user_id_query')
@@ -273,10 +293,22 @@ class Booking_admin_model extends CI_Model {
 			  $dateUnavailable = 'true';
 			  return $dateUnavailable;
 			}
-			$end_transformed = $end_transformed->modify('+1 week');
-            $start_transformed = $start_transformed->modify('+1 week');
+
+		    if (PHP_VERSION_ID > 40429) {
+		    	$end_transformed->modify('+1 week');
+            	$start_transformed->modify('+1 week');
+        	} else {
+				$end_transformed = $end_transformed->modify('+1 week');
+            	$start_transformed = $start_transformed->modify('+1 week');
+        	}
+
 			$start_check = $start_transformed->format('Y-m-d H:i:s');
             $end_check = $end_transformed->format('Y-m-d H:i:s');
+            
+            //$end_transformed = $end_transformed->modify('+1 week');
+            //$start_transformed = $start_transformed->modify('+1 week');
+			//$start_check = $start_transformed->format('Y-m-d H:i:s');
+            //$end_check = $end_transformed->format('Y-m-d H:i:s');
 
 			
 		}	

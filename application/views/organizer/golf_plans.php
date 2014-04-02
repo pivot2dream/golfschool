@@ -100,10 +100,12 @@
 
 		
 		
-		</fieldset>
-		<fieldset>
-			<legend>Create Group Appointment</legend>
+		
+		 <div class="row">
+		
 		<div class="span12 well grouper-holder" style="background-color:#a7d6a8;margin-left:0px;">
+			<fieldset>
+			<legend>Create Group Appointment</legend>
 			<h1 id="show-successer" style="display:none;">Success! Check it out on your Calendar</h1>
 			
 			<div class="span3"> 
@@ -194,13 +196,15 @@
               
 			
 		</div>
+
 		</fieldset>	
+		</div>
 		
 	</div>
 </div>
 
 <!--Modal Window Templates-->
-<div class="modal fade hide" id="myModal">
+<div class="modal hide fade" id="myModal">
   <div class="modal-header"> <a class="close" data-dismiss="modal">×</a>
     <h3>Confirmation Message:</h3>
   </div>
