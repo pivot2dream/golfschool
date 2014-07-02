@@ -13,56 +13,75 @@
         
         <div class="span9">
             <div class="well" style="padding:0px 0px 0px 0px;background-color:#bae6ba;">
-                <h4 style="padding: 3px 3px 3px 3px;">&nbsp;Precision Golf School Has Been Dedicated to top notch stuff for 10 + years</h4>
+                <h4 style="padding: 3px 3px 3px 3px;">&nbsp;<b>"Professional excellence through continuing education, advanced certifications, and the the latest research and theory"</b></h4>
                 <div class="row-fluid" style="background-color:white;">
                     <div class="span12">
                         <div id="carousel-example-generic" class="carousel slide">
                         <!-- Wrapper for slides -->
                             <div class="carousel-inner">
                                 <div class="item active">
-                                  <img src="http://placehold.it/900x203" alt="">
+                                  <img src="<?php echo base_url();?>img/dg-1.png" alt="">
                                 </div>
                                 <div class="item">
-                                  <img src="http://placehold.it/900x203" alt="">
+                                  <img src="<?php echo base_url();?>img/dg-9.png" alt="">
                                 </div>
                                 <div class="item">
-                                  <img src="http://placehold.it/900x203" alt="">
+                                  <img src="<?php echo base_url();?>img/dg-4.png" alt="">
+                                </div>
+                                <div class="item">
+                                  <img src="<?php echo base_url();?>img/dg-5.png" alt="">
+                                </div>
+                                <div class="item">
+                                  <img src="<?php echo base_url();?>img/dg-6.png" alt="">
+                                </div>
+                                <div class="item">
+                                  <img src="<?php echo base_url();?>img/dg-3.png" alt="">
+                                </div>
+                                <div class="item">
+                                  <img src="<?php echo base_url();?>img/dg-8.png" alt="">
+                                </div>
+                                <div class="item">
+                                  <img src="<?php echo base_url();?>img/dg-b2.png" alt="">
                                 </div>
                             </div>
 
                             <!-- Controls -->
-                            <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+                            <!--<a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
                                 <span class="icon-prev">&lsaquo;</span>
                             </a>
                             <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
                                 <span class="icon-next">&rsaquo;</span>
-                            </a>
+                            </a>-->
                         </div>
                     </div>
                 </div>
                 <div class="row-fluid" style="background-color:white;">    
                     <div class="span4">
-                        <h2>&nbsp;Our Mission:</h2>
+                        <h3>&nbsp;&nbsp;Our Mission:</h3>
                         <hr style="margin-top:2px;margin-bottom:3px;">
                         <p style="padding-left:10px;">
-                            &nbsp;&nbsp;&nbsp;Our Mission is to provide you with up-to-date and sceince driven instruction, that removes the hocus pocus vodoo woodo from your typical golf lessons. Patrons of Precision Golf School can expect a unique experience that has been crafted through years of data and analysis off and on the course.
-                            <br><br>
-                            Rest assured that our mission is to do nonother then to ensure that you improve as a golfer after each and every lesson.
+                            Our Mission at Precision Golf School is to provide a total lesson experience that is on par with the finest instructional facilities in the world. We adhere to a student-centered philosophy, using the industries’ finest technologies to diagnose, identify and unlock each player’s key factors in the improvement process. We then utilize our expertise and experience to guide each and student to a higher standard of play. Your improvement is solely and truly our mission.
                         </p>
                             
                     </div>
                     <div class="span4">
-                        <h2>&nbsp;Our Experience:</h2>
-                        <hr style="margin-top:2px;margin-bottom:3px;">
-                        <p style="padding-left:10px;">
-                            &nbsp;&nbsp;&nbsp;Our Mission is to provide you with up-to-date and sceince driven instruction, that removes the hocus pocus vodoo woodo from your typical golf lessons. Patrons of Precision Golf School can expect a unique experience that has been crafted through years of data and analysis off and on the course.
-                            <br><br>
-                            Rest assured that our mission is to do nonother then to ensure that you improve as a golfer after each and every lesson.
-                        </p>
+                        <h3>&nbsp;Our Credentials:</h3>
+                        <hr style="margin-top:2px;margin-bottom:15px;">
+                       
+                            PGA Class A Membership
+                            <hr style="margin-top:2px;margin-bottom:15px;">
+                            The Golfing Machine Authorization
+                            <hr style="margin-top:5px;margin-bottom:15px;">
+                            K-Vest Level 1 and Level 2 Certification
+                            <hr style="margin-top:5px;margin-bottom:15px;">
+                            iClub Staff Membership
+                            <hr style="margin-top:5px;margin-bottom:15px;">
+                            SKLZ Staff Membership
+                      
                           
                     </div>
                     <div class="span4">
-                        <h2>&nbsp;Our Location:</h2>
+                        <h3>&nbsp;Our Location:</h3>
                         <hr style="margin-top:2px;margin-bottom:3px;">
                         <p style="padding-left:10px;">
                             <br>
@@ -174,8 +193,10 @@
           <!--start-->
 
             <div class="well" style="margin-left:0px;">
-
-            <table style="width:100%;" style="background-color:#fff;" class="table table-striped holds-calendar">
+            <div class="holds-calendar-loader">    
+              <img src="<?php echo base_url();?>img/tiny_little_loader.gif"> <b>loading calendar for Precision Golf School...</b>
+            </div>
+            <table style="width:100%;" style="background-color:#fff;" class="table table-striped holds-calendar hide">
             <tr style="background-color:#fff;">
               <th>&nbsp;</th><th><span class="rotate-day"><?php echo $weekdays[0][0]?></span><br><span class="shrink-date"><?php echo $weekdays[0][1]?></span></th>
               <th><span class="rotate-day"><?php echo $weekdays[1][0]?></span><br><span class="shrink-date"><?php echo $weekdays[1][1]?></span></th>
@@ -198,6 +219,9 @@
   
 
             $backer_color='background-color:rgb(245,204,100)';
+
+            $to_replace = array(":", "-", " ");
+            $with   = array("", "", "");
             //end instantiate variables
 
             //this handles background colors
@@ -234,6 +258,7 @@
             //this toggles whether or not to show the button, as only one button should be shown per booking
             $monday_show_but ='yes';
             $monday_appt_id = '';
+            $monday_master_striped = str_replace($to_replace, $with, $monday_master);
 
             for($z=0;$z<sizeof($prev_indexed);$z++){
 
@@ -276,6 +301,8 @@
             $tuesday_show_but ='yes';
             $tuesday_appt_id = '';
 
+            $tuesday_master_striped = str_replace($to_replace, $with, $tuesday_master);
+
             for($z=0;$z<sizeof($prev_indexed);$z++){
 
 
@@ -316,11 +343,18 @@
             //this toggles whether or not to show the button, as only one button should be shown per booking
             $wednesday_show_but ='yes';
             $wednesday_appt_id = '';
+            
+
+            $wednesday_master_striped = str_replace($to_replace, $with, $wednesday_master);
+           
+
 
             for($z=0;$z<sizeof($prev_indexed);$z++){
+                 //echo $wednesday_master;
+            //echo '*******';
 
               if($prev_indexed[$z][2]>=$wednesday_master && $prev_indexed[$z][1]<=$wednesday_master){
-
+                
                 $wednesday_trigger = 'yes';
                 $wednesday_user_name = $prev_indexed[$z][3];
                 $wednesday_appt_id = $prev_indexed[$z][0];
@@ -357,6 +391,8 @@
             //this toggles whether or not to show the button, as only one button should be shown per booking
             $thursday_show_but ='yes';
             $thursday_appt_id = '';
+
+            $thursday_master_striped = str_replace($to_replace, $with, $thursday_master);
 
             for($z=0;$z<sizeof($prev_indexed);$z++){
 
@@ -399,6 +435,8 @@
             $friday_show_but ='yes';
             $friday_appt_id = '';
 
+            $friday_master_striped = str_replace($to_replace, $with, $friday_master);
+
             for($z=0;$z<sizeof($prev_indexed);$z++){
 
 
@@ -439,6 +477,8 @@
             //this toggles whether or not to show the button, as only one button should be shown per booking
             $saturday_show_but ='yes';
             $saturday_appt_id = '';
+
+            $saturday_master_striped = str_replace($to_replace, $with, $saturday_master);
 
             for($z=0;$z<sizeof($prev_indexed);$z++){
 
@@ -481,6 +521,8 @@
             $sunday_show_but ='yes';
             $sunday_appt_id = '';
 
+            $sunday_master_striped = str_replace($to_replace, $with, $sunday_master);
+
             for($z=0;$z<sizeof($prev_indexed);$z++){
 
 
@@ -522,11 +564,11 @@
             ////////////////////////////////////////////////////////////////////////////////
             
             if($monday_trigger=='no'){?>
-            <td>
+            <td data-twentyfour-val="<?php echo $monday_master_striped;?>" class="twentyfour">
             <a href="javascript:void:0;" class="btn btn-small btn-success btn-no-pad-marg open-butt-clicker" id="<?php echo $monday_master;?>"><i class="icon-check"></i></a>
             </td>
             <?php }else{ ?>
-            <td style="<?php echo $backer_color;?>" class="<?php echo $monday_appt_type;?>">
+            <td data-twentyfour-val="<?php echo $monday_master_striped;?>" style="<?php echo $backer_color;?>" class="<?php echo $monday_appt_type;?> twentyfour">
             <?php if ($monday_show_but=='yes'){?>
             <a style="width:90%;" href="javascript:void:0;" class="btn btn-small btn-warning btn-no-pad-marg <?php echo $monday_appt_type;?> <?php if (($monday_appt_type=="static" || $monday_appt_type=="blocked") && $is_user_mode=='user_mode'){echo 'hide';}?>" data-id="<?php echo $monday_appt_id;?>" data-appt-type-id="<?php echo $monday_appt_type_id;?>">
                 <?php if ($monday_appt_type=="static"){?>
@@ -551,11 +593,11 @@
             //isolate tuesday echoed
             ////////////////////////////////////////////////////////////////////////////////
             if($tuesday_trigger=='no'){?>
-            <td>
+            <td data-twentyfour-val="<?php echo $tuesday_master_striped;?>" class="twentyfour">
             <a href="javascript:void:0;" class="btn btn-small btn-success btn-no-pad-marg open-butt-clicker" id="<?php echo $tuesday_master;?>"><i class="icon-check"></i></a>
             </td>
             <?php }else{ ?>
-            <td style="<?php echo $tuesday_backer_color;?>" class="<?php echo $tuesday_appt_type;?>">
+            <td data-twentyfour-val="<?php echo $tuesday_master_striped;?>" style="<?php echo $tuesday_backer_color;?>" class="<?php echo $tuesday_appt_type;?> twentyfour">
             <?php if ($tuesday_show_but=='yes'){?>
             <a style="width:90%;" href="javascript:void:0;" class="btn btn-small btn-warning btn-no-pad-marg <?php echo $tuesday_appt_type;?> <?php if (($tuesday_appt_type=="static" || $tuesday_appt_type=="blocked") && $is_user_mode=='user_mode'){echo 'hide';}?>" data-id="<?php echo $tuesday_appt_id;?>" data-appt-type-id="<?php echo $tuesday_appt_type_id;?>">
               <?php 
@@ -581,11 +623,11 @@
             //isolate wednesday echoed
             ////////////////////////////////////////////////////////////////////////////////
             if($wednesday_trigger=='no'){?>
-            <td>
+            <td data-twentyfour-val="<?php echo $wednesday_master_striped;?>" class="twentyfour">
             <a href="javascript:void 0" class="btn btn-small btn-success btn-no-pad-marg open-butt-clicker" id="<?php echo $wednesday_master;?>"><i class="icon-check"></i></a>
             </td>
             <?php }else{ ?>
-            <td style="<?php echo $wednesday_backer_color;?>" class="<?php echo $wednesday_appt_type;?>">
+            <td data-twentyfour-val="<?php echo $wednesday_master_striped;?>" style="<?php echo $wednesday_backer_color;?>" class="<?php echo $wednesday_appt_type;?> twentyfour">
             <?php if ($wednesday_show_but=='yes'){?>
             <a style="width:90%;" href="javascript:void 0" class="btn btn-small btn-warning btn-no-pad-marg <?php echo $wednesday_appt_type;?> <?php if (($wednesday_appt_type=="static" || $wednesday_appt_type=="blocked") && $is_user_mode=='user_mode'){echo 'hide';}?>" data-id="<?php echo $wednesday_appt_id;?>" data-appt-type-id="<?php echo $wednesday_appt_type_id;?>">
                 <?php if ($wednesday_appt_type=="static"){?>
@@ -610,11 +652,11 @@
             //isolate thursday echoed
             ////////////////////////////////////////////////////////////////////////////////
             if($thursday_trigger=='no'){?>
-            <td>
+            <td data-twentyfour-val="<?php echo $thursday_master_striped;?>" class="twentyfour">
             <a href="javascript:void:0;" class="btn btn-small btn-success btn-no-pad-marg open-butt-clicker" id="<?php echo $thursday_master;?>"><i class="icon-check"></i></a>
             </td>
             <?php }else{ ?>
-            <td style="<?php echo $thursday_backer_color;?>" class="<?php echo $thursday_appt_type;?>">
+            <td data-twentyfour-val="<?php echo $thursday_master_striped;?>" style="<?php echo $thursday_backer_color;?>" class="<?php echo $thursday_appt_type;?> twentyfour">
             <?php if ($thursday_show_but=='yes'){?>
             <a style="width:90%;" href="javascript:void:0;" class="btn btn-small btn-warning btn-no-pad-marg <?php echo $thursday_appt_type;?> <?php if (($thursday_appt_type=="static" || $thursday_appt_type=="blocked") && $is_user_mode=='user_mode'){echo 'hide';}?>" data-id="<?php echo $thursday_appt_id;?>" data-appt-type-id="<?php echo $thursday_appt_type_id;?>">
                 <?php if ($thursday_appt_type=="static"){?>
@@ -639,11 +681,11 @@
             //isolate friday echoed
             ////////////////////////////////////////////////////////////////////////////////
             if($friday_trigger=='no'){?>
-            <td>
+            <td data-twentyfour-val="<?php echo $friday_master_striped;?>" class="twentyfour">
             <a href="javascript:void:0;" class="btn btn-small btn-success btn-no-pad-marg open-butt-clicker" id="<?php echo $friday_master;?>"><i class="icon-check"></i></a>
             </td>
             <?php }else{ ?>
-            <td style="<?php echo $friday_backer_color;?>" class="<?php echo $friday_appt_type;?>">
+            <td data-twentyfour-val="<?php echo $friday_master_striped;?>" style="<?php echo $friday_backer_color;?>" class="<?php echo $friday_appt_type;?> twentyfour">
             <?php if ($friday_show_but=='yes'){?>
             <a style="width:90%;" href="javascript:void:0;" class="btn btn-small btn-warning btn-no-pad-marg <?php echo $friday_appt_type;?> <?php if (($friday_appt_type=="static" || $friday_appt_type=="blocked") && $is_user_mode=='user_mode'){echo 'hide';}?>" data-id="<?php echo $friday_appt_id;?>" data-appt-type-id="<?php echo $friday_appt_type_id;?>">
                 <?php if ($friday_appt_type=="static"){?>
@@ -668,11 +710,11 @@
             //isolate saturday echoed
             ////////////////////////////////////////////////////////////////////////////////
             if($saturday_trigger=='no'){?>
-            <td>
+            <td data-twentyfour-val="<?php echo $saturday_master_striped;?>" class="twentyfour">
             <a href="javascript:void:0;" class="btn btn-small btn-success btn-no-pad-marg open-butt-clicker" id="<?php echo $saturday_master;?>"><i class="icon-check"></i></a>
             </td>
             <?php }else{ ?>
-            <td style="<?php echo $saturday_backer_color;?>" class="<?php echo $saturday_appt_type;?>">
+            <td data-twentyfour-val="<?php echo $saturday_master_striped;?>" style="<?php echo $saturday_backer_color;?>" class="<?php echo $saturday_appt_type;?> twentyfour">
             <?php if ($saturday_show_but=='yes'){?>
             <a style="width:90%;" href="javascript:void:0;" class="btn btn-small btn-warning btn-no-pad-marg <?php echo $saturday_appt_type;?> <?php if (($saturday_appt_type=="static" || $saturday_appt_type=="blocked") && $is_user_mode=='user_mode'){echo 'hide';}?>" data-id="<?php echo $saturday_appt_id;?>" data-appt-type-id="<?php echo $saturday_appt_type_id;?>">
                  <?php if ($saturday_appt_type=="static"){?>
@@ -697,11 +739,11 @@
             //isolate sunday echoed
             ////////////////////////////////////////////////////////////////////////////////
             if($sunday_trigger=='no'){?>
-            <td>
+            <td data-twentyfour-val="<?php echo $sunday_master_striped;?>" class="twentyfour">
             <a href="javascript:void(0);" class="btn btn-small btn-success btn-no-pad-marg open-butt-clicker" id="<?php echo $sunday_master;?>"><i class="icon-check"></i></a>
             </td>
             <?php }else{ ?>
-            <td style="<?php echo $sunday_backer_color;?>" class="<?php echo $sunday_appt_type;?>">
+            <td data-twentyfour-val="<?php echo $sunday_master_striped;?>" style="<?php echo $sunday_backer_color;?>" class="<?php echo $sunday_appt_type;?> twentyfour">
             <?php if ($sunday_show_but=='yes'){?>
             <a style="width:90%;" href="javascript:void(0);" class="btn btn-small btn-warning btn-no-pad-marg <?php echo $sunday_appt_type;?> <?php if (($sunday_appt_type=="static" || $sunday_appt_type=="blocked") && $is_user_mode=='user_mode'){echo 'hide';}?>" data-id="<?php echo $sunday_appt_id;?>" data-appt-type-id="<?php echo $sunday_appt_type_id;?>">
                  <?php if ($sunday_appt_type=="static"){?>
@@ -1078,6 +1120,23 @@
             <?php } ?>    
             
         });
+        var currentdate = new Date(); 
+        console.log(currentdate);
+        var $glob_today = currentdate.addDays(1);
+        //console.log($glob_today.toString("yyyyMMddHHmmss"));
+        console.log($glob_today.toString("yyyyMMdd"));
+        var $glob_compare = $glob_today.toString("yyyyMMdd");
+        //$glob_compare = $glob_compare = "000000";
+        $('.twentyfour').each(function() {
+            <?php if($is_user_mode=="user_mode"){?>
+                //console.log($(this).attr('data-twentyfour-val'))
+                if ( $glob_compare > $(this).attr('data-twentyfour-val') ){
+                    $(this).html('&nbsp;');
+                    $(this).css('background-color','#99cc99');
+                }
+            <?php } ?>    
+            
+        });
         $('.group').each(function() {
             $(this).css('background-color','#256363');
         });
@@ -1106,6 +1165,14 @@
         
         $( "#jump_date_button" ).click(function() {
         var jump_var = $('#date_picker_jump').val();
+        var d1 = Date.parse(jump_var);
+        var d2 = d1.addWeeks(1);
+        //$result_parse_check_1 = $parse_me_check_object.addMinutes(appointment_end_add_minutes);
+        jump_var = d2.toString("yyyy/MM/dd");
+        console.log(jump_var);
+        //var wiggle_date = Date.parseExact(jump_var);
+        //var holdme = wiggle_date.addDays(7);
+        //jump_var = holdme.toString("yyyy/MM/dd");
         window.location.replace("<?php echo base_url();?>index.php/organizer/booking_admin/today/" + jump_var);
         });
 
@@ -1151,6 +1218,8 @@
                         console.log('final ajax call', data);
                         var newNum = parseInt($globalSlotTracker)-1;
                         $('#open_slots').text(newNum+' available slots');
+                        sendConfirmation(true);
+
                     }, 'text');    
                 }, 'text');
             } else {alert('Please fill out all the information to continue.');}    
@@ -1519,7 +1588,7 @@
         <?php if($is_user_mode != 'user_mode'){?>
         $(document).on("click", "#remove-appt-btn, #group-remove-appt-btn", function() {
            var data_id = $(this).attr('data-id');
-            $.post("<?php echo base_url();?>/organizer/create_main_event/unset_me", {data_id: data_id}, function(data){
+            $.post("<?php echo base_url();?>index.php/organizer/create_main_event/unset_me", {data_id: data_id}, function(data){
                 window.location.replace("<?php echo base_url();?>index.php/organizer/booking_admin/today/<?php echo $last_part_date_url;?>");
             
             }, 'text');
@@ -1686,7 +1755,9 @@
             {   console.log('what data',data);
                 console.log('iteration holder',$iteration_holder);
                 $('#golfers_found').hide('fast');
-                $('#golfers_found').html('<div class="alert alert-success"><h2>Your Appointment has been Booked!</h2>Your appointment is on ' + human_readable_date + ': ' + human_readable_time + ' <icon class="icon-arrow-right"></i> ' + human_readable_end_minute_time + '<br><br>We Look forward to Seeing You!</div>');
+                $('#golfers_found').html('<div class="alert alert-success"><h2>Your Appointment has been Booked!</h2>Your appointment is on ' + human_readable_date + ': ' + human_readable_time + ' <icon class="icon-arrow-right"></i> ' + human_readable_end_minute_time + '<br><br>Please Check Your Email for Confirmation.</div> Have a moment? check us out on <a href="https://www.facebook.com/pages/Precision-Golf-School/150365515060968" target="_blank">facebook</a>');
+                
+                sendConfirmation(false);
                 $('#golfers_found').show('slow');
                 $global_refresh_done = true;
                 //setInterval(function(){
@@ -1694,6 +1765,38 @@
                 //},5000);
             }, 'text');
         }
+    function sendConfirmation(is_group){
+            var create_message = '';
+            var create_name = '';
+            var create_addy = '';
+            if(is_group){
+                create_message = '<div class="alert alert-success"><h2>Your Group Appointment has been Booked with Precision Golf School!</h2>';
+                create_message += $('#bulk_group_date').html();
+                create_name = $('#g_name').val();
+                create_addy = $('#g_email').val();
+            } else {
+                create_message = '<div class="alert alert-success"><h2>Your Appointment has been Booked with Precision Golf School!</h2>Your appointment is on ' + human_readable_date + ': ' + human_readable_time + ' to ' + human_readable_end_minute_time;
+                create_message += '<h4>This appointment is between '+ $final_instructor_name + ' and ' + $human_final_name +', and the lesson plan chosen is ' + appointment_type_name + '</h4>';
+                
+                if($iteration_holder > 1){
+                    create_message += '<h4>Note! It looks like one of our instructors has booked you for multiple appoinments. You have been booked for the same day of the week and time for ' + $iteration_holder + ' consecutive weeks.</h4>';
+                }
+                create_name = $human_final_name;
+                create_addy = customer_email_submitted;
+            }
+
+            create_message += '<h5>need directions? <a href="https://www.google.com/maps/place/Precision+Golf+School/@44.140443,-123.201718,17z/data=!3m1!4b1!4m2!3m1!1s0x0:0xb1ee22d84880e93e">click here</a></h5>';
+            create_message += '<h5>have a second? help us grow our customer base by liking us on <a href="https://www.facebook.com/pages/Precision-Golf-School/150365515060968">facebook</a></h5>';
+            
+            $.post("<?php echo base_url();?>index.php/organizer/contactus/senditConf", {return_email: create_addy, message: create_message, namer: create_name, submit: 'submit'}, function(data){
+            //alert(data);
+            //alert('Your Message has been Sent, Thank You!');
+            $( '#n' ).val('');
+            $( '#e' ).val('');
+            $( '#m' ).val('');
+
+        }, 'text');
+    }    
 
     $('#myModal').on('hidden', function () {
         $('#step1').show();
@@ -1777,8 +1880,11 @@
       
     });
 
-   $.backstretch("<?php echo base_url();?>img/big_backer_2.png");
+   $.backstretch("<?php echo base_url();?>img/big_backer_3.png");
    $('.carousel').carousel();
+
+   $('.holds-calendar-loader').hide();
+   $('.holds-calendar').show('slow');
 
  
 </script>

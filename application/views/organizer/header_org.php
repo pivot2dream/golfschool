@@ -67,11 +67,21 @@
     if (Function('/*@cc_on return document.documentMode===10@*/')()){
       isRunningIE = true;
     }
+    var ua = navigator.userAgent.toLowerCase(); 
+    if (ua.indexOf('safari') != -1) { 
+      if (ua.indexOf('chrome') > -1) {
+        //alert("1") // Chrome
+      } else {
+        //alert("2") // Safari
+        isRunningIE = true;
+      }
+    }
 
     $(document).ready(function() {
  
       if(isRunningIE) {
           $('.modal').removeClass('fade');
+          $('..modal-backdrop').css('z-index',10);
       }
     });
     </script>

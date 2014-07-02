@@ -187,10 +187,13 @@ class Booking_admin extends CI_Controller
 	$date_held = $this->uri->segment(4) . "/" . $this->uri->segment(5) . "/" . $this->uri->segment(6);
 	$data['last_part_date_url'] = $date_held;
 	$date = new DateTime($date_held);
+	//$date->modify('+1 week');
 	$data['hide_splash'] = TRUE;
 	}else{
+
 	$data['last_part_date_url'] = "";	
 	$date = new DateTime();
+	$date->modify('+1 week');
 	}
     
     if (!defined('PHP_VERSION_ID')) {

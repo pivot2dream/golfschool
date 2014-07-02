@@ -33,15 +33,30 @@
                     <div class="span12">
                         <div id="carousel-example-generic" class="carousel slide">
                         <!-- Wrapper for slides -->
-                            <div class="carousel-inner">
+                           <div class="carousel-inner">
                                 <div class="item active">
-                                  <img src="http://placehold.it/900x203" alt="">
+                                  <img src="<?php echo base_url();?>img/dg-1.png" alt="">
                                 </div>
                                 <div class="item">
-                                  <img src="http://placehold.it/900x203" alt="">
+                                  <img src="<?php echo base_url();?>img/dg-9.png" alt="">
                                 </div>
                                 <div class="item">
-                                  <img src="http://placehold.it/900x203" alt="">
+                                  <img src="<?php echo base_url();?>img/dg-4.png" alt="">
+                                </div>
+                                <div class="item">
+                                  <img src="<?php echo base_url();?>img/dg-5.png" alt="">
+                                </div>
+                                <div class="item">
+                                  <img src="<?php echo base_url();?>img/dg-6.png" alt="">
+                                </div>
+                                <div class="item">
+                                  <img src="<?php echo base_url();?>img/dg-3.png" alt="">
+                                </div>
+                                <div class="item">
+                                  <img src="<?php echo base_url();?>img/dg-8.png" alt="">
+                                </div>
+                                <div class="item">
+                                  <img src="<?php echo base_url();?>img/dg-b2.png" alt="">
                                 </div>
                             </div>
 
