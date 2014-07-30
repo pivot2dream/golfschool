@@ -68,6 +68,11 @@ class Booking_admin extends CI_Controller
 		echo $this->booking_admin_model->session_conflict_check();
 	}
 
+	function fetch_by_name_model_check(){
+		$this->load->model('organizer/booking_admin_model');
+		echo $this->booking_admin_model->fetch_by_name_model();
+	}
+
 	function today()
 	{	
 	$data['hide_splash'] = FALSE;	

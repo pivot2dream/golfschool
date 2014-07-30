@@ -32,8 +32,8 @@ class Contactus extends CI_Controller
 	    $thing_name = $this->input->post('namer');
 	    $thing_message = $this->input->post('message');
 	    $message = '<div style=\"display:block;\">'
-	    . 'FROM:' . $thing_name . '<br>'
-	    . 'RETURN EMAIL:' . $return_email . '<br>'
+	    . 'FROM: ' . $thing_name . '<br/>'
+	    . 'RETURN EMAIL: ' . $return_email . '<br/>'
 	    . $thing_message . '</div>';
 	    $headers = "MIME-Version: 1.0 \r\n";
 	    $headers .= "Content-type: text/html; charset=iso-8859-1 \r\n";

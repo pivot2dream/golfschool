@@ -2,7 +2,7 @@
     <div class="row-fluid">
         <div class="span3">
             <div class="well" style="padding:0px 0px 0px 0px;background-color:#bae6ba;">
-                <h4 style="padding: 3px 3px 3px 3px;">&nbsp;2013 Teacher of the Year Award:</h4>
+                <h4 style="padding: 3px 3px 3px 3px;">&nbsp;2012 Teacher of the Year Award:</h4>
                 <div class="row-fluid" style="background-color:white;">
                             <img src="<?php echo base_url();?>img/doug_logo.png">
                 </div>

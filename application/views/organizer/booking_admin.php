@@ -3,7 +3,7 @@
     <div class="row-fluid">
         <div class="span3">
             <div class="well" style="padding:0px 0px 0px 0px;background-color:#bae6ba;">
-                <h4 style="padding: 3px 3px 3px 3px;">&nbsp;2013 Teacher of the Year Award:</h4>
+                <h4 style="padding: 3px 3px 3px 3px;">&nbsp;2012 Teacher of the Year Award:</h4>
                 <div class="row-fluid" style="background-color:white;">
                             <img src="<?php echo base_url();?>img/doug_logo.png">
                 </div>
@@ -41,7 +41,7 @@
                                   <img src="<?php echo base_url();?>img/dg-8.png" alt="">
                                 </div>
                                 <div class="item">
-                                  <img src="<?php echo base_url();?>img/dg-b2.png" alt="">
+                                  <img src="<?php echo base_url();?>img/dg-2.png" alt="">
                                 </div>
                             </div>
 
@@ -1028,8 +1028,15 @@
       <div class="well" id="locate_account_holder" style="padding: 3px 0px 3px 0px; margin 3px 3px 3px 3px;background-color:#99cc99;">
         <b>&nbsp;&nbsp;&nbsp;To Book this Appointment, Enter Your Email Below:</b>
         <hr style="margin-top:0px;">  
-        <input type="text" value="gernunder@gernunder.com" style="margin-left:10px;margin-top:5px;" id="email_for_appt" class="input input-large" placeholder="email address for appointment">&nbsp;  
+        <input type="text" value="" style="margin-left:10px;margin-top:5px;" id="email_for_appt" class="input input-large" placeholder="email address for appointment">&nbsp;  
         <a href="javascript:void(0)" id="email_for_appt_submit" class="btn btn-success btn-small pull-right" style="margin:5px 0px 0px 0px;padding:3px 5px 3px 5px;">continue...</a>
+        <?php if($is_user_mode != 'user_mode'){?>
+        <hr>
+        <input type="text" value="" style="margin-left:10px;margin-top:5px;" id="name_search_2" class="input input-large" placeholder="search by name">&nbsp;  
+        <a href="javascript:void(0)" id="name_search_2_but" class="btn btn-success btn-small pull-right" style="margin:5px 0px 0px 0px;padding:3px 5px 3px 5px;">go</a>
+        <div id="bulk_name">
+        </div>    
+        <?php } ?>
       </div>  
       <div class="well" id="unfound_email_holder" style="padding: 3px 0px 3px 0px; margin 3px 3px 3px 3px;background-color:#99ff99; display:none;">
         <b>&nbsp;&nbsp;&nbsp;It doesn't look like we have an account under <span id="email_not_found"></span></b>
@@ -1064,6 +1071,7 @@
     </div>   
   </div>
 </div>
+
 
 <script type="text/javascript">
     var human_readable_date = "";
@@ -1407,8 +1415,48 @@
             
             }, 'text');
            
-            $('#myModalGroupDetails').modal('show');
+            $('#myModalGroupDetails').appendTo("body").modal('show');
         });
+        
+        $( "#name_search_2_but" ).click(function() {   
+             var search_by = $( "#name_search_2" ).val();
+             if(search_by){
+             $.post("<?php echo base_url();?>index.php/organizer/booking_admin/fetch_by_name_model_check", {namer: search_by}, function(data){
+                data = $.parseJSON(data);
+                //data = data[0];
+                console.log(data);
+                var html_var = "<span class='label pull-left'>Results:</span>";
+                $.each(data, function(i, item) {
+                if (item.appointment_email){    
+                    html_var += "<b>" + item.cust_name_bm + "</b>&nbsp;&nbsp;&nbsp;<a href='javascript:void(0);' class='btn btn-success btn-small gather-name'>" + item.appointment_email + "</a><br/>";
+                }
+                });
+                $("#bulk_name").html("");
+                $("#bulk_name").html(html_var);
+
+
+            
+            }, 'text');
+            } 
+
+        });
+
+        //$( ".gather-name" ).click(function() {
+        $(document).on("click", ".gather-name", function() {
+            //alert($( this ).text());
+            var inserter = $( this ).text();
+            $('#email_for_appt').val("");
+            $('#email_for_appt').val(inserter);
+            $('#email_for_appt_submit').trigger('click');
+            $("#bulk_name").html("");
+            $( "#name_search_2" ).val("");
+
+
+        });
+        
+        
+
+
 
         $( ".open-butt-clicker" ).click(function() {
             primary_date_passed_orig = $( this ).attr('id');
@@ -1419,7 +1467,9 @@
             human_readable_date = $primary_date_passed.toString("MM-dd-yyyy");
             human_readable_time = $primary_date_passed.toString("h:mm tt");
             $('#modal_booking_title').text('Book an Appointment starting at ' + human_readable_time + ' on '+ human_readable_date + ':');
-            $('#myModal').modal('show');
+            $('#myModal').appendTo("body").modal('show');
+            //$('#myModal').css("z-index","999999999999999999");
+            //alert('foox');
         });
 
         $( ".btn-appt-static" ).click(function() {
@@ -1550,7 +1600,7 @@
         $(document).on("click", "a.static, a.blocked", function() { 
             $appt_id_grab_dets = $(this).attr('data-id');
             $('#remove-appt-btn').attr('data-id', $appt_id_grab_dets);
-            $('#myModalApptDetails').modal('show');
+            $('#myModalApptDetails').appendTo("body").modal('show');
 
             var flag = $(this).hasClass('blocked');
             if ( flag ){
@@ -1755,7 +1805,7 @@
             {   console.log('what data',data);
                 console.log('iteration holder',$iteration_holder);
                 $('#golfers_found').hide('fast');
-                $('#golfers_found').html('<div class="alert alert-success"><h2>Your Appointment has been Booked!</h2>Your appointment is on ' + human_readable_date + ': ' + human_readable_time + ' <icon class="icon-arrow-right"></i> ' + human_readable_end_minute_time + '<br><br>Please Check Your Email for Confirmation.</div> Have a moment? check us out on <a href="https://www.facebook.com/pages/Precision-Golf-School/150365515060968" target="_blank">facebook</a>');
+                $('#golfers_found').html('<div class="alert alert-success"><h2>Your Appointment has been Booked!</h2>Your appointment is on ' + human_readable_date + ': ' + human_readable_time + ' <icon class="icon-arrow-right"></i> ' + human_readable_end_minute_time + '<br><br>Please Check Your Email AND SPAM FOLDER for Confirmation.</div> Have a moment? check us out on <a href="https://www.facebook.com/pages/Precision-Golf-School/150365515060968" target="_blank">facebook</a>');
                 
                 sendConfirmation(false);
                 $('#golfers_found').show('slow');
@@ -1880,11 +1930,13 @@
       
     });
 
-   $.backstretch("<?php echo base_url();?>img/big_backer_3.png");
+   $.backstretch("<?php echo base_url();?>img/big_backer_2.png");
    $('.carousel').carousel();
 
    $('.holds-calendar-loader').hide();
    $('.holds-calendar').show('slow');
+
+   
 
  
 </script>

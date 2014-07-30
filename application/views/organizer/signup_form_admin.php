@@ -179,8 +179,8 @@ $(document).ready(function() {
 
     function r_the_pro_step_2 (id) {
     	$.post("<?php echo base_url();?>index.php/organizer/dash/r_pro", {id_pass: id}, function(data){
-			alert('called');
-			alert(data);
+			//alert('called');
+			//alert(data);
 		}, 'text');
 		$('#'+id+'under').hide();
     }

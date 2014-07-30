@@ -26,6 +26,16 @@ class Booking_admin_model extends CI_Model {
 		//}    
 	}
 
+	function fetch_by_name_model()
+	{   $this->db->like('cust_name_bm', $this->input->post('namer'));
+		$this->db->select('appointment_email, cust_name_bm');
+		$this->db->group_by("appointment_email");
+		//$query = $this->db->from('booking_master');
+		$query = $this->db->get('booking_master'); 
+		return json_encode($query->result_array());
+		//return $this->input->post('namer');
+	}
+
 	function fetch_appointment_model_group()
 	{
 		$this->db->where('ID_auth_bm', $this->input->post('appt_id'));
